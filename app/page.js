@@ -1,18 +1,23 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import {
   Activity,
+  ArrowDown,
+  ArrowUp,
   BrainCircuit,
   ChartNoAxesCombined,
   Database,
   Eye,
+  Moon,
   Radar,
   ScanSearch,
   ShieldAlert,
   ShieldCheck,
   Sparkles,
+  Sun,
   Terminal,
   Zap,
 } from "lucide-react";
@@ -100,6 +105,7 @@ const intelligenceStats = [
 
 export default function Home() {
   const [navVisible, setNavVisible] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,8 +127,22 @@ export default function Home() {
     };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <main className="site-shell">
+    <main className={`site-shell ${darkMode ? "dark-mode" : ""}`}>
       <div className="hero-background" />
 
       <nav
@@ -158,105 +178,104 @@ export default function Home() {
           Launch Terminal
         </a>
       </nav>
-<section className="hero" id="top">
-  <div className="hero-content">
-    <div className="hero-title">
-      <span className="hero-title-clean">Welcome to</span>
 
-      <h1>
-        Perpsia Terminal
-        <span className="terminal-cursor">_</span>
-      </h1>
-    </div>
+      <section className="hero" id="top">
+        <div className="hero-content">
+          <div className="hero-title">
+            <span className="hero-title-clean">Welcome to</span>
 
-    <p className="hero-description">
-      Autonomous perpetual futures market intelligence powered by
-      CoinMarketCap Skills Hub.
-    </p>
+            <h1>
+              Perpsia Terminal
+              <span className="terminal-cursor">_</span>
+            </h1>
+          </div>
 
-    <p className="hero-secondary">
-      Scan markets. Analyze assets. Challenge setups. Track changes.
-      Understand what matters.
-    </p>
+          <p className="hero-description">
+            Autonomous perpetual futures market intelligence powered by
+            CoinMarketCap Skills Hub.
+          </p>
 
-    <div className="hero-actions">
-      <a
-        className="primary-btn"
-        href={botUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Terminal size={17} />
-        Launch Terminal
-      </a>
+          <p className="hero-secondary">
+            Scan markets. Analyze assets. Challenge setups. Track changes.
+            Understand what matters.
+          </p>
 
-      <a className="secondary-btn" href="#system">
-        Explore the System
-      </a>
-    </div>
+          <div className="hero-actions">
+            <a
+              className="primary-btn"
+              href={botUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Terminal size={17} />
+              Launch Terminal
+            </a>
 
-    <div className="hero-status">
-      <span>PERPSIA AGENT ONLINE</span>
-      <span className="status-divider" />
-      <span>CMC SKILLS HUB READY</span>
-      <span className="status-divider" />
-      <span>AUTONOMOUS SCANNING ACTIVE</span>
-    </div>
-  </div>
+            <a className="secondary-btn" href="#system">
+              Explore the System
+            </a>
+          </div>
 
-  {/* HERO MASCOT */}
+          <div className="hero-status">
+            <span>PERPSIA AGENT ONLINE</span>
+            <span className="status-divider" />
+            <span>CMC SKILLS HUB READY</span>
+            <span className="status-divider" />
+            <span>AUTONOMOUS SCANNING ACTIVE</span>
+          </div>
+        </div>
 
-  <div className="hero-mascot-visual">
-    <Image
-      src="/images/hero-mascot.png"
-      alt="Perpsia AI mascot sitting on CoinMarketCap logo"
-      width={1200}
-      height={1200}
-      priority
-      className="hero-mascot-image"
-    />
-  </div>
-</section>
+        <div className="hero-mascot-visual">
+          <Image
+            src="/images/hero-mascot.png"
+            alt="Perpsia AI mascot sitting on CoinMarketCap logo"
+            width={1200}
+            height={1200}
+            priority
+            className="hero-mascot-image"
+          />
+        </div>
+      </section>
 
-<div className="hero-transition" />
+      <div className="hero-transition" />
 
-<section className="cmc-section" id="about">
-  <div className="section-light section-light-one" />
+      <section className="cmc-section" id="about">
+        <div className="section-light section-light-one" />
 
-  <div className="cmc-content">
-    <div className="section-heading">
-      <p className="section-kicker">THE INTELLIGENCE SOURCE</p>
+        <div className="cmc-content">
+          <div className="section-heading">
+            <p className="section-kicker">THE INTELLIGENCE SOURCE</p>
 
-      <h2>
-        Powered by
-        <br />
-        <span>CMC Skills Hub.</span>
-      </h2>
-    </div>
+            <h2>
+              Powered by
+              <br />
+              <span>CMC Skills Hub.</span>
+            </h2>
+          </div>
 
-    <div className="cmc-description">
-      <p>
-        Perpsia connects directly to CoinMarketCap Skills Hub to access
-        specialized crypto market research capabilities.
-      </p>
+          <div className="cmc-description">
+            <p>
+              Perpsia connects directly to CoinMarketCap Skills Hub to access
+              specialized crypto market research capabilities.
+            </p>
 
-      <p>
-        Instead of producing a quick answer from a single signal, Perpsia
-        runs market research, processes the results through its own
-        intelligence system, and returns a structured market view.
-      </p>
-    </div>
-  </div>
+            <p>
+              Instead of producing a quick answer from a single signal, Perpsia
+              runs market research, processes the results through its own
+              intelligence system, and returns a structured market view.
+            </p>
+          </div>
+        </div>
 
-  <div className="intelligence-stats">
-    {intelligenceStats.map((stat) => (
-      <div className="stat-item" key={stat.label}>
-        <strong>{stat.value}</strong>
-        <span>{stat.label}</span>
-      </div>
-    ))}
-  </div>
-</section>
+        <div className="intelligence-stats">
+          {intelligenceStats.map((stat) => (
+            <div className="stat-item" key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="purpose-section">
         <div className="purpose-intro">
@@ -603,6 +622,40 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <div className="floating-controls">
+        <button
+          type="button"
+          className="floating-control-btn"
+          onClick={() => setDarkMode((current) => !current)}
+          aria-label={
+            darkMode ? "Use transparent background" : "Use dark background"
+          }
+          title={darkMode ? "Transparent background" : "Dark background"}
+        >
+          {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+        </button>
+
+        <button
+          type="button"
+          className="floating-control-btn"
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          title="Scroll to top"
+        >
+          <ArrowUp size={17} />
+        </button>
+
+        <button
+          type="button"
+          className="floating-control-btn"
+          onClick={scrollToBottom}
+          aria-label="Scroll to bottom"
+          title="Scroll to bottom"
+        >
+          <ArrowDown size={17} />
+        </button>
+      </div>
     </main>
   );
 }
