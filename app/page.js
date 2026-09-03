@@ -216,6 +216,20 @@ export default function Home() {
             </a>
           </div>
 
+          <a
+            className="orynth-badge"
+            href="https://orynth.dev/projects/perpsia"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="https://orynth.dev/api/badge/perpsia?theme=dark&style=default"
+              alt="Featured on Orynth"
+              width="260"
+              height="80"
+            />
+          </a>
+
           <div className="hero-status">
             <span>PERPSIA AGENT ONLINE</span>
             <span className="status-divider" />

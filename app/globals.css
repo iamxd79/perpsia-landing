@@ -754,6 +754,47 @@ a {
 
 
 /* =========================================================
+   ORYNTH FEATURE BADGE
+========================================================= */
+
+.orynth-badge {
+  display: inline-flex;
+
+  width: 260px;
+  height: 80px;
+
+  margin-top: 28px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(56, 97, 251, 0.12);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.orynth-badge:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.28),
+    0 0 38px rgba(56, 97, 251, 0.22);
+}
+
+.orynth-badge img {
+  display: block;
+
+  width: 260px;
+  height: 80px;
+
+  border-radius: inherit;
+}
+
+
+/* =========================================================
    HERO STATUS
 ========================================================= */
 
