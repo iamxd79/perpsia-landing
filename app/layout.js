@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import { Inter, Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const dotemp = localFont({
@@ -140,6 +141,7 @@ export default function RootLayout({ children }) {
         }}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
