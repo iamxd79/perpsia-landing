@@ -64,7 +64,7 @@ button { cursor: pointer; }
     url("/images/background.jpg"),
     linear-gradient(180deg, #071422 0%, var(--background) 50%, #050d18 100%);
   background-position: center, center, center top, center;
-  background-size: cover, cover, 1600px auto, cover;
+  background-size: cover, cover, 100% auto, cover;
   background-attachment: scroll, scroll, fixed, scroll;
   background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
 }
