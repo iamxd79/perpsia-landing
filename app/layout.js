@@ -1,8 +1,6 @@
-import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const dotemp = localFont({ src: "./fonts/Dotemp-8bit.ttf", variable: "--font-dotemp", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const siteUrl = "https://perpsia.vercel.app";
 
@@ -22,5 +20,5 @@ export const metadata = {
 export const viewport = { themeColor: "#07111f", colorScheme: "dark", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }) {
-  return <html lang="en"><body className={`${dotemp.variable} ${inter.variable}`}>{children}</body></html>;
+  return <html lang="en"><body className={inter.variable}>{children}</body></html>;
 }
