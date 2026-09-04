@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PerpsIA landing site
 
-## Getting Started
+The PerpsIA landing site is a Next.js application for the public homepage and live signal feed.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Live signal data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The browser only calls the same-origin `/api/signals` route. That route proxies the public PerpsIA backend, normalizes the response, and keeps upstream failures out of the client.
 
-## Learn More
+The default backend is `https://perpsia.onrender.com`. Set these server-side environment variables when the deployment needs a different backend or a dedicated live-signal endpoint:
 
-To learn more about Next.js, take a look at the following resources:
+```text
+PERPSIA_API_BASE_URL=https://perpsia.onrender.com
+PERPSIA_SIGNAL_API_URL=https://your-backend.example/api/signals
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`PERPSIA_SIGNAL_API_URL` is optional. Without it, the site reads the backend's real `/api/performance/trades?days=30` data. No placeholder signals are generated. Trading links are rendered only when the backend supplies a verified HTTPS venue link.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verification
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm run build
+npm run start -- -p 4173
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The homepage is at `/`, the full signal board is at `/signals`, and the internal proxy is at `/api/signals`.
