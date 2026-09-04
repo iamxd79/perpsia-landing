@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./theme-toggle";
 
 const botUrl = "https://t.me/perpsia_bot";
 
@@ -18,7 +19,10 @@ export default function SiteHeader() {
           <Link href="/#performance">Performance</Link>
           <a href={botUrl} target="_blank" rel="noopener noreferrer">Telegram</a>
         </nav>
-        <a className="button button-small" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA</a>
+        <div className="header-actions">
+          <ThemeToggle />
+          <a className="button button-small" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA</a>
+        </div>
       </div>
     </header>
   );

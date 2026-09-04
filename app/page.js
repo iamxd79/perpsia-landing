@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SignalFeed from "../components/signal-feed";
 import SiteFooter from "../components/site-footer";
@@ -47,6 +48,9 @@ export default function Home() {
           </div>
           <aside className="hero-panel" aria-label="PerpsIA capabilities">
             <p className="eyebrow">The intelligence layer</p>
+            <div className="hero-image-frame">
+              <Image src="/images/hero-mascot.png" alt="PerpsIA market intelligence mascot" width={900} height={900} priority className="hero-image" />
+            </div>
             <p>PerpsIA owns the scoring, classification, lifecycle, risk checks, conflict detection, and signal output.</p>
             <dl>
               <div><dt>Evidence</dt><dd>Live markets and data providers</dd></div>
@@ -88,15 +92,20 @@ export default function Home() {
         </Section>
 
         <Section eyebrow="Market context" title="Read the parts of the market that change a trade.">
-          <div className="feature-grid">
-            {features.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
+          <div className="feature-showcase">
+            <div className="feature-grid">
+              {features.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
+            </div>
+            <div className="feature-image-frame">
+              <Image src="/images/intelligence-core.png" alt="PerpsIA intelligence core" width={1200} height={900} className="feature-image" />
+            </div>
           </div>
         </Section>
 
         <Section id="early-alpha" eyebrow="Early Alpha" title="Catch momentum before it gets crowded." className="early-alpha-section">
           <div className="split-section">
             <div><p className="section-lede">PerpsIA watches early token activity for rising volume, liquidity, transactions, and price momentum before the move becomes heavily extended.</p><a className="button button-secondary" href={botUrl} target="_blank" rel="noopener noreferrer">Open Early Alpha on Telegram</a></div>
-            <article className="alpha-example"><p className="example-label">Example</p><strong>$TOKEN</strong><span>EARLY MOMENTUM</span><dl><div><dt>Score</dt><dd>8.4</dd></div><div><dt>Confidence</dt><dd>79 percent</dd></div><div><dt>24h move</dt><dd>+7.2 percent</dd></div><div><dt>Volume acceleration</dt><dd>+186 percent</dd></div><div><dt>Volume to market cap</dt><dd>34 percent</dd></div><div><dt>Liquidity</dt><dd>Rising</dd></div></dl><p className="signal-status">BUILDING</p></article>
+            <article className="alpha-example"><Image src="/images/beta-illustration.png" alt="PerpsIA early alpha illustration" width={900} height={900} className="alpha-image" /><p className="example-label">Example</p><strong>$TOKEN</strong><span>EARLY MOMENTUM</span><dl><div><dt>Score</dt><dd>8.4</dd></div><div><dt>Confidence</dt><dd>79 percent</dd></div><div><dt>24h move</dt><dd>+7.2 percent</dd></div><div><dt>Volume acceleration</dt><dd>+186 percent</dd></div><div><dt>Volume to market cap</dt><dd>34 percent</dd></div><div><dt>Liquidity</dt><dd>Rising</dd></div></dl><p className="signal-status">BUILDING</p></article>
           </div>
         </Section>
 
@@ -111,7 +120,7 @@ export default function Home() {
         </Section>
 
         <Section id="telegram" eyebrow="Telegram" title="Built for Telegram." className="telegram-section">
-          <div className="split-section"><div><p className="section-lede">Scan markets, analyze a token, track early momentum, set risk, compare setups, and follow signals without opening another trading dashboard.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Open PerpsIA</a></div><div className="command-list"><code>/scan</code><code>/analyze $BTC</code><code>/alpha</code><code>/risk</code><code>/compare $SOL $ETH</code><code>/backtest $BTC</code></div></div>
+          <div className="split-section"><div><p className="section-lede">Scan markets, analyze a token, track early momentum, set risk, compare setups, and follow signals without opening another trading dashboard.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Open PerpsIA</a></div><div className="telegram-right"><div className="telegram-image-frame"><Image src="/images/telegram-mockup.png" alt="PerpsIA Telegram market intelligence" width={1000} height={1000} className="telegram-image" /></div><div className="command-list"><code>/scan</code><code>/analyze $BTC</code><code>/alpha</code><code>/risk</code><code>/compare $SOL $ETH</code><code>/backtest $BTC</code></div></div></div>
         </Section>
 
         <section className="closing-cta"><p className="eyebrow">PerpsIA</p><h2>See what PerpsIA sees.</h2><p>Run a market scan or analyze your first setup on Telegram.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA</a></section>
