@@ -14,6 +14,12 @@
   --negative: #ee8b93;
   --muted-strong: #c1d0de;
   --value: #d8e7f3;
+  --glass-surface: rgba(7, 21, 36, 0.68);
+  --glass-surface-strong: rgba(6, 18, 32, 0.8);
+  --glass-surface-soft: rgba(16, 47, 75, 0.48);
+  --glass-line: rgba(214, 239, 255, 0.24);
+  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 22px 60px rgba(1, 8, 16, 0.2);
   --max-width: 1180px;
 }
 
@@ -33,6 +39,12 @@
   --negative: #b53e4a;
   --muted-strong: #3e596e;
   --value: #1e3b52;
+  --glass-surface: rgba(247, 252, 255, 0.72);
+  --glass-surface-strong: rgba(245, 251, 255, 0.86);
+  --glass-surface-soft: rgba(228, 242, 249, 0.7);
+  --glass-line: rgba(255, 255, 255, 0.72);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 22px 60px rgba(36, 79, 105, 0.14);
 }
 
 * { box-sizing: border-box; }
@@ -70,8 +82,10 @@ button { cursor: pointer; }
   top: 0;
   z-index: 20;
   border-bottom: 1px solid var(--line);
-  background: rgba(6, 16, 29, 0.9);
-  backdrop-filter: none;
+  background: rgba(6, 16, 29, 0.58);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .site-header-inner {
@@ -252,3 +266,128 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.ticker-track-moving { animation: none; } .button, .trade-button { transition: none; } }
+
+/* Glass surfaces keep the scenic image crisp while separating content from it. */
+.hero-copy,
+.signal-feed,
+.step-card,
+.feature-grid article,
+.lifecycle-example,
+.feature-image-frame,
+.alpha-example,
+.risk-layout,
+.telegram-image-frame,
+.closing-cta,
+.signal-filters,
+.signal-card,
+.empty-state,
+.error-state,
+.site-footer {
+  border-color: var(--glass-line);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+}
+
+.hero-copy {
+  width: min(100%, 820px);
+  padding: 34px 38px 38px;
+  border: 1px solid var(--glass-line);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 42%), var(--glass-surface);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+.signal-feed,
+.step-card,
+.feature-grid article,
+.lifecycle-example,
+.risk-layout,
+.signal-filters,
+.signal-card,
+.empty-state,
+.error-state {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 46%), var(--glass-surface);
+}
+
+.feature-image-frame,
+.telegram-image-frame {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%), var(--glass-surface-soft);
+}
+
+.alpha-example,
+.closing-cta {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 48%), var(--glass-surface-strong);
+}
+
+.site-footer {
+  background: linear-gradient(rgba(6, 20, 34, 0.66), rgba(6, 20, 34, 0.78)), url("/images/footer-background.jpg") center / cover;
+}
+
+.theme-toggle,
+.button-secondary,
+.filter-tabs button,
+.filter-selects select,
+.signal-metric,
+.command-list code,
+.performance-list span {
+  border-color: var(--glass-line);
+  box-shadow: inset 0 1px 0 var(--glass-highlight);
+}
+
+.theme-toggle,
+.button-secondary,
+.filter-selects select {
+  background: rgba(9, 31, 51, 0.54);
+}
+
+.signal-metric,
+.command-list code {
+  background: rgba(5, 20, 34, 0.52);
+}
+
+.performance-list span {
+  background: rgba(8, 28, 46, 0.46);
+}
+
+html.light-mode .site-header {
+  background: rgba(245, 251, 255, 0.68);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+html.light-mode .hero-copy,
+html.light-mode .signal-feed,
+html.light-mode .step-card,
+html.light-mode .feature-grid article,
+html.light-mode .lifecycle-example,
+html.light-mode .feature-image-frame,
+html.light-mode .alpha-example,
+html.light-mode .risk-layout,
+html.light-mode .telegram-image-frame,
+html.light-mode .closing-cta,
+html.light-mode .signal-filters,
+html.light-mode .signal-card,
+html.light-mode .empty-state,
+html.light-mode .error-state {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), transparent 54%), var(--glass-surface);
+}
+
+html.light-mode .site-footer {
+  background: linear-gradient(rgba(239, 249, 253, 0.72), rgba(239, 249, 253, 0.82)), url("/images/footer-background.jpg") center / cover;
+}
+
+html.light-mode .theme-toggle,
+html.light-mode .button-secondary,
+html.light-mode .filter-selects select {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+html.light-mode .signal-metric,
+html.light-mode .command-list code,
+html.light-mode .performance-list span {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 640px) {
+  .hero-copy { padding: 26px 22px 28px; border-radius: 20px; }
+}
