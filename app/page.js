@@ -46,18 +46,6 @@ export default function Home() {
               <span>Risk aware signals</span>
             </div>
           </div>
-          <aside className="hero-panel" aria-label="PerpsIA capabilities">
-            <p className="eyebrow">The intelligence layer</p>
-            <div className="hero-image-frame">
-              <Image src="/images/hero-mascot.png" alt="PerpsIA market intelligence mascot" width={900} height={900} priority className="hero-image" />
-            </div>
-            <p>PerpsIA owns the scoring, classification, lifecycle, risk checks, conflict detection, and signal output.</p>
-            <dl>
-              <div><dt>Evidence</dt><dd>Live markets and data providers</dd></div>
-              <div><dt>Decision</dt><dd>PerpsIA engine</dd></div>
-              <div><dt>Output</dt><dd>Clear trading research</dd></div>
-            </dl>
-          </aside>
         </section>
 
         <SignalFeed />
