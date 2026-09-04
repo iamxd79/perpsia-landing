@@ -58,15 +58,11 @@ button { cursor: pointer; }
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
-  background-image:
-    radial-gradient(circle at 72% 6%, rgba(28, 109, 177, 0.22), transparent 26rem),
-    linear-gradient(rgba(3, 14, 26, 0.78), rgba(3, 14, 26, 0.88)),
-    url("/images/background.jpg"),
-    linear-gradient(180deg, #071422 0%, var(--background) 50%, #050d18 100%);
-  background-position: center, center, center top, center;
-  background-size: cover, cover, 100% auto, cover;
-  background-attachment: scroll, scroll, fixed, scroll;
-  background-repeat: no-repeat, no-repeat, repeat-y, no-repeat;
+  background-image: url("/images/background.jpg");
+  background-position: center top;
+  background-size: 100% auto;
+  background-attachment: scroll;
+  background-repeat: repeat-y;
 }
 
 .site-header {
@@ -75,7 +71,7 @@ button { cursor: pointer; }
   z-index: 20;
   border-bottom: 1px solid var(--line);
   background: rgba(6, 16, 29, 0.9);
-  backdrop-filter: blur(18px);
+  backdrop-filter: none;
 }
 
 .site-header-inner {
@@ -213,7 +209,7 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 .site-footer { width: min(calc(100% - 48px), var(--max-width)); margin: 0 auto; padding: 38px 24px 48px; display: flex; justify-content: space-between; gap: 46px; border: 1px solid var(--line); border-bottom: 0; background: linear-gradient(rgba(4, 16, 29, 0.84), rgba(4, 16, 29, 0.94)), url("/images/footer-background.jpg") center / cover; }.site-footer-main { max-width: 600px; }.footer-brand { margin-bottom: 20px; }.site-footer p { margin-bottom: 10px; color: var(--muted); font-size: 13px; line-height: 1.6; }.site-footer nav { display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: flex-end; gap: 16px 20px; min-width: 250px; }
 
 html.light-mode body { background: var(--background); }
-html.light-mode .site-shell { background-image: radial-gradient(circle at 72% 6%, rgba(35, 149, 207, 0.16), transparent 26rem), linear-gradient(rgba(239, 247, 251, 0.82), rgba(239, 247, 251, 0.9)), url("/images/background.jpg"), linear-gradient(180deg, #eef7fb 0%, var(--background) 50%, #dfeaf1 100%); }
+html.light-mode .site-shell { background-image: url("/images/background.jpg"); }
 html.light-mode .site-header { background: rgba(244, 250, 253, 0.9); }
 html.light-mode .theme-toggle, html.light-mode .button-secondary { background: rgba(255, 255, 255, 0.64); }
 html.light-mode .button, html.light-mode .trade-button { color: #ffffff; }
