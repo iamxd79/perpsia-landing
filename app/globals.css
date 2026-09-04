@@ -123,7 +123,7 @@ button { cursor: pointer; }
 .button-secondary { color: var(--text); border-color: var(--line-strong); background: rgba(14, 39, 63, 0.56); }
 .button-secondary:hover { color: var(--text); border-color: var(--blue); background: rgba(36, 99, 152, 0.38); }
 
-.eyebrow, .example-label { margin: 0 0 14px; color: var(--blue); font-family: var(--font-dotemp), monospace; font-size: 10px; letter-spacing: 0.11em; line-height: 1.4; text-transform: uppercase; }
+.eyebrow, .example-label { margin: 0 0 14px; color: var(--blue); font-family: var(--font-inter), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; }
 h1, h2, h3, h4, p { margin-top: 0; }
 h1, h2, h3 { letter-spacing: -0.04em; }
 h1 { max-width: 780px; margin-bottom: 24px; font-size: clamp(48px, 6.6vw, 86px); line-height: 0.98; }
@@ -202,7 +202,7 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 .risk-layout > p:last-child { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }.risk-profile { margin: 0; }.risk-profile > div { padding: 11px 0; border-top: 1px solid var(--line); }.risk-profile dd { margin-top: 4px; font-weight: 700; }
 
 .performance-list { display: flex; flex-wrap: wrap; gap: 10px; }.performance-list span { padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; color: #c1d4e4; font-size: 13px; }.collecting-state { margin: 28px 0 0; color: var(--muted); font-size: 15px; }
-.command-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.command-list code { padding: 13px; border: 1px solid var(--line); border-radius: 6px; color: #cce7fa; background: #091828; font-family: var(--font-dotemp), monospace; font-size: 12px; }
+.command-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.command-list code { padding: 13px; border: 1px solid var(--line); border-radius: 6px; color: #cce7fa; background: #091828; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; font-weight: 600; }
 
 .telegram-right { display: grid; gap: 16px; }
 .telegram-image-frame { height: 230px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: rgba(6, 16, 29, 0.62); }
