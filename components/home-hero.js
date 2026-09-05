@@ -2,17 +2,8 @@ import Link from "next/link";
 import { ChartNoAxesColumnIncreasing, Send } from "lucide-react";
 import SiteHeader from "./site-header";
 import HomeMarketOverview from "./home-market-overview";
+import ProviderMarquee from "./provider-marquee";
 import styles from "./home-hero.module.css";
-
-const providers = [
-  ["Binance", "binance"],
-  ["BYBIT", "bybit"],
-  ["OKX", "okx"],
-  ["Hyperliquid", "hyperliquid"],
-  ["CoinMarketCap", "cmc"],
-  ["DexScreener", "dexscreener"],
-  ["GeckoTerminal", "gecko"],
-];
 
 export default function HomeHero() {
   return (
@@ -31,18 +22,7 @@ export default function HomeHero() {
           </Link>
         </div>
       </section>
-      <div className={styles.providerStrip}>
-        <p>Market intelligence across</p>
-        <ul aria-label="Supported data sources and delivery">
-          {providers.map(([name, mark]) => (
-            <li key={mark} className={styles[mark]}>
-              {mark === "binance" ? <span className={styles.binanceMark} aria-hidden="true"><i /><i /><i /><i /><i /></span> : null}
-              {name}
-            </li>
-          ))}
-          <li className={styles.telegram}><Send size={22} aria-hidden="true" />Telegram</li>
-        </ul>
-      </div>
+      <ProviderMarquee className={styles.providerStrip} />
     </HomeMarketOverview>
   );
 }
