@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ChartNoAxesColumnIncreasing, Crosshair, Database, Percent } from "lucide-react";
 import HomeHero from "../components/home-hero";
 import SiteFooter from "../components/site-footer";
 import { Section } from "../components/section-layout";
@@ -72,9 +73,25 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section eyebrow="Risk" title="A setup is incomplete without risk." className="risk-section">
-          <div className="risk-layout"><p className="section-lede">PerpsIA uses the user&apos;s capital, risk percentage, and leverage limit to size actionable setups.</p><dl className="risk-profile"><div><dt>Capital</dt><dd>$500</dd></div><div><dt>Risk per trade</dt><dd>1 percent</dd></div><div><dt>Max leverage</dt><dd>5x</dd></div></dl><p>Position size is calculated from the setup&apos;s actual stop distance.</p></div>
-        </Section>
+        <section className="section risk-section">
+          <div className="section-heading">
+            <p className="eyebrow">Risk</p>
+            <h2>A setup is incomplete without risk.</h2>
+            <p className="section-lede risk-copy">PerpsIA uses the user&apos;s capital, risk percentage, and leverage limit to size actionable setups.</p>
+          </div>
+          <div className="risk-layout">
+            <dl className="risk-profile">
+              <div><span className="risk-metric-icon" aria-hidden="true"><Database size={28} strokeWidth={1.9} /></span><div><dt>Capital</dt><dd>$500</dd></div></div>
+              <div><span className="risk-metric-icon" aria-hidden="true"><Percent size={28} strokeWidth={2} /></span><div><dt>Risk per trade</dt><dd>1 percent</dd></div></div>
+              <div><span className="risk-metric-icon" aria-hidden="true"><ChartNoAxesColumnIncreasing size={28} strokeWidth={1.9} /></span><div><dt>Max leverage</dt><dd>5x</dd></div></div>
+            </dl>
+            <article className="risk-position-card">
+              <span className="risk-position-icon" aria-hidden="true"><Crosshair size={38} strokeWidth={1.7} /></span>
+              <p className="risk-position-label">Position sizing</p>
+              <p>Position size is calculated from the setup&apos;s actual stop distance.</p>
+            </article>
+          </div>
+        </section>
 
         <Section id="performance" eyebrow="Signal Quality" title="PerpsIA tracks what happens after every signal.">
           <p className="section-lede">Signals are evaluated after 1 hour, 4 hours, 12 hours, 24 hours, and 72 hours.</p>

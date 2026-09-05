@@ -1041,6 +1041,214 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
+/* ---------------------------------------------------------
+   RISK SECTION REFERENCE LAYOUT
+   Keep the section open and let the scenic background show
+   through each separate glass surface.
+   --------------------------------------------------------- */
+
+.risk-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.80fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: 36px;
+}
+
+.risk-section .section-heading {
+  grid-column: 1;
+  margin: 0;
+  align-self: center;
+}
+
+.risk-section .section-heading h2 {
+  max-width: 470px;
+  font-size: clamp(32px, 3vw, 42px);
+}
+
+.risk-section .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.risk-section .eyebrow::after {
+  width: 128px;
+  height: 1px;
+  background: rgba(214, 239, 255, 0.38);
+  content: "";
+}
+
+.risk-copy {
+  max-width: 480px;
+  margin: 24px 0 0;
+}
+
+.risk-section .risk-layout {
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: 28px;
+  min-width: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.risk-section .risk-profile {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+  margin: 0;
+}
+
+.risk-section .risk-profile > div {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  min-height: 104px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.27) !important;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.09) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 32px rgba(0, 40, 90, 0.08);
+}
+
+.risk-metric-icon,
+.risk-position-icon {
+  display: grid;
+  place-items: center;
+  color: #e4f7ff;
+  background: rgba(104, 201, 255, 0.17);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.risk-metric-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+}
+
+.risk-section .risk-profile dt {
+  margin: 0 0 6px;
+  color: rgba(242, 249, 255, 0.86) !important;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.risk-section .risk-profile dd {
+  margin: 0;
+  color: #ffffff !important;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 750;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.risk-position-card {
+  display: flex;
+  min-height: 330px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 38px 34px 34px;
+  border: 1px solid rgba(255, 255, 255, 0.30) !important;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.09) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 16px 38px rgba(0, 40, 90, 0.08);
+}
+
+.risk-position-icon {
+  width: 78px;
+  height: 78px;
+  margin-bottom: auto;
+  border: 1px solid rgba(190, 235, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(120, 209, 255, 0.16);
+}
+
+.risk-position-label {
+  margin: 0 0 18px;
+  color: #b7ecff !important;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.risk-position-card > p:last-child {
+  max-width: 320px;
+  margin: 0;
+  color: rgba(248, 252, 255, 0.92) !important;
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .risk-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .risk-section .section-heading {
+    grid-column: 1 / -1;
+  }
+
+  .risk-section .risk-layout {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .risk-section {
+    display: block;
+  }
+
+  .risk-section .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .risk-section .risk-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .risk-section .risk-profile {
+    gap: 14px;
+  }
+
+  .risk-section .risk-profile > div {
+    min-height: 94px;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .risk-position-card {
+    min-height: 270px;
+    padding: 28px 24px 26px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .risk-section .risk-profile > div,
+  .risk-position-card {
+    background: rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* =========================================================
    FINAL UI POLISH
    Vertical controls + clean lifecycle + smart separators
