@@ -1041,6 +1041,279 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
+/* Telegram section: a focused glass panel paired with the floating bot artwork. */
+.telegram-section {
+  padding-top: 88px;
+  padding-bottom: 92px;
+}
+
+.telegram-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: center;
+  gap: 36px;
+}
+
+.telegram-copy-card {
+  min-width: 0;
+  padding: 42px 42px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.045) 58%, rgba(101, 212, 255, 0.10));
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: 0 22px 60px rgba(0, 35, 90, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.telegram-kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 38px;
+  color: rgba(244, 252, 255, 0.9);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.telegram-kicker-icon {
+  display: inline-grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 8px 20px rgba(0, 90, 210, 0.16);
+}
+
+.telegram-copy-card h2 {
+  max-width: 640px;
+  margin-bottom: 22px;
+  color: #fff;
+  font-size: clamp(44px, 5vw, 70px);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-shadow: 0 2px 14px rgba(14, 76, 155, 0.18);
+}
+
+.telegram-copy-card .section-lede {
+  max-width: 620px;
+  margin-bottom: 28px;
+  color: rgba(248, 252, 255, 0.92) !important;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.5;
+}
+
+.telegram-button {
+  min-height: 64px;
+  gap: 14px;
+  padding: 0 28px;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  border-radius: 999px;
+  color: #103b83 !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 12px 28px rgba(0, 62, 150, 0.12);
+}
+
+.telegram-button:hover {
+  color: #062e72 !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  transform: translateY(-2px);
+}
+
+.telegram-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  overflow: hidden;
+}
+
+.telegram-benefits span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 15px 10px;
+  color: rgba(248, 252, 255, 0.94);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.telegram-benefits span + span {
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.telegram-visual {
+  position: relative;
+  min-width: 0;
+}
+
+.telegram-visual::before {
+  display: none;
+}
+
+.telegram-section .telegram-image-frame {
+  height: 455px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.telegram-section .telegram-image {
+  width: 126% !important;
+  height: 100% !important;
+  max-width: none;
+  margin-left: -13%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.08);
+  transition: transform 220ms ease;
+}
+
+.telegram-section .telegram-image:hover {
+  transform: scale(1.12) rotate(0.5deg);
+}
+
+.telegram-section .command-list {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: -8px;
+}
+
+.telegram-section .command-list code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  border-radius: 17px;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.13) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 10px 24px rgba(0, 45, 120, 0.09);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.telegram-section .command-list code svg:first-child {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.telegram-section .command-list code svg:last-child {
+  flex: 0 0 auto;
+  opacity: 0.88;
+}
+
+@media (max-width: 960px) {
+  .telegram-layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .telegram-copy-card {
+    max-width: 760px;
+  }
+
+  .telegram-visual {
+    width: min(100%, 680px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .telegram-section {
+    padding-top: 70px;
+    padding-bottom: 72px;
+  }
+
+  .telegram-copy-card {
+    padding: 28px 22px 22px;
+    border-radius: 22px;
+  }
+
+  .telegram-kicker {
+    margin-bottom: 28px;
+  }
+
+  .telegram-kicker-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .telegram-copy-card h2 {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .telegram-copy-card .section-lede {
+    font-size: 16px;
+  }
+
+  .telegram-button {
+    width: 100%;
+    justify-content: center;
+    padding: 0 18px;
+  }
+
+  .telegram-benefits {
+    grid-template-columns: 1fr;
+    border-radius: 18px;
+  }
+
+  .telegram-benefits span {
+    justify-content: flex-start;
+    padding: 12px 16px;
+  }
+
+  .telegram-benefits span + span {
+    border-top: 1px solid rgba(255, 255, 255, 0.24);
+    border-left: 0;
+  }
+
+  .telegram-section .telegram-image-frame {
+    height: 340px !important;
+  }
+
+  .telegram-section .telegram-image {
+    width: 118% !important;
+    margin-left: -9%;
+    transform: scale(1.06);
+  }
+
+  .telegram-section .command-list {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    margin-top: -4px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .telegram-copy-card,
+  .telegram-benefits,
+  .telegram-section .command-list code {
+    background: rgba(255, 255, 255, 0.17) !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /* ---------------------------------------------------------
    RISK SECTION REFERENCE LAYOUT
    Keep the section open and let the scenic background show

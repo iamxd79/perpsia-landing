@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChartNoAxesColumnIncreasing, Crosshair, Database, Percent } from "lucide-react";
+import { ArrowUpRight, ChartNoAxesColumnIncreasing, Crosshair, Database, Percent, Send, ShieldCheck, Zap } from "lucide-react";
 import HomeHero from "../components/home-hero";
 import SiteFooter from "../components/site-footer";
 import { Section } from "../components/section-layout";
@@ -99,9 +99,25 @@ export default function Home() {
           <p className="collecting-state">Performance data is still being collected.</p>
         </Section>
 
-        <Section id="telegram" eyebrow="Telegram" title="Built for Telegram." className="telegram-section">
-          <div className="split-section"><div><p className="section-lede">Scan markets, analyze a token, track early momentum, set risk, compare setups, and follow signals without opening another trading dashboard.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Open PerpsIA</a></div><div className="telegram-right"><div className="telegram-image-frame"><Image src="/images/telegram-mockup.png" alt="PerpsIA Telegram market intelligence" width={1000} height={1000} className="telegram-image" /></div><div className="command-list"><code>/scan</code><code>/analyze $BTC</code><code>/alpha</code><code>/risk</code><code>/compare $SOL $ETH</code><code>/backtest $BTC</code></div></div></div>
-        </Section>
+        <section id="telegram" className="section telegram-section">
+          <div className="telegram-layout">
+            <div className="telegram-copy-card">
+              <p className="telegram-kicker"><span className="telegram-kicker-icon"><Send size={18} strokeWidth={2.2} /></span><span>Telegram</span></p>
+              <h2>Built for Telegram.</h2>
+              <p className="section-lede">Scan markets, analyze a token, track early momentum, set risk, compare setups, and follow signals without opening another trading dashboard.</p>
+              <a className="button telegram-button" href={botUrl} target="_blank" rel="noopener noreferrer"><Send size={17} strokeWidth={2.2} />Open PerpsIA<ArrowUpRight size={18} strokeWidth={2.1} /></a>
+              <div className="telegram-benefits" aria-label="Telegram benefits">
+                <span><Zap size={17} strokeWidth={2.2} />Fast</span>
+                <span><ShieldCheck size={17} strokeWidth={2.2} />Private</span>
+                <span><ChartNoAxesColumnIncreasing size={17} strokeWidth={2.2} />Built for traders</span>
+              </div>
+            </div>
+            <div className="telegram-visual">
+              <div className="telegram-image-frame"><Image src="/images/telegram-mockup.png" alt="PerpsIA Telegram market intelligence" width={1000} height={1000} className="telegram-image" /></div>
+              <div className="command-list"><code><Send size={15} />/scan<ArrowUpRight size={15} /></code><code><Send size={15} />/analyze $BTC<ArrowUpRight size={15} /></code><code><Send size={15} />/alpha<ArrowUpRight size={15} /></code><code><Send size={15} />/risk<ArrowUpRight size={15} /></code><code><Send size={15} />/compare $SOL $ETH<ArrowUpRight size={15} /></code><code><Send size={15} />/backtest $BTC<ArrowUpRight size={15} /></code></div>
+            </div>
+          </div>
+        </section>
 
         <section className="closing-cta"><p className="eyebrow">PerpsIA</p><h2>See what PerpsIA sees.</h2><p>Run a market scan or analyze your first setup on Telegram.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA</a></section>
       </main>
