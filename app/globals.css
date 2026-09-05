@@ -1,15 +1,15 @@
 :root {
   --background: #06101d;
   --surface: #0b1727;
-  --surface-raised: #102238;
-  --surface-subtle: #0d1b2d;
+  --surface-raised: #1022381a;
+  --surface-subtle: #0d1b2d00;
   --line: rgba(165, 204, 242, 0.17);
   --line-strong: rgba(105, 180, 244, 0.36);
   --text: #f1f7fc;
   --muted: #9bacbd;
-  --subtle: #708298;
-  --blue: #4eb5ff;
-  --blue-strong: #168ee8;
+  --subtle: #70829813;
+  --blue: #4eb5ff25;
+  --blue-strong: #168de800;
   --positive: #6fd6b4;
   --negative: #ee8b93;
   --muted-strong: #c1d0de;
@@ -134,11 +134,11 @@ button { cursor: pointer; }
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.button:hover, .trade-button:hover { background: #8bd1ff; transform: translateY(-1px); }
+.button:hover, .trade-button:hover { background: #8bd1ff26; transform: translateY(-1px); }
 .button:focus-visible, .text-link:focus-visible, .trade-button:focus-visible, .text-button:focus-visible, .site-nav a:focus-visible { outline: 2px solid #b3e1ff; outline-offset: 3px; }
 .button-small { min-height: 38px; padding: 0 14px; font-size: 13px; white-space: nowrap; }
-.button-secondary { color: var(--text); border-color: var(--line-strong); background: rgba(14, 39, 63, 0.56); }
-.button-secondary:hover { color: var(--text); border-color: var(--blue); background: rgba(36, 99, 152, 0.38); }
+.button-secondary { color: var(--text); border-color: var(--line-strong); background: rgba(14, 39, 63, 0.841); }
+.button-secondary:hover { color: var(--text); border-color: var(--blue); background: rgb(36, 100, 152); }
 
 .eyebrow, .example-label { margin: 0 0 14px; color: var(--blue); font-family: var(--font-inter), Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; line-height: 1.4; text-transform: uppercase; }
 h1, h2, h3, h4, p { margin-top: 0; }
@@ -1308,6 +1308,284 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .telegram-copy-card,
   .telegram-benefits,
   .telegram-section .command-list code {
+    background: rgba(255, 255, 255, 0.17) !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Early Alpha section: signal chips and a transparent momentum snapshot. */
+.early-alpha-section {
+  padding-top: 88px;
+  padding-bottom: 92px;
+}
+
+.early-alpha-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: 52px;
+}
+
+.early-alpha-copy {
+  min-width: 0;
+}
+
+.early-alpha-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.early-alpha-eyebrow::after {
+  width: 74px;
+  height: 1px;
+  background: rgba(225, 245, 255, 0.42);
+  content: "";
+}
+
+.early-alpha-copy h2 {
+  max-width: 570px;
+  margin-bottom: 24px;
+  color: #fff;
+  font-size: clamp(44px, 4.4vw, 60px);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-shadow: 0 2px 14px rgba(14, 76, 155, 0.18);
+}
+
+.early-alpha-copy .section-lede {
+  max-width: 540px;
+  margin-bottom: 28px;
+  color: rgba(248, 252, 255, 0.92) !important;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.5;
+}
+
+.early-alpha-button {
+  min-height: 62px;
+  gap: 13px;
+  padding: 0 26px;
+  border-color: rgba(255, 255, 255, 0.56) !important;
+  border-radius: 999px;
+  color: #103b83 !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 12px 28px rgba(0, 62, 150, 0.12);
+}
+
+.early-alpha-button:hover {
+  color: #062e72 !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  transform: translateY(-2px);
+}
+
+.early-alpha-showcase {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.alpha-signal-tags {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.alpha-signal-tags span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 78px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 18px;
+  color: rgba(248, 252, 255, 0.95);
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 12px 26px rgba(0, 48, 120, 0.08);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.alpha-signal-tags span:nth-child(1) svg { color: #38f1c5; }
+.alpha-signal-tags span:nth-child(2) svg { color: #8ad8ff; }
+.alpha-signal-tags span:nth-child(3) svg { color: #cd9bff; }
+.alpha-signal-tags span:nth-child(4) svg { color: #ffd359; }
+
+.early-alpha-section .alpha-example {
+  min-height: 500px;
+  padding: 30px 32px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 58%, rgba(136, 228, 193, 0.12)) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: 0 22px 58px rgba(0, 35, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.alpha-example-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 145px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.early-alpha-section .alpha-example .example-label {
+  margin: 0 0 10px;
+  color: rgba(216, 240, 255, 0.8);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.early-alpha-section .alpha-example > .alpha-example-heading strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(42px, 4vw, 58px);
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.early-alpha-section .alpha-example-heading > div > span {
+  display: block;
+  margin-top: 12px;
+  color: rgba(201, 235, 255, 0.86);
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+.early-alpha-section .alpha-example .alpha-image {
+  flex: 0 0 190px;
+  width: 190px;
+  height: 132px;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.early-alpha-section .alpha-example dl {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  margin: 0;
+  border-top: 0;
+}
+
+.early-alpha-section .alpha-example dl div {
+  padding: 15px 0 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.21);
+}
+
+.early-alpha-section .alpha-example dt {
+  margin-bottom: 7px;
+  color: rgba(226, 244, 255, 0.76);
+  font-size: 14px;
+}
+
+.early-alpha-section .alpha-example dd {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.early-alpha-section .alpha-example .signal-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  margin: 20px 0 0;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 14px;
+  color: rgba(248, 252, 255, 0.92);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.early-alpha-section .alpha-example .signal-status span {
+  color: #b8f5ff;
+  letter-spacing: 0.24em;
+}
+
+@media (max-width: 960px) {
+  .early-alpha-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .early-alpha-copy {
+    max-width: 760px;
+  }
+
+  .early-alpha-showcase {
+    width: min(100%, 760px);
+  }
+}
+
+@media (max-width: 640px) {
+  .early-alpha-section {
+    padding-top: 70px;
+    padding-bottom: 72px;
+  }
+
+  .early-alpha-copy h2 {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .early-alpha-button {
+    width: 100%;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .alpha-signal-tags {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .alpha-signal-tags span {
+    min-height: 70px;
+  }
+
+  .early-alpha-section .alpha-example {
+    min-height: 0;
+    padding: 24px 20px 18px;
+    border-radius: 20px;
+  }
+
+  .alpha-example-heading {
+    min-height: 120px;
+  }
+
+  .early-alpha-section .alpha-example .alpha-image {
+    flex-basis: 125px;
+    width: 125px;
+    height: 100px;
+  }
+
+  .early-alpha-section .alpha-example dl {
+    grid-template-columns: 1fr;
+  }
+
+  .early-alpha-section .alpha-example dd {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .alpha-signal-tags span,
+  .early-alpha-section .alpha-example,
+  .early-alpha-section .alpha-example .signal-status {
     background: rgba(255, 255, 255, 0.17) !important;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;

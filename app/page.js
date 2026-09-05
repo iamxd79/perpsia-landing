@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, ChartNoAxesColumnIncreasing, Crosshair, Database, Percent, Send, ShieldCheck, Zap } from "lucide-react";
+import { Activity, ArrowUpRight, ChartNoAxesColumnIncreasing, Crosshair, Database, Droplets, FileText, Percent, Send, ShieldCheck, Zap } from "lucide-react";
 import HomeHero from "../components/home-hero";
 import SiteFooter from "../components/site-footer";
 import { Section } from "../components/section-layout";
@@ -66,12 +66,32 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section id="early-alpha" eyebrow="Early Alpha" title="Catch momentum before it gets crowded." className="early-alpha-section">
-          <div className="split-section">
-            <div><p className="section-lede">PerpsIA watches early token activity for rising volume, liquidity, transactions, and price momentum before the move becomes heavily extended.</p><a className="button button-secondary" href={botUrl} target="_blank" rel="noopener noreferrer">Open Early Alpha on Telegram</a></div>
-            <article className="alpha-example"><Image src="/images/beta-illustration.png" alt="PerpsIA early alpha illustration" width={900} height={900} className="alpha-image" /><p className="example-label">Example</p><strong>$TOKEN</strong><span>EARLY MOMENTUM</span><dl><div><dt>Score</dt><dd>8.4</dd></div><div><dt>Confidence</dt><dd>79 percent</dd></div><div><dt>24h move</dt><dd>+7.2 percent</dd></div><div><dt>Volume acceleration</dt><dd>+186 percent</dd></div><div><dt>Volume to market cap</dt><dd>34 percent</dd></div><div><dt>Liquidity</dt><dd>Rising</dd></div></dl><p className="signal-status">BUILDING</p></article>
+        <section id="early-alpha" className="section early-alpha-section">
+          <div className="early-alpha-layout">
+            <div className="early-alpha-copy">
+              <p className="eyebrow early-alpha-eyebrow">Early Alpha</p>
+              <h2>Catch momentum before it gets crowded.</h2>
+              <p className="section-lede">PerpsIA watches early token activity for rising volume, liquidity, transactions, and price momentum before the move becomes heavily extended.</p>
+              <a className="button button-secondary early-alpha-button" href={botUrl} target="_blank" rel="noopener noreferrer"><Send size={17} strokeWidth={2.2} />Open Early Alpha on Telegram<ArrowUpRight size={18} strokeWidth={2.1} /></a>
+            </div>
+            <div className="early-alpha-showcase">
+              <div className="alpha-signal-tags" aria-label="Early alpha signals">
+                <span><Activity size={20} />Rising volume</span>
+                <span><Droplets size={20} />Liquidity</span>
+                <span><FileText size={20} />Transactions</span>
+                <span><Zap size={20} />Momentum</span>
+              </div>
+              <article className="alpha-example">
+                <div className="alpha-example-heading">
+                  <div><p className="example-label">Example</p><strong>$TOKEN</strong><span>EARLY MOMENTUM</span></div>
+                  <Image src="/images/beta-illustration.png" alt="PerpsIA early alpha illustration" width={900} height={900} className="alpha-image" />
+                </div>
+                <dl><div><dt>Score</dt><dd>8.4</dd></div><div><dt>Confidence</dt><dd>79 percent</dd></div><div><dt>24h move</dt><dd>+7.2 percent</dd></div><div><dt>Volume acceleration</dt><dd>+186 percent</dd></div><div><dt>Volume to market cap</dt><dd>34 percent</dd></div><div><dt>Liquidity</dt><dd>Rising</dd></div></dl>
+                <p className="signal-status">BUILDING<span aria-hidden="true">•••</span></p>
+              </article>
+            </div>
           </div>
-        </Section>
+        </section>
 
         <section className="section risk-section">
           <div className="section-heading">
