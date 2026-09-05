@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChartNoAxesColumnIncreasing, Radio, Target, Database, RefreshCw } from "lucide-react";
+import { ChartNoAxesColumnIncreasing, ChevronDown, Radio, Target, Database, RefreshCw } from "lucide-react";
 import { SignalFeedContent } from "./signal-feed";
 import { useSignalData } from "./use-signal-data";
 import { FEED_REFRESH_MS, getHeroStats } from "../lib/hero-stats.mjs";
@@ -25,7 +25,6 @@ export default function HomeMarketOverview({ children }) {
     { label: "Live signals", value: stats.signals, icon: Radio, accent: true },
     { label: "Avg confidence", value: stats.confidence === null ? null : `${stats.confidence.toFixed(1)}%`, icon: Target },
     { label: "Sources in feed", value: stats.providers, icon: Database },
-    { label: "Feed refresh", value: `${FEED_REFRESH_MS / 1000}s`, icon: RefreshCw },
   ];
 
   return (
@@ -34,8 +33,18 @@ export default function HomeMarketOverview({ children }) {
         {children}
         <section className={styles.statistics} aria-labelledby="hero-statistics-title" aria-busy={state.loading}>
           <div className={styles.statisticsHeading}>
-            <h2 id="hero-statistics-title">Live market intelligence in numbers</h2>
-            <p className={`${styles.status} ${stats.available ? styles.connected : ""}`} role="status"><span aria-hidden="true" />{status}</p>
+            <div className={styles.statisticsTitle}>
+              <h2 id="hero-statistics-title">Live market intelligence in numbers</h2>
+              <p>REAL TIME DATA. REAL OPPORTUNITIES.</p>
+            </div>
+            <div className={styles.statisticsActions}>
+              <p className={`${styles.status} ${stats.available ? styles.connected : ""}`} role="status"><span aria-hidden="true" />{status}</p>
+              <div className={styles.refreshControl} aria-label={`Auto refresh every ${FEED_REFRESH_MS / 1000} seconds`}>
+                <RefreshCw size={25} aria-hidden="true" />
+                <span><small>Auto refresh</small><strong>{FEED_REFRESH_MS / 1000}s</strong></span>
+                <ChevronDown size={18} aria-hidden="true" />
+              </div>
+            </div>
           </div>
           <dl className={styles.metrics}>
             {metrics.map(({ label, value, icon: Icon, accent }) => (

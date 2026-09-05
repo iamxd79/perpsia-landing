@@ -50,7 +50,7 @@ export default function ProviderMarquee({ className = "" }) {
 
   return (
     <section className={`${className} ${styles.root}`} aria-label="Market intelligence across providers" data-paused={paused}>
-      <p className={styles.caption}>Market intelligence across</p>
+      <p className={styles.caption}>Powered by leading data sources</p>
       <div className={styles.viewport}>
         <div className={styles.track}>
           <ProviderList />
