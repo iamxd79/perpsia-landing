@@ -1,8 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
-import SignalFeed from "../components/signal-feed";
+import HomeHero from "../components/home-hero";
 import SiteFooter from "../components/site-footer";
-import SiteHeader from "../components/site-header";
 import { Section } from "../components/section-layout";
 
 const botUrl = "https://t.me/perpsia_bot";
@@ -29,26 +27,8 @@ const features = [
 export default function Home() {
   return (
     <div className="site-shell">
-      <SiteHeader />
       <main>
-        <section className="hero" id="top">
-          <div className="hero-copy">
-            <p className="eyebrow">Perpetual futures market intelligence</p>
-            <h1>Find perp setups before the move gets obvious.</h1>
-            <p className="hero-lede">PerpsIA watches live perp markets, scores setups, tracks signal changes, and flags risk across multiple data sources.</p>
-            <div className="hero-actions">
-              <a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Open PerpsIA on Telegram</a>
-              <Link className="button button-secondary" href="/signals">View Live Signals</Link>
-            </div>
-            <div className="hero-status" aria-label="Product status">
-              <span>Live market intelligence</span>
-              <span>Multi source data</span>
-              <span>Risk aware signals</span>
-            </div>
-          </div>
-        </section>
-
-        <SignalFeed />
+        <HomeHero />
 
         <Section id="how-it-works" eyebrow="How PerpsIA works" title="From market data to a clear setup.">
           <div className="three-column-grid">

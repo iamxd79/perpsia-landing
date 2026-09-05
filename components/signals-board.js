@@ -29,7 +29,7 @@ export default function SignalsBoard() {
   const [minimumScore, setMinimumScore] = useState("0");
   const [minimumConfidence, setMinimumConfidence] = useState("0");
   const [sort, setSort] = useState("default");
-  const signals = data?.signals || [];
+  const signals = useMemo(() => data?.signals || [], [data?.signals]);
   const lifecycleOptions = [...new Set(signals.map((signal) => signal.lifecycle).filter(Boolean))];
   const exchangeOptions = [...new Set(signals.map((signal) => signal.exchange).filter(Boolean))];
 

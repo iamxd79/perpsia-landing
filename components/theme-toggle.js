@@ -9,6 +9,8 @@ export default function ThemeToggle() {
   useEffect(() => {
     const savedMode = window.localStorage.getItem("perpsia-theme");
     const nextLightMode = savedMode === "light";
+    // The initial render stays deterministic for SSR; this hydrates the saved browser preference.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLightMode(nextLightMode);
     document.documentElement.classList.toggle("light-mode", nextLightMode);
   }, []);

@@ -30,6 +30,8 @@ export function useSignalData(refreshMs = 90000) {
   }, []);
 
   useEffect(() => {
+    // The first request is the effect's external subscription boundary.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
     const interval = window.setInterval(load, refreshMs);
     return () => window.clearInterval(interval);

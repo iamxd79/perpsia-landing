@@ -8,7 +8,11 @@ import { formatTime } from "./format";
 import { useSignalData } from "./use-signal-data";
 
 export default function SignalFeed() {
-  const { data, error, loading, refresh } = useSignalData();
+  const state = useSignalData();
+  return <SignalFeedContent {...state} />;
+}
+
+export function SignalFeedContent({ data, error, loading, refresh }) {
   const signals = data?.signals || [];
   const updatedAt = formatTime(data?.meta?.updatedAt);
 
