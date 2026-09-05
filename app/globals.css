@@ -217,7 +217,7 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 .command-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.command-list code { padding: 13px; border: 1px solid var(--line); border-radius: 6px; color: #cce7fa; background: #091828; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; font-weight: 600; }
 
 .telegram-right { display: grid; gap: 16px; }
-.telegram-image-frame { height: 230px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: rgba(6, 16, 29, 0.62); }
+.telegram-image-frame { height: 230px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: rgba(6, 16, 29, 0); }
 .telegram-image { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 
 .closing-cta { margin-top: 22px; margin-bottom: 80px; padding: 70px; border: 1px solid var(--line-strong); border-radius: 12px; background: linear-gradient(125deg, rgba(20, 93, 155, 0.42), rgba(9, 25, 42, 0.95)); text-align: center; }.closing-cta h2 { max-width: none; }.closing-cta > p:not(.eyebrow) { max-width: 520px; margin: 20px auto 28px; color: #c0d8e9; font-size: 17px; line-height: 1.6; }
@@ -2837,3 +2837,70 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
+/* Final responsive contract: transparent media layers and fluid section surfaces. */
+.risk-section .risk-layout,
+.telegram-section .telegram-image-frame {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.risk-section .risk-profile > div,
+.risk-section .risk-position-card,
+.telegram-section .command-list code {
+  background: rgba(255, 255, 255, 0.075) !important;
+  background-image: none !important;
+}
+
+.telegram-visual::before {
+  display: none !important;
+}
+
+.telegram-section .telegram-image-frame {
+  overflow: visible !important;
+  border: 0 !important;
+}
+
+.site-shell,
+.site-shell > main,
+.section,
+.signal-feed,
+.closing-cta,
+.site-footer,
+.split-section,
+.risk-layout,
+.telegram-layout,
+.early-alpha-layout {
+  min-width: 0;
+}
+
+.section > *,
+.closing-cta > *,
+.site-footer > * {
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .risk-section .risk-layout,
+  .telegram-layout,
+  .early-alpha-layout,
+  .closing-cta,
+  .site-footer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .risk-section .risk-layout,
+  .telegram-layout,
+  .early-alpha-layout,
+  .closing-cta {
+    display: block;
+  }
+
+  .risk-section .risk-profile,
+  .telegram-benefits,
+  .alpha-signal-tags {
+    width: 100%;
+  }
+}
