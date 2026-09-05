@@ -80,13 +80,8 @@ export default function Home() {
         </Section>
 
         <Section eyebrow="Market context" title="Read the parts of the market that change a trade.">
-          <div className="feature-showcase">
-            <div className="feature-grid">
-              {features.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
-            </div>
-            <div className="feature-image-frame">
-              <Image src="/images/intelligence-core.png" alt="PerpsIA intelligence core" width={1200} height={900} className="feature-image" />
-            </div>
+          <div className="feature-grid">
+            {features.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
           </div>
         </Section>
 
