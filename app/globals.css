@@ -1041,6 +1041,320 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
+/* Closing CTA: a split glass panel with a market-scan visual. */
+.closing-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  align-items: center;
+  gap: 34px;
+  min-height: 470px;
+  margin-top: 88px;
+  margin-bottom: 46px;
+  padding: 54px 60px;
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05) 58%, rgba(132, 230, 194, 0.12)) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: 0 24px 64px rgba(0, 35, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  text-align: left;
+}
+
+.closing-cta-copy {
+  min-width: 0;
+}
+
+.closing-cta-copy h2 {
+  max-width: 560px;
+  margin-bottom: 22px;
+  color: #fff;
+  font-size: clamp(44px, 5vw, 70px);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-shadow: 0 2px 14px rgba(14, 76, 155, 0.18);
+}
+
+.closing-cta-copy > p:not(.eyebrow) {
+  max-width: 590px;
+  margin: 0 0 28px;
+  color: rgba(248, 252, 255, 0.92) !important;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.5;
+}
+
+.closing-cta-button {
+  min-height: 64px;
+  gap: 13px;
+  padding: 0 28px;
+  border-color: rgba(255, 255, 255, 0.56) !important;
+  border-radius: 999px;
+  color: #103b83 !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 12px 28px rgba(0, 62, 150, 0.12);
+}
+
+.closing-cta-button:hover {
+  color: #062e72 !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  transform: translateY(-2px);
+}
+
+.closing-cta-visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 350px;
+  place-items: center;
+}
+
+.closing-chart-card {
+  position: relative;
+  width: min(100%, 530px);
+  height: 310px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.27);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.11);
+  transform: rotate(2deg);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  backdrop-filter: blur(16px) saturate(145%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 18px 42px rgba(0, 44, 115, 0.1);
+}
+
+.closing-chart-card::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 48%);
+  content: "";
+}
+
+.closing-chart-topline {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  right: 22px;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(229, 246, 255, 0.86);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+}
+
+.closing-chart-topline strong {
+  padding: 9px 13px;
+  border-radius: 12px;
+  color: #18d79a;
+  background: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.closing-chart-image {
+  position: absolute;
+  top: 44px;
+  right: -4%;
+  width: 108%;
+  height: 260px;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.9;
+}
+
+.closing-chart-markets {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  left: 20px;
+  display: grid;
+  gap: 5px;
+  width: 190px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 14px;
+  color: rgba(246, 252, 255, 0.92);
+  background: rgba(21, 105, 205, 0.24);
+  font-size: 11px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+}
+
+.closing-chart-markets span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.closing-chart-markets strong {
+  color: #fff;
+}
+
+.closing-scan-label {
+  position: absolute;
+  right: -8px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 34px;
+  padding: 24px 32px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 18px 44px rgba(0, 35, 90, 0.1);
+}
+
+.site-footer-main {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  max-width: none;
+}
+
+.site-footer-disclaimer {
+  padding-left: 28px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.site-footer-disclaimer p {
+  margin: 0;
+}
+
+.site-footer-disclaimer p + p {
+  margin-top: 4px;
+}
+
+.site-footer nav {
+  justify-content: flex-end;
+}
+
+@media (max-width: 960px) {
+  .closing-cta {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 44px 40px;
+  }
+
+  .closing-cta-visual {
+    width: min(100%, 680px);
+    margin: 0 auto;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .site-footer nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .closing-cta {
+    min-height: 0;
+    margin-top: 70px;
+    margin-bottom: 34px;
+    padding: 32px 22px;
+    border-radius: 22px;
+  }
+
+  .closing-cta-copy h2 {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .closing-cta-button {
+    width: 100%;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .closing-cta-visual {
+    min-height: 280px;
+  }
+
+  .closing-chart-card {
+    height: 245px;
+  }
+
+  .closing-chart-topline {
+    top: 14px;
+    right: 15px;
+    left: 15px;
+  }
+
+  .closing-chart-image {
+    top: 30px;
+    height: 220px;
+  }
+
+  .closing-chart-markets {
+    bottom: 12px;
+    left: 12px;
+    width: 155px;
+    padding: 9px 10px;
+    font-size: 9px;
+  }
+
+  .closing-scan-label {
+    right: -2px;
+    bottom: 8px;
+    padding: 13px 15px;
+    font-size: 12px;
+  }
+
+  .site-footer {
+    width: min(calc(100% - 28px), var(--max-width));
+    padding: 22px 20px;
+    border-radius: 20px;
+  }
+
+  .site-footer-main {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .site-footer-disclaimer {
+    padding-top: 18px;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-left: 0;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .closing-cta,
+  .closing-chart-card,
+  .closing-chart-markets,
+  .closing-scan-label,
+  .site-footer {
+    background: rgba(255, 255, 255, 0.17) !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /* Telegram section: a focused glass panel paired with the floating bot artwork. */
 .telegram-section {
   padding-top: 88px;

@@ -12,8 +12,10 @@ export default function SiteFooter() {
           <Image src="/images/perpsia-logo.svg" alt="" width={34} height={34} />
           <span>PerpsIA</span>
         </div>
-        <p>PerpsIA provides market research and analytics. It does not guarantee trading results.</p>
-        <p>Some trading links may be affiliate links.</p>
+        <div className="site-footer-disclaimer">
+          <p>PerpsIA provides market research and analytics. It does not guarantee trading results.</p>
+          <p>Some trading links may be affiliate links.</p>
+        </div>
       </div>
       <nav aria-label="Footer navigation">
         <a href={botUrl} target="_blank" rel="noopener noreferrer">Telegram</a>

@@ -139,7 +139,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="closing-cta"><p className="eyebrow">PerpsIA</p><h2>See what PerpsIA sees.</h2><p>Run a market scan or analyze your first setup on Telegram.</p><a className="button" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA</a></section>
+        <section className="closing-cta">
+          <div className="closing-cta-copy">
+            <p className="eyebrow">PerpsIA</p>
+            <h2>See what PerpsIA sees.</h2>
+            <p>Run a market scan or analyze your first setup on Telegram.</p>
+            <a className="button closing-cta-button" href={botUrl} target="_blank" rel="noopener noreferrer"><Send size={18} strokeWidth={2.2} />Launch PerpsIA<ArrowUpRight size={20} strokeWidth={2.1} /></a>
+          </div>
+          <div className="closing-cta-visual" aria-hidden="true">
+            <div className="closing-chart-card">
+              <div className="closing-chart-topline"><span>MARKET SCAN</span><strong>+12.4%</strong></div>
+              <Image src="/images/beta-illustration.png" alt="" width={900} height={900} className="closing-chart-image" />
+              <div className="closing-chart-markets"><span>₿ BTC <strong>$67,428</strong></span><span>Ξ ETH <strong>$2,871</strong></span><span>◎ SOL <strong>$148.3</strong></span></div>
+            </div>
+            <span className="closing-scan-label"><ChartNoAxesColumnIncreasing size={18} />Market scan</span>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </div>
