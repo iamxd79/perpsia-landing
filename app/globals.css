@@ -23,29 +23,6 @@
   --max-width: 1180px;
 }
 
-:root.light-mode {
-  --background: #edf4f8;
-  --surface: #ffffff;
-  --surface-raised: #ffffff;
-  --surface-subtle: #e2edf4;
-  --line: rgba(20, 65, 96, 0.18);
-  --line-strong: rgba(8, 125, 187, 0.42);
-  --text: #122a3d;
-  --muted: #526c7f;
-  --subtle: #718698;
-  --blue: #087dbb;
-  --blue-strong: #05699e;
-  --positive: #137c64;
-  --negative: #b53e4a;
-  --muted-strong: #3e596e;
-  --value: #1e3b52;
-  --glass-surface: rgba(247, 252, 255, 0.72);
-  --glass-surface-strong: rgba(245, 251, 255, 0.86);
-  --glass-surface-soft: rgba(228, 242, 249, 0.7);
-  --glass-line: rgba(255, 255, 255, 0.72);
-  --glass-highlight: rgba(255, 255, 255, 0.9);
-  --glass-shadow: 0 22px 60px rgba(36, 79, 105, 0.14);
-}
 
 * { box-sizing: border-box; }
 
@@ -65,16 +42,44 @@ a { color: inherit; text-decoration: none; }
 button, select { font: inherit; }
 button { cursor: pointer; }
 
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #06101d;
+}
+
+.site-background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+}
+
+.site-background-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 25, 56, 0.10);
+  pointer-events: none;
+}
+
+.site-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
 .site-shell {
   position: relative;
   isolation: isolate;
   min-height: 100vh;
   overflow: hidden;
-  background-image: url("/images/background.jpg");
-  background-position: center top;
-  background-size: 100% auto;
-  background-attachment: scroll;
-  background-repeat: repeat-y;
+  background: transparent;
 }
 
 .site-header {
@@ -219,17 +224,11 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 
 .site-footer { width: min(calc(100% - 48px), var(--max-width)); margin: 0 auto; padding: 38px 24px 48px; display: flex; justify-content: space-between; gap: 46px; border: 1px solid var(--line); border-bottom: 0; background: linear-gradient(rgba(4, 16, 29, 0.84), rgba(4, 16, 29, 0.94)), url("/images/footer-background.jpg") center / cover; }.site-footer-main { max-width: 600px; }.footer-brand { margin-bottom: 20px; }.site-footer p { margin-bottom: 10px; color: var(--muted); font-size: 13px; line-height: 1.6; }.site-footer nav { display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: flex-end; gap: 16px 20px; min-width: 250px; }
 
-html.light-mode body { background: var(--background); }
-html.light-mode .site-shell { background-image: url("/images/background.jpg"); }
-html.light-mode .site-header { background: rgba(244, 250, 253, 0.9); }
+html.light-mode .site-shell { background: transparent; }
 html.light-mode .theme-toggle, html.light-mode .button-secondary { background: rgba(255, 255, 255, 0.64); }
-html.light-mode .button, html.light-mode .trade-button { color: #ffffff; }
 html.light-mode .button-secondary { color: var(--text); }
-html.light-mode .hero-panel, html.light-mode .signal-feed, html.light-mode .signal-card, html.light-mode .empty-state, html.light-mode .error-state { background: rgba(255, 255, 255, 0.76); }
 html.light-mode .step-card, html.light-mode .feature-grid article { background: rgba(255, 255, 255, 0.66); }
-html.light-mode .alpha-example, html.light-mode .telegram-image-frame { background: rgba(224, 239, 247, 0.82); }
 html.light-mode .command-list code, html.light-mode .filter-selects select, html.light-mode .signal-metric { color: var(--text); background: rgba(255, 255, 255, 0.8); }
-html.light-mode .signal-metric strong { color: var(--value); }
 html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 249, 0.86), rgba(233, 244, 249, 0.94)), url("/images/footer-background.jpg"); }
 
 .signals-page { padding-bottom: 100px; }.signals-hero { padding: 102px 0 48px; }.signals-hero h1 { margin-bottom: 18px; }.signals-content { min-height: 400px; }
@@ -262,7 +261,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .signals-page { padding-bottom: 64px; }.signals-hero { padding: 68px 0 36px; }.signals-status-row { display: grid; gap: 7px; }.signal-filters { padding: 14px; }.filter-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }.filter-tabs button { flex: 0 0 auto; }.filter-selects { grid-template-columns: 1fr 1fr; }.signal-primary-metrics { grid-template-columns: 1fr 1fr; }.signal-primary-metrics .signal-metric:last-child { grid-column: 1 / -1; }.signals-grid .signal-card { padding: 18px; }.performance-context { margin-top: 18px; }
 }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.ticker-track-moving { animation: none; } .button, .trade-button { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.site-background-video { display: none; }.ticker-track-moving { animation: none; } .button, .trade-button { transition: none; } }
 
 
 /* Glass surfaces keep the scenic image crisp while separating content from it. */
@@ -346,43 +345,1422 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   background: rgba(8, 28, 46, 0.46);
 }
 
-html.light-mode .site-header {
-  background: rgba(245, 251, 255, 0.68);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-}
 
-html.light-mode .hero-copy,
-html.light-mode .signal-feed,
-html.light-mode .step-card,
-html.light-mode .feature-grid article,
-html.light-mode .lifecycle-example,
-html.light-mode .alpha-example,
-html.light-mode .risk-layout,
-html.light-mode .telegram-image-frame,
-html.light-mode .closing-cta,
-html.light-mode .signal-filters,
-html.light-mode .signal-card,
-html.light-mode .empty-state,
-html.light-mode .error-state {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), transparent 54%), var(--glass-surface);
-}
 
-html.light-mode .site-footer {
-  background: linear-gradient(rgba(239, 249, 253, 0.72), rgba(239, 249, 253, 0.82)), url("/images/footer-background.jpg") center / cover;
-}
 
-html.light-mode .theme-toggle,
-html.light-mode .button-secondary,
-html.light-mode .filter-selects select {
-  background: rgba(255, 255, 255, 0.58);
-}
 
-html.light-mode .signal-metric,
-html.light-mode .command-list code,
-html.light-mode .performance-list span {
-  background: rgba(255, 255, 255, 0.5);
-}
 
 @media (max-width: 640px) {
   .hero-copy { padding: 26px 22px 28px; border-radius: 20px; }
 }
+
+/* =========================================================
+   IOS-STYLE GLASSMORPHISM — CONTENT SECTIONS
+   Keeps the hero open on the video. Applies glass only to
+   feed, sections, cards, CTA and footer.
+   ========================================================= */
+
+:root {
+  --content-glass: rgba(255, 255, 255, 0.075);
+  --content-glass-strong: rgba(255, 255, 255, 0.11);
+  --content-glass-soft: rgba(255, 255, 255, 0.055);
+
+  --content-glass-line: rgba(255, 255, 255, 0.18);
+  --content-glass-line-strong: rgba(255, 255, 255, 0.28);
+
+  --content-glass-highlight: rgba(255, 255, 255, 0.10);
+
+  --content-glass-shadow:
+    0 16px 48px rgba(0, 8, 20, 0.16),
+    0 28px 80px rgba(0, 8, 20, 0.12);
+
+  --content-glass-blur: blur(24px) saturate(160%);
+
+  --content-text: #f7fbff;
+  --content-muted: rgba(226, 238, 248, 0.84);
+  --content-subtle: rgba(194, 213, 229, 0.70);
+}
+
+
+/* ---------------------------------------------------------
+   SIGNAL FEED
+   --------------------------------------------------------- */
+
+.signal-feed {
+  margin-bottom: 32px;
+  padding: 30px;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 24px;
+
+  background: var(--content-glass-strong);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    var(--content-glass-shadow);
+}
+
+.signal-feed-heading {
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+.signal-feed-heading .eyebrow {
+  color: #69c8ff;
+}
+
+.signal-feed-heading h2 {
+  color: var(--content-text);
+
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 720;
+
+  letter-spacing: -0.04em;
+}
+
+.signal-feed .text-link {
+  color: #75d0ff;
+
+  font-weight: 700;
+}
+
+.signal-feed .text-link:hover {
+  color: #ffffff;
+}
+
+.signal-feed-footer {
+  color: var(--content-subtle);
+}
+
+
+/* Empty/error/loading states */
+
+.empty-state,
+.error-state {
+  padding: 46px 28px;
+
+  border: 1px solid rgba(216, 238, 255, 0.14);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.empty-state h3 {
+  color: var(--content-text);
+}
+
+.empty-state p:last-child,
+.error-state p,
+.loading-state {
+  color: var(--content-muted);
+}
+
+
+/* ---------------------------------------------------------
+   MAIN SECTIONS
+   Keep section backgrounds open. Glass is on the content.
+   --------------------------------------------------------- */
+
+.section {
+  position: relative;
+
+  padding: 96px 0;
+
+  background: transparent;
+}
+
+.section-heading {
+  margin-bottom: 34px;
+}
+
+.section-heading h2 {
+  color: var(--content-text);
+
+  text-shadow:
+    0 2px 10px rgba(0, 18, 42, 0.24);
+}
+
+.section .eyebrow,
+.example-label {
+  color: #65c6ff;
+}
+
+.section-lede {
+  color: var(--content-muted);
+
+  text-shadow:
+    0 1px 8px rgba(0, 18, 42, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   STEP / FEATURE CARDS
+   --------------------------------------------------------- */
+
+.step-card,
+.feature-grid article {
+  min-height: 230px;
+
+  padding: 26px;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 20px;
+
+  background: var(--content-glass);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    0 14px 42px rgba(0, 8, 20, 0.12);
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.step-card:hover,
+.feature-grid article:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--content-glass-line-strong);
+
+  background: rgba(7, 27, 49, 0.42);
+}
+
+.step-card h3,
+.feature-grid article h3 {
+  color: var(--content-text);
+}
+
+.step-card > p {
+  color: #66caff;
+}
+
+.step-card span,
+.feature-grid article p {
+  color: var(--content-muted);
+}
+
+
+/* ---------------------------------------------------------
+   PROVIDER / EVIDENCE GRID
+   --------------------------------------------------------- */
+
+.sources-section {
+  border-top: 1px solid rgba(216, 238, 255, 0.12);
+}
+
+.provider-grid {
+  overflow: hidden;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 22px;
+
+  background: var(--content-glass);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    0 14px 42px rgba(0, 8, 20, 0.12);
+}
+
+.provider-grid article {
+  min-height: 132px;
+
+  padding: 22px;
+
+  border-right: 1px solid rgba(216, 238, 255, 0.12);
+  border-bottom: 1px solid rgba(216, 238, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.provider-grid article:nth-child(3n) {
+  border-right: 0;
+}
+
+.provider-grid h3 {
+  color: var(--content-text);
+}
+
+.provider-grid ul {
+  color: var(--content-muted);
+}
+
+
+/* ---------------------------------------------------------
+   LIFECYCLE
+   --------------------------------------------------------- */
+
+.lifecycle-example {
+  overflow: hidden;
+
+  padding: 30px;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 22px;
+
+  background: var(--content-glass-strong);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    var(--content-glass-shadow);
+}
+
+.lifecycle-example-title strong {
+  color: var(--content-text);
+}
+
+.lifecycle-example-title span,
+.lifecycle-states-list {
+  color: var(--content-muted);
+}
+
+.lifecycle-example-states article {
+  border: 1px solid rgba(216, 238, 255, 0.14);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.lifecycle-example-states p {
+  color: #6ecbff;
+}
+
+.lifecycle-example-states strong {
+  color: var(--content-text);
+}
+
+
+/* ---------------------------------------------------------
+   EARLY ALPHA
+   --------------------------------------------------------- */
+
+.alpha-example {
+  padding: 26px;
+
+  border: 1px solid var(--content-glass-line-strong);
+  border-radius: 22px;
+
+  background: var(--content-glass-strong);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    var(--content-glass-shadow);
+}
+
+.alpha-example > strong {
+  color: var(--content-text);
+}
+
+.alpha-example > span {
+  color: #68caff;
+}
+
+.alpha-example dl {
+  border-color: rgba(216, 238, 255, 0.14);
+}
+
+.alpha-example dl div {
+  border-color: rgba(216, 238, 255, 0.12);
+}
+
+.alpha-example dt {
+  color: var(--content-subtle);
+}
+
+.alpha-example dd {
+  color: var(--content-text);
+}
+
+
+/* ---------------------------------------------------------
+   RISK
+   --------------------------------------------------------- */
+
+.risk-layout {
+  padding: 30px;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 22px;
+
+  background: var(--content-glass);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    var(--content-glass-shadow);
+}
+
+.risk-layout > p:last-child {
+  color: var(--content-muted);
+}
+
+.risk-profile > div {
+  border-color: rgba(216, 238, 255, 0.14);
+}
+
+.risk-profile dt {
+  color: var(--content-subtle);
+}
+
+.risk-profile dd {
+  color: var(--content-text);
+}
+
+
+/* ---------------------------------------------------------
+   PERFORMANCE
+   --------------------------------------------------------- */
+
+.performance-list span {
+  border: 1px solid rgba(216, 238, 255, 0.16);
+  border-radius: 12px;
+
+  color: var(--content-muted);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.collecting-state {
+  color: var(--content-muted);
+}
+
+
+/* ---------------------------------------------------------
+   TELEGRAM
+   --------------------------------------------------------- */
+
+.telegram-image-frame {
+  overflow: hidden;
+
+  border: 1px solid var(--content-glass-line);
+  border-radius: 22px;
+
+  background: var(--content-glass-soft);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    0 14px 42px rgba(0, 8, 20, 0.12);
+}
+
+.command-list code {
+  border: 1px solid rgba(216, 238, 255, 0.14);
+  border-radius: 12px;
+
+  color: #e7f5ff;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* ---------------------------------------------------------
+   CLOSING CTA
+   --------------------------------------------------------- */
+
+.closing-cta {
+  margin-top: 28px;
+  margin-bottom: 80px;
+
+  padding: 72px;
+
+  border: 1px solid var(--content-glass-line-strong);
+  border-radius: 28px;
+
+  background: var(--content-glass-strong);
+
+  backdrop-filter: blur(28px) saturate(165%);
+  -webkit-backdrop-filter: blur(28px) saturate(165%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    var(--content-glass-shadow);
+
+  text-align: center;
+}
+
+.closing-cta h2 {
+  color: var(--content-text);
+}
+
+.closing-cta > p:not(.eyebrow) {
+  color: var(--content-muted);
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
+
+.site-footer {
+  border: 1px solid var(--content-glass-line);
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+
+  background: rgba(5, 18, 34, 0.76);
+
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 -10px 40px rgba(0, 8, 20, 0.10);
+}
+
+.site-footer p,
+.site-footer nav a {
+  color: var(--content-muted);
+}
+
+.site-footer nav a:hover {
+  color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   SIGNAL CARDS / SIGNALS PAGE
+   --------------------------------------------------------- */
+
+.signal-filters,
+.signal-card {
+  border: 1px solid var(--content-glass-line);
+  border-radius: 18px;
+
+  background: var(--content-glass);
+
+  backdrop-filter: var(--content-glass-blur);
+  -webkit-backdrop-filter: var(--content-glass-blur);
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    0 12px 34px rgba(0, 8, 20, 0.10);
+}
+
+.signal-card {
+  background: rgba(5, 20, 38, 0.64);
+}
+
+.signal-symbol,
+.signal-card h3,
+.signal-card h4 {
+  color: var(--content-text);
+}
+
+.signal-name,
+.signal-updated,
+.signal-exchange,
+.provider-attribution,
+.evidence-grid ul {
+  color: var(--content-muted);
+}
+
+.signal-status {
+  border-color: rgba(108, 204, 255, 0.28);
+
+  color: #c9efff;
+
+  background: rgba(72, 178, 245, 0.08);
+}
+
+.signal-metric {
+  border: 1px solid rgba(216, 238, 255, 0.10);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.signal-metric span {
+  color: var(--content-subtle);
+}
+
+.signal-metric strong {
+  color: var(--content-text);
+}
+
+.filter-tabs button,
+.filter-selects select {
+  border-color: rgba(216, 238, 255, 0.14);
+
+  color: var(--content-muted);
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.filter-tabs button:hover,
+.filter-tabs button.is-selected {
+  border-color: rgba(102, 199, 255, 0.44);
+
+  color: #ffffff;
+
+  background: rgba(70, 170, 235, 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   GLOBAL TEXT LEGIBILITY ON VIDEO
+   --------------------------------------------------------- */
+
+.section h2,
+.section h3,
+.signal-feed h2,
+.signal-feed h3,
+.closing-cta h2 {
+  text-shadow:
+    0 2px 10px rgba(0, 18, 42, 0.18);
+}
+
+.section p,
+.section span,
+.signal-feed p {
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+   Keep video-site glass dark for consistency/readability.
+   --------------------------------------------------------- */
+
+
+
+
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .signal-feed {
+    padding: 26px;
+  }
+
+  .closing-cta {
+    padding: 58px 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .signal-feed {
+    padding: 22px 16px;
+
+    border-radius: 20px;
+  }
+
+  .step-card,
+  .feature-grid article,
+  .provider-grid,
+  .lifecycle-example,
+  .alpha-example,
+  .risk-layout,
+  .telegram-image-frame,
+  .signal-card,
+  .signal-filters {
+    border-radius: 18px;
+  }
+
+  .closing-cta {
+    margin-bottom: 48px;
+
+    padding: 46px 22px;
+
+    border-radius: 22px;
+
+    text-align: left;
+  }
+
+  .site-footer {
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .signal-feed,
+  .step-card,
+  .feature-grid article,
+  .provider-grid,
+  .lifecycle-example,
+  .alpha-example,
+  .risk-layout,
+  .telegram-image-frame,
+  .closing-cta,
+  .signal-filters,
+  .signal-card,
+  .empty-state,
+  .error-state,
+  .site-footer {
+    background: rgba(5, 18, 34, 0.92);
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* =========================================================
+   FINAL UI POLISH
+   Vertical controls + clean lifecycle + smart separators
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   REMOVE LIFECYCLE CONNECTOR LINE
+   --------------------------------------------------------- */
+
+.lifecycle-example-states::before {
+  display: none;
+}
+
+
+/* =========================================================
+   SMART SECTION SEPARATORS
+   ========================================================= */
+
+.section {
+  position: relative;
+}
+
+.section + .section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: min(72%, 920px);
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(180, 224, 255, 0.18),
+    rgba(120, 205, 255, 0.42),
+    rgba(180, 224, 255, 0.18),
+    transparent
+  );
+
+  box-shadow:
+    0 0 18px rgba(90, 190, 255, 0.08);
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   VERTICAL SITE CONTROLS
+   Theme / Top / Bottom
+   --------------------------------------------------------- */
+
+.site-controls {
+  position: fixed;
+
+  right: 16px;
+  bottom: 18px;
+
+  z-index: 300;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 5px;
+
+  border: 1px solid rgba(216, 238, 255, 0.17);
+  border-radius: 14px;
+
+  background: rgba(4, 17, 32, 0.64);
+
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 34px rgba(0, 8, 20, 0.16);
+}
+
+.site-controls button {
+  display: grid;
+
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 9px;
+
+  color: rgba(241, 249, 255, 0.76);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.site-controls button:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  transform: translateX(-2px);
+}
+
+.site-controls button:active {
+  transform: scale(0.93);
+}
+
+.site-controls button:focus-visible {
+  outline: 2px solid #8bd5ff;
+
+  outline-offset: 2px;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .section + .section::before {
+    width: min(76%, 360px);
+  }
+
+  .section + .section::after {
+    width: 6px;
+    height: 6px;
+
+    top: -2.5px;
+  }
+
+  .site-controls {
+    right: 10px;
+    bottom: 12px;
+
+    padding: 4px;
+  }
+
+  .site-controls button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   ACCESSIBILITY
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .site-controls button {
+    transition: none;
+  }
+
+  .site-controls button:hover,
+  .site-controls button:active {
+    transform: none;
+  }
+}
+
+/* =========================================================
+   FINAL SINGLE-THEME IOS GLASS CORRECTION
+   Removes dark card fills while preserving text contrast.
+   ========================================================= */
+
+:root {
+  --content-glass: rgba(255, 255, 255, 0);
+  --content-glass-strong: rgba(255, 255, 255, 0);
+  --content-glass-soft: rgba(255, 255, 255, 0);
+
+  --content-glass-line: rgba(255, 255, 255, 0.18);
+  --content-glass-line-strong: rgba(255, 255, 255, 0.28);
+  --content-glass-highlight: rgba(255, 255, 255, 0.048);
+
+  --content-glass-shadow:
+    0 14px 42px rgba(0, 22, 48, 0.061),
+    0 28px 70px rgba(0, 22, 48, 0.07);
+
+  --content-glass-blur: blur(24px) saturate(165%);
+}
+
+
+/* No theme switch anywhere */
+
+.theme-toggle {
+  display: none !important;
+}
+
+
+/* Main glass cards */
+
+.signal-feed,
+.step-card,
+.feature-grid article,
+.provider-grid,
+.lifecycle-example,
+.alpha-example,
+.risk-layout,
+.signal-filters,
+.signal-card,
+.empty-state,
+.error-state,
+.closing-cta {
+  border-color: var(--content-glass-line) !important;
+
+  background: var(--content-glass) !important;
+
+  backdrop-filter: var(--content-glass-blur) !important;
+  -webkit-backdrop-filter: var(--content-glass-blur) !important;
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    var(--content-glass-shadow) !important;
+}
+
+
+/* Slightly stronger surfaces where more text needs contrast */
+
+.signal-feed,
+.lifecycle-example,
+.alpha-example,
+.closing-cta {
+  background: var(--content-glass-strong) !important;
+}
+
+
+/* Inner cards stay even lighter */
+
+.provider-grid article,
+.lifecycle-example-states article,
+.signal-metric,
+.performance-list span,
+.command-list code,
+.filter-tabs button,
+.filter-selects select {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+
+  background: rgba(255, 255, 255, 0.055) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Hover stays glass, never turns into a dark navy slab */
+
+.step-card:hover,
+.feature-grid article:hover {
+  border-color: rgba(255, 255, 255, 0.30) !important;
+
+  background: rgba(255, 255, 255, 0.048) !important;
+}
+
+
+/* Signal cards */
+
+.signal-card {
+  background: rgba(255, 255, 255, 0.085) !important;
+}
+
+.signal-status {
+  background: rgba(85, 190, 255, 0.10) !important;
+}
+
+
+/* Footer uses a subtle translucent sheet, not a dark card */
+
+.site-footer {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+
+  background: rgba(255, 255, 255, 0.037) !important;
+
+  backdrop-filter: blur(28px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(165%) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.053),
+    0 -10px 36px rgba(0, 22, 48, 0.041) !important;
+}
+
+
+/* Telegram artwork floats directly on the scenery */
+
+.telegram-image-frame {
+  height: 290px !important;
+
+  overflow: visible !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  box-shadow: none !important;
+}
+
+.telegram-image {
+  display: block;
+
+  width: 112% !important;
+  height: 100% !important;
+
+  max-width: none;
+
+  margin-left: -6%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: scale(1.06);
+
+  transition: transform 220ms ease;
+}
+
+.telegram-image:hover {
+  transform: scale(1.09);
+}
+
+
+/* Lifecycle connector line stays removed */
+
+.lifecycle-example-states::before {
+  display: none !important;
+}
+
+
+/* Bottom controls remain compact glass, not a dark card */
+
+.site-controls {
+  background: rgba(255, 255, 255, 0.085) !important;
+
+  border-color: rgba(255, 255, 255, 0.18) !important;
+
+  backdrop-filter: blur(22px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(165%) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 10px 30px rgba(0, 22, 48, 0.10) !important;
+}
+
+.site-controls button {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.site-controls button:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* Text contrast */
+
+.section-heading h2,
+.signal-feed-heading h2,
+.step-card h3,
+.feature-grid article h3,
+.provider-grid h3,
+.lifecycle-example-title strong,
+.lifecycle-example-states strong,
+.alpha-example > strong,
+.risk-profile dd,
+.signal-symbol,
+.signal-card h3,
+.signal-card h4,
+.signal-metric strong,
+.closing-cta h2 {
+  color: #ffffff;
+}
+
+.section-lede,
+.step-card span,
+.feature-grid article p,
+.provider-grid ul,
+.lifecycle-example-title span,
+.lifecycle-states-list,
+.risk-layout > p:last-child,
+.collecting-state,
+.signal-name,
+.signal-updated,
+.signal-exchange,
+.provider-attribution,
+.evidence-grid ul,
+.site-footer p,
+.site-footer nav a {
+  color: rgba(242, 249, 255, 0.84);
+}
+
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .telegram-image-frame {
+    height: 235px !important;
+  }
+
+  .telegram-image {
+    width: 108% !important;
+    margin-left: -4%;
+
+    transform: scale(1.04);
+  }
+
+  .telegram-image:hover {
+    transform: scale(1.06);
+  }
+}
+
+
+/* Reduced transparency keeps a lighter neutral surface */
+
+@media (prefers-reduced-transparency: reduce) {
+  .signal-feed,
+  .step-card,
+  .feature-grid article,
+  .provider-grid,
+  .lifecycle-example,
+  .alpha-example,
+  .risk-layout,
+  .closing-cta,
+  .signal-filters,
+  .signal-card,
+  .empty-state,
+  .error-state,
+  .site-footer {
+    background: rgba(18, 52, 88, 0.72) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* =========================================================
+   PURE GLASS SYSTEM
+   No dark/navy card fills. Neutral transparent glass only.
+   ========================================================= */
+
+:root {
+  --content-glass: rgba(255, 255, 255, 0.055);
+  --content-glass-strong: rgba(255, 255, 255, 0.034);
+  --content-glass-soft: rgba(255, 255, 255, 0.035);
+
+  --content-glass-line: rgba(255, 255, 255, 0.18);
+  --content-glass-line-strong: rgba(255, 255, 255, 0.28);
+  --content-glass-highlight: rgba(255, 255, 255, 0.16);
+
+  --content-glass-shadow:
+    0 10px 30px rgba(60, 120, 180, 0),
+    0 24px 60px rgba(60, 120, 180, 0.001);
+
+  --content-glass-blur: blur(26px) saturate(175%);
+}
+
+
+/* Main glass surfaces */
+
+.signal-feed,
+.step-card,
+.feature-grid article,
+.provider-grid,
+.lifecycle-example,
+.alpha-example,
+.risk-layout,
+.signal-filters,
+.signal-card,
+.empty-state,
+.error-state,
+.closing-cta,
+.site-footer {
+  border: 1px solid var(--content-glass-line) !important;
+
+  background: rgba(255, 255, 255, 0.055) !important;
+
+  backdrop-filter: blur(26px) saturate(175%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(175%) !important;
+
+  box-shadow:
+    inset 0 1px 0 var(--content-glass-highlight),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+    var(--content-glass-shadow) !important;
+}
+
+
+/* Slightly denser glass only where text density is higher */
+
+.signal-feed,
+.lifecycle-example,
+.alpha-example,
+.closing-cta {
+  background: rgba(255, 255, 255, 0.075) !important;
+}
+
+
+/* Inner glass elements */
+
+.provider-grid article,
+.lifecycle-example-states article,
+.signal-metric,
+.performance-list span,
+.command-list code,
+.filter-tabs button,
+.filter-selects select {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+
+  background: rgba(255, 255, 255, 0.04) !important;
+
+  backdrop-filter: blur(18px) saturate(165%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(165%) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+}
+
+
+/* Hover remains pure glass */
+
+.step-card:hover,
+.feature-grid article:hover,
+.filter-tabs button:hover,
+.filter-tabs button.is-selected {
+  background: rgba(255, 255, 255, 0.095) !important;
+
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+
+/* Signal card status */
+
+.signal-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.signal-status {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+
+/* Footer */
+
+.site-footer {
+  background: rgba(255, 255, 255, 0.05) !important;
+
+  border-color: rgba(255, 255, 255, 0.056) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 -8px 28px rgba(80, 140, 200, 0.05) !important;
+}
+
+
+/* Floating controls */
+
+.site-controls {
+  background: rgba(255, 255, 255, 0) !important;
+
+  border-color: rgba(255, 255, 255, 0.18) !important;
+
+  backdrop-filter: blur(24px) saturate(175%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(175%) !important;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 24px rgba(80, 140, 200, 0.06) !important;
+}
+
+.site-controls button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* Telegram illustration floats freely */
+
+.telegram-image-frame {
+  height: 290px !important;
+
+  overflow: visible !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  box-shadow: none !important;
+}
+
+.telegram-image {
+  display: block;
+
+  width: 112% !important;
+  height: 100% !important;
+
+  max-width: none;
+
+  margin-left: -6%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: scale(1.06);
+}
+
+
+/* Keep lifecycle connector removed */
+
+.lifecycle-example-states::before {
+  display: none !important;
+}
+
+
+/* No theme switch */
+
+.theme-toggle {
+  display: none !important;
+}
+
+
+/* Text stays crisp over transparent glass */
+
+.section-heading h2,
+.signal-feed-heading h2,
+.step-card h3,
+.feature-grid article h3,
+.provider-grid h3,
+.lifecycle-example-title strong,
+.lifecycle-example-states strong,
+.alpha-example > strong,
+.risk-profile dd,
+.signal-symbol,
+.signal-card h3,
+.signal-card h4,
+.signal-metric strong,
+.closing-cta h2 {
+  color: #ffffff !important;
+
+  text-shadow:
+    0 1px 8px rgba(50, 90, 140, 0.14);
+}
+
+.section-lede,
+.step-card span,
+.feature-grid article p,
+.provider-grid ul,
+.lifecycle-example-title span,
+.lifecycle-states-list,
+.risk-layout > p:last-child,
+.collecting-state,
+.signal-name,
+.signal-updated,
+.signal-exchange,
+.provider-attribution,
+.evidence-grid ul,
+.site-footer p,
+.site-footer nav a {
+  color: rgba(248, 252, 255, 0.90) !important;
+
+  text-shadow:
+    0 1px 6px rgba(50, 90, 140, 0.10);
+}
+
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .telegram-image-frame {
+    height: 235px !important;
+  }
+
+  .telegram-image {
+    width: 108% !important;
+
+    margin-left: -4%;
+
+    transform: scale(1.04);
+  }
+}
+
+
+/* Accessibility fallback without introducing dark cards */
+
+@media (prefers-reduced-transparency: reduce) {
+  .signal-feed,
+  .step-card,
+  .feature-grid article,
+  .provider-grid,
+  .lifecycle-example,
+  .alpha-example,
+  .risk-layout,
+  .closing-cta,
+  .signal-filters,
+  .signal-card,
+  .empty-state,
+  .error-state,
+  .site-footer {
+    background: rgba(255, 255, 255, 0.14) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
