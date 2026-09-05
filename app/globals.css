@@ -198,11 +198,6 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 
 .feature-grid article { min-height: 178px; }
 
-.feature-showcase { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr); gap: 16px; align-items: stretch; }
-.feature-showcase .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.feature-image-frame { display: grid; min-height: 100%; place-items: center; overflow: hidden; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: linear-gradient(160deg, rgba(22, 81, 128, 0.44), rgba(8, 22, 38, 0.86)); }
-.feature-image { width: 100%; height: 100%; max-height: 460px; object-fit: contain; }
-
 .split-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr); align-items: start; gap: 56px; }
 .split-section .button { margin-top: 18px; }
 .alpha-example { padding: 24px; border: 1px solid var(--line-strong); border-radius: 10px; background: linear-gradient(145deg, rgba(25, 69, 108, 0.5), rgba(10, 25, 43, 0.92)); }
@@ -232,7 +227,7 @@ html.light-mode .button, html.light-mode .trade-button { color: #ffffff; }
 html.light-mode .button-secondary { color: var(--text); }
 html.light-mode .hero-panel, html.light-mode .signal-feed, html.light-mode .signal-card, html.light-mode .empty-state, html.light-mode .error-state { background: rgba(255, 255, 255, 0.76); }
 html.light-mode .step-card, html.light-mode .feature-grid article { background: rgba(255, 255, 255, 0.66); }
-html.light-mode .feature-image-frame, html.light-mode .alpha-example, html.light-mode .telegram-image-frame { background: rgba(224, 239, 247, 0.82); }
+html.light-mode .alpha-example, html.light-mode .telegram-image-frame { background: rgba(224, 239, 247, 0.82); }
 html.light-mode .command-list code, html.light-mode .filter-selects select, html.light-mode .signal-metric { color: var(--text); background: rgba(255, 255, 255, 0.8); }
 html.light-mode .signal-metric strong { color: var(--value); }
 html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 249, 0.86), rgba(233, 244, 249, 0.94)), url("/images/footer-background.jpg"); }
@@ -254,7 +249,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .site-header-inner, .hero, .section, .signal-feed, .closing-cta, .signals-hero, .signals-content, .legal-page, .site-footer { width: min(calc(100% - 40px), var(--max-width)); }
   .site-header-inner { grid-template-columns: auto 1fr; gap: 18px; padding: 12px 0; }.header-actions { grid-column: 2; grid-row: 1; }.header-actions .button { display: none; }.site-nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; overflow-x: auto; padding-bottom: 2px; }
   .hero { min-height: auto; grid-template-columns: 1fr; gap: 42px; padding: 94px 0 70px; }.hero-panel { max-width: 620px; }
-  .three-column-grid, .feature-grid, .signals-grid { grid-template-columns: repeat(2, 1fr); }.provider-grid { grid-template-columns: repeat(2, 1fr); }.split-section { grid-template-columns: 1fr 0.8fr; gap: 30px; }.risk-layout { grid-template-columns: 1fr 1fr; }.risk-layout > p:last-child { grid-column: 1 / -1; }.filter-selects { grid-template-columns: repeat(3, 1fr); }.feature-showcase { grid-template-columns: 1fr; }.feature-image-frame { min-height: 280px; }
+  .three-column-grid, .feature-grid, .signals-grid { grid-template-columns: repeat(2, 1fr); }.provider-grid { grid-template-columns: repeat(2, 1fr); }.split-section { grid-template-columns: 1fr 0.8fr; gap: 30px; }.risk-layout { grid-template-columns: 1fr 1fr; }.risk-layout > p:last-child { grid-column: 1 / -1; }.filter-selects { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 640px) {
@@ -276,7 +271,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .step-card,
 .feature-grid article,
 .lifecycle-example,
-.feature-image-frame,
 .alpha-example,
 .risk-layout,
 .telegram-image-frame,
@@ -313,7 +307,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 46%), var(--glass-surface);
 }
 
-.feature-image-frame,
 .telegram-image-frame {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%), var(--glass-surface-soft);
 }
@@ -363,7 +356,6 @@ html.light-mode .signal-feed,
 html.light-mode .step-card,
 html.light-mode .feature-grid article,
 html.light-mode .lifecycle-example,
-html.light-mode .feature-image-frame,
 html.light-mode .alpha-example,
 html.light-mode .risk-layout,
 html.light-mode .telegram-image-frame,
