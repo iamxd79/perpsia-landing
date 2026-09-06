@@ -34,7 +34,7 @@ export const metadata = {
   ],
 
   alternates: {
-    canonical: "/",
+    canonical: `${siteUrl}/`,
   },
 
   openGraph: {
