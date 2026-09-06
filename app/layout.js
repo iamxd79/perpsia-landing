@@ -9,7 +9,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://perpsia.vercel.app";
+const siteUrl = "https://perpsia.app";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -130,12 +130,10 @@ export default function RootLayout({ children }) {
           <div className="site-background-overlay" />
         </div>
 
-
         {/* WEBSITE */}
         <div className="site-content">
           {children}
         </div>
-
 
         {/* FIXED BOTTOM CONTROLS */}
         <SiteControls />

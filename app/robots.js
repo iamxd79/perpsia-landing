@@ -5,8 +5,8 @@ export default function robots() {
       allow: "/",
     },
 
-    sitemap: "https://perpsia.vercel.app/sitemap.xml",
+    sitemap: "https://perpsia.app/sitemap.xml",
 
-    host: "https://perpsia.vercel.app",
+    host: "https://perpsia.app",
   };
 }
