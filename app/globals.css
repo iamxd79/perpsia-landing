@@ -2904,3 +2904,9 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     width: 100%;
   }
 }
+
+/* Keep the existing theme control available across the responsive header. */
+html .theme-toggle,
+html .header .theme-toggle {
+  display: inline-flex !important;
+}

@@ -39,8 +39,8 @@ export default function SignalsBoard() {
     const filtered = [...signals].filter((signal) => typeMatches(signal, kind)
       && (lifecycle === "All" || signal.lifecycle === lifecycle)
       && (exchange === "All" || signal.exchange === exchange)
-      && (signal.score === null || signal.score >= score)
-      && (signal.confidence === null || signal.confidence >= confidence));
+      && (score === 0 || signal.score !== null && signal.score >= score)
+      && (confidence === 0 || signal.confidence !== null && signal.confidence >= confidence));
 
     return filtered.sort((a, b) => {
       if (sort === "score") return (b.score ?? -Infinity) - (a.score ?? -Infinity);
@@ -57,13 +57,13 @@ export default function SignalsBoard() {
   return (
     <>
       <div className="signals-status-row">
-        <p>Live</p>
-        <p>Auto refreshing</p>
+        <p>{data?.meta?.stale ? "Stale" : "Live"}</p>
+        <p>{data?.meta?.stale ? "Freshness check needed" : "Auto refreshing"}</p>
         {data?.meta?.updatedAt ? <p>Last updated {formatTime(data.meta.updatedAt)}</p> : null}
       </div>
       <div className="signal-filters" aria-label="Live signal filters">
         <div className="filter-tabs" role="group" aria-label="Signal type">
-          {signalKinds.map((item) => <button key={item} type="button" className={kind === item ? "is-selected" : ""} onClick={() => setKind(item)}>{item}</button>)}
+          {signalKinds.map((item) => <button key={item} type="button" className={kind === item ? "is-selected" : ""} aria-pressed={kind === item} onClick={() => setKind(item)}>{item}</button>)}
         </div>
         <div className="filter-selects">
           <label>Lifecycle<select value={lifecycle} onChange={(event) => setLifecycle(event.target.value)}><option>All</option>{lifecycleOptions.map((item) => <option key={item}>{item}</option>)}</select></label>

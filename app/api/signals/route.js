@@ -3,8 +3,9 @@ import { normalizeSignals } from "../../../lib/signals";
 export const dynamic = "force-dynamic";
 
 const apiBaseUrl = (process.env.PERPSIA_API_BASE_URL || "https://perpsia.onrender.com").replace(/\/$/, "");
-const signalsUrl = process.env.PERPSIA_SIGNAL_API_URL || `${apiBaseUrl}/api/performance/trades?days=30`;
+const signalsUrl = process.env.PERPSIA_SIGNAL_API_URL || `${apiBaseUrl}/api/signals?days=2`;
 const qualityUrl = `${apiBaseUrl}/api/signal-quality?settle=0`;
+const internalApiToken = process.env.PERPSIA_API_TOKEN || process.env.PERPSIA_INTERNAL_API_TOKEN;
 
 async function fetchJson(url, retries = 1) {
   let lastError;
@@ -12,6 +13,7 @@ async function fetchJson(url, retries = 1) {
     try {
       const response = await fetch(url, {
         cache: "no-store",
+        headers: internalApiToken ? { Authorization: `Bearer ${internalApiToken}` } : undefined,
         signal: AbortSignal.timeout(8000),
       });
       if (!response.ok) throw new Error(`Upstream status ${response.status}`);
@@ -56,9 +58,9 @@ export async function GET() {
         signals,
         quality: qualityContext(qualityResult),
         meta: {
-          source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : "performance-trades",
-          updatedAt: new Date().toISOString(),
-          stale: false,
+          source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",
+          updatedAt: signalsPayload?.meta?.updatedAt || null,
+          stale: Boolean(signalsPayload?.meta?.stale),
         },
       },
       {

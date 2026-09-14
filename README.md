@@ -20,9 +20,10 @@ The default backend is `https://perpsia.onrender.com`. Set these server-side env
 ```text
 PERPSIA_API_BASE_URL=https://perpsia.onrender.com
 PERPSIA_SIGNAL_API_URL=https://your-backend.example/api/signals
+PERPSIA_API_TOKEN=
 ```
 
-`PERPSIA_SIGNAL_API_URL` is optional. Without it, the site reads the backend's real `/api/performance/trades?days=30` data. No placeholder signals are generated. Trading links are rendered only when the backend supplies a verified HTTPS venue link.
+`PERPSIA_SIGNAL_API_URL` is optional. Without it, the site reads the backend's active `/api/signals?days=2` feed. Set `PERPSIA_API_TOKEN` to the same server-side value as the terminal's `PERPSIA_INTERNAL_API_TOKEN` so the proxy can read protected quality data. No placeholder signals are generated. Trading links are rendered only when the backend supplies a verified HTTPS venue link.
 
 ## Verification
 
