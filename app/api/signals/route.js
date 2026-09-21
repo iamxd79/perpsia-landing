@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 const apiBaseUrl = (process.env.PERPSIA_API_BASE_URL || "https://perpsia.onrender.com").replace(/\/$/, "");
 const signalsUrl = process.env.PERPSIA_SIGNAL_API_URL || `${apiBaseUrl}/api/signals?days=2`;
 const qualityUrl = `${apiBaseUrl}/api/signal-quality?settle=0`;
+const performanceUrl = `${apiBaseUrl}/api/performance?days=365&settle=0`;
 const internalApiToken = process.env.PERPSIA_API_TOKEN || process.env.PERPSIA_INTERNAL_API_TOKEN;
 
 async function fetchJson(url, retries = 1) {
@@ -84,13 +85,17 @@ async function enrichMarketContext(records) {
   return records.map((signal) => byId.get(signal.id) || signal);
 }
 
-function qualityContext(payload) {
+function qualityContext(payload, performancePayload) {
   const selected = payload?.horizons?.[payload?.selectedHorizon || "24h"];
+  const publicSummary = performancePayload?.last_30_days || {};
   const statistics = selected?.sufficientObservations ? selected.statistics : null;
   return {
     ready: Boolean(statistics),
     minimumObservations: Number(payload?.minimumObservations) || null,
-    evaluatedSignals: Number(selected?.observations) || 0,
+    evaluatedSignals: Number(selected?.observations) || Number(publicSummary.closed_signals) || 0,
+    trackedSignals: Number(payload?.totalSignals) || Number(publicSummary.total_signals) || 0,
+    settledSignals: Number(publicSummary.closed_signals) || 0,
+    dataStatus: payload?.dataStatus || performancePayload?.data_status || "collecting_real_observations",
     statistics: statistics
       ? {
           tp1HitRate: statistics.tp1HitRate,
@@ -105,9 +110,10 @@ function qualityContext(payload) {
 
 export async function GET() {
   try {
-    const [signalsPayload, qualityResult] = await Promise.all([
+    const [signalsPayload, qualityResult, performanceResult] = await Promise.all([
       fetchJson(signalsUrl),
       fetchJson(qualityUrl).catch(() => null),
+      fetchJson(performanceUrl).catch(() => null),
     ]);
     const signals = normalizeSignals(signalsPayload)
       .filter((signal) => !signal.lifecycle || ["OPEN", "ACTIVE", "BUILDING", "CONFIRMED", "DISCOVERED"].includes(signal.lifecycle));
@@ -122,7 +128,7 @@ export async function GET() {
       {
         signals: enrichedSignals,
         candidates: enrichedCandidates,
-        quality: qualityContext(qualityResult),
+        quality: qualityContext(qualityResult, performanceResult),
         meta: {
           source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",
           updatedAt: signalsPayload?.meta?.updatedAt || null,

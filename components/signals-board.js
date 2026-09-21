@@ -83,7 +83,7 @@ export default function SignalsBoard() {
       <section className="signals-performance" aria-labelledby="signals-performance-title">
         <p className="eyebrow">Signal Quality</p>
         <h2 id="signals-performance-title">Performance context</h2>
-        <PerformanceContext quality={data?.quality} />
+        <PerformanceContext quality={data?.quality} activity={{ active: signals.length, developing: candidates.length }} />
       </section>
     </>
   );

@@ -1,7 +1,21 @@
-export default function PerformanceContext({ quality }) {
+export default function PerformanceContext({ quality, activity = {} }) {
   const stats = quality?.statistics;
   if (!quality?.ready || !stats) {
-    return <p className="collecting-state">Performance data is still being collected.</p>;
+    const developing = Number(activity.developing) || 0;
+    const active = Number(activity.active) || 0;
+    const tracked = Number(quality?.trackedSignals) || 0;
+    const settled = Number(quality?.settledSignals ?? quality?.evaluatedSignals) || 0;
+    return (
+      <>
+        <div className="performance-context performance-context-collecting">
+          <div><span>Developing candidates</span><strong>{developing}</strong></div>
+          <div><span>Active signals</span><strong>{active}</strong></div>
+          <div><span>Settled outcomes</span><strong>{settled}{quality?.minimumObservations ? ` / ${quality.minimumObservations} needed` : ""}</strong></div>
+          <div><span>Signals tracked</span><strong>{tracked}</strong></div>
+        </div>
+        <p className="collecting-state">Live calls are shown above. Accuracy metrics appear after their outcomes are settled.</p>
+      </>
+    );
   }
 
   const metrics = [
