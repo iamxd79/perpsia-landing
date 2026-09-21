@@ -11,6 +11,30 @@ const inter = Inter({
 
 const siteUrl = "https://perpsia.app";
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "PerpsIA",
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}/images/perpsia-logo.svg`,
+      sameAs: [
+        "https://t.me/perpsia_bot",
+        "https://github.com/iamxd79/Perpsia",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "PerpsIA",
+      url: `${siteUrl}/`,
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ],
+};
+
 export const metadata = {
   metadataBase: new URL(siteUrl),
 
@@ -137,6 +161,11 @@ export default function RootLayout({ children }) {
 
         {/* FIXED BOTTOM CONTROLS */}
         <SiteControls />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
 
       </body>
     </html>

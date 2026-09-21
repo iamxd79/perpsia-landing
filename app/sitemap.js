@@ -13,4 +13,4 @@ export default function sitemap() {
       priority: 0.9,
     },
   ];
-}
+} 
