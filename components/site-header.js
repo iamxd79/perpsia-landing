@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
 import { ArrowUpRight } from "lucide-react";
 
 const botUrl = "https://t.me/perpsia_bot";
@@ -21,7 +20,6 @@ export default function SiteHeader({ className = "", hero = false }) {
           <a href={botUrl} target="_blank" rel="noopener noreferrer">Telegram</a>
         </nav>
         <div className="header-actions">
-          <ThemeToggle />
           <a className="button button-small" href={botUrl} target="_blank" rel="noopener noreferrer">Launch PerpsIA{hero ? <ArrowUpRight size={20} aria-hidden="true" /> : null}</a>
         </div>
       </div>

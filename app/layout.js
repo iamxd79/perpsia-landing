@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import SiteControls from "../components/site-controls";
+import BackgroundVideo from "../components/background-video";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -137,19 +138,7 @@ export default function RootLayout({ children }) {
           className="site-background"
           aria-hidden="true"
         >
-          <video
-            className="site-background-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            <source
-              src="/images/hero-landscape.mp4"
-              type="video/mp4"
-            />
-          </video>
+          <BackgroundVideo />
 
           <div className="site-background-overlay" />
         </div>
