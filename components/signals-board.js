@@ -8,17 +8,17 @@ import SignalCard from "./signal-card";
 import { formatTime } from "./format";
 import { useSignalData } from "./use-signal-data";
 
-const signalKinds = ["All", "Long", "Short", "Early Momentum", "Watchlist"];
+const signalKinds = ["All", "Long", "Short", "Developing", "Watchlist"];
 
 function typeMatches(signal, filter) {
   if (filter === "All") return true;
   if (filter === "Watchlist") return signal.watchlist;
-  if (filter === "Early Momentum") return String(signal.signalType || "").toUpperCase().includes("EARLY MOMENTUM");
+  if (filter === "Developing") return signal.earlyCandidate || signal.lifecycle === "DEVELOPING";
   return signal.direction === filter.toUpperCase();
 }
 
 function actionableRank(signal) {
-  return ["OPEN", "ACTIVE", "CONFIRMED", "BUILDING"].includes(signal.lifecycle) ? 1 : 0;
+  return ["OPEN", "ACTIVE", "CONFIRMED", "BUILDING"].includes(signal.lifecycle) ? 2 : signal.earlyCandidate || signal.lifecycle === "DEVELOPING" ? 1 : 0;
 }
 
 export default function SignalsBoard() {
@@ -30,13 +30,15 @@ export default function SignalsBoard() {
   const [minimumConfidence, setMinimumConfidence] = useState("0");
   const [sort, setSort] = useState("default");
   const signals = useMemo(() => data?.signals || [], [data?.signals]);
-  const lifecycleOptions = [...new Set(signals.map((signal) => signal.lifecycle).filter(Boolean))];
-  const exchangeOptions = [...new Set(signals.map((signal) => signal.exchange).filter(Boolean))];
+  const candidates = useMemo(() => data?.candidates || [], [data?.candidates]);
+  const feedSignals = useMemo(() => [...new Map([...signals, ...candidates].map((signal) => [signal.id, signal])).values()], [signals, candidates]);
+  const lifecycleOptions = [...new Set(feedSignals.map((signal) => signal.lifecycle).filter(Boolean))];
+  const exchangeOptions = [...new Set(feedSignals.map((signal) => signal.exchange).filter(Boolean))];
 
   const visibleSignals = useMemo(() => {
     const score = Number(minimumScore) || 0;
     const confidence = Number(minimumConfidence) || 0;
-    const filtered = [...signals].filter((signal) => typeMatches(signal, kind)
+    const filtered = [...feedSignals].filter((signal) => typeMatches(signal, kind)
       && (lifecycle === "All" || signal.lifecycle === lifecycle)
       && (exchange === "All" || signal.exchange === exchange)
       && (score === 0 || signal.score !== null && signal.score >= score)
@@ -52,12 +54,12 @@ export default function SignalsBoard() {
         || (b.score ?? -Infinity) - (a.score ?? -Infinity)
         || new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0);
     });
-  }, [signals, kind, lifecycle, exchange, minimumScore, minimumConfidence, sort]);
+  }, [feedSignals, kind, lifecycle, exchange, minimumScore, minimumConfidence, sort]);
 
   return (
     <>
       <div className="signals-status-row">
-        <p>{data?.meta?.stale ? "Stale" : "Live"}</p>
+        <p>{data?.meta?.stale ? "Stale" : "Live"}</p><p>{signals.length} active · {candidates.length} developing</p>
         <p>{data?.meta?.stale ? "Freshness check needed" : "Auto refreshing"}</p>
         {data?.meta?.updatedAt ? <p>Last updated {formatTime(data.meta.updatedAt)}</p> : null}
       </div>
