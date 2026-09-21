@@ -3002,3 +3002,14 @@ html .header .theme-toggle {
   color: var(--content-muted);
   font-size: 13px;
 }
+/* RISK OUTER FRAME: keep only the individual glass cards visible. */
+.risk-section .risk-layout {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
