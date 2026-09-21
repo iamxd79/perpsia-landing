@@ -2840,7 +2840,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 /* Final responsive contract: transparent media layers and fluid section surfaces. */
 .risk-section .risk-content,
 .telegram-section .telegram-image-frame {
-  background: transparent !important;
+  background: 0 !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -2848,7 +2848,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .risk-section .risk-profile > div,
 .risk-section .risk-position-card,
 .telegram-section .command-list code {
-  background: rgba(255, 255, 255, 0.075) !important;
+  background: rgba(255, 255, 255, 0) !important;
   background-image: none !important;
 }
 
@@ -3006,9 +3006,28 @@ html .header .theme-toggle {
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: transparent !important;
+  background: 0 !important;
   background-image: none !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+}
+
+/* Signal cards: token identity, live market context, and compact price charts. */
+.signal-token-identity { display: flex; align-items: center; min-width: 0; gap: 10px; }
+.token-logo { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: rgba(255, 255, 255, 0.1); }
+.token-logo-fallback { display: grid; place-items: center; color: #dff4ff; background: rgba(91, 190, 255, 0.18); font-size: 10px; font-weight: 800; letter-spacing: 0.04em; }
+.signal-chart-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 58px; margin: 12px 0 14px; padding: 8px 10px; border: 1px solid rgba(180, 220, 255, 0.12); border-radius: 12px; background: rgba(3, 15, 28, 0.28); }
+.signal-sparkline { display: block; width: 100%; height: 52px; overflow: visible; }
+.signal-sparkline path { stroke: #9bdcff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.signal-sparkline-long path { stroke: #74e0b0; }
+.signal-sparkline-short path { stroke: #ff9f9f; }
+.signal-chart-empty { color: var(--content-muted); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+.signal-market-meta { display: grid; justify-items: end; gap: 3px; min-width: 86px; text-align: right; }
+.signal-market-meta strong { color: var(--content-text); font-size: 13px; }
+.signal-market-meta span { font-size: 12px; font-weight: 700; }
+.signal-market-meta small { color: var(--content-muted); font-size: 9px; white-space: nowrap; }
+@media (max-width: 640px) {
+  .signal-chart-row { grid-template-columns: minmax(0, 1fr) 92px; gap: 8px; }
+  .signal-market-meta { min-width: 0; }
 }

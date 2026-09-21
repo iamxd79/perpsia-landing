@@ -25,6 +25,35 @@ async function fetchJson(url, retries = 1) {
   throw lastError;
 }
 
+function binancePair(signal) {
+  const symbol = String(signal?.symbol || "").replace(/^\$/, "").replace(/[^a-z0-9]/gi, "").toUpperCase();
+  return symbol ? `${symbol}USDT` : null;
+}
+
+async function enrichMarketContext(records) {
+  const targets = records.filter((signal) => !signal.priceHistory?.length).slice(0, 12);
+  const enriched = await Promise.all(targets.map(async (signal) => {
+    const pair = binancePair(signal);
+    if (!pair) return signal;
+    try {
+      const response = await fetch(`https://fapi.binance.com/fapi/v1/klines?symbol=${pair}&interval=1h&limit=24`, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(2500),
+      });
+      if (!response.ok) return signal;
+      const candles = await response.json();
+      const priceHistory = Array.isArray(candles) ? candles.map((candle) => Number(candle?.[4])).filter(Number.isFinite) : [];
+      if (priceHistory.length < 2) return signal;
+      const volume24h = candles.slice(-24).reduce((total, candle) => total + (Number(candle?.[7]) || 0), 0);
+      return { ...signal, priceHistory, price: signal.price ?? priceHistory.at(-1), volume24h: signal.volume24h ?? volume24h };
+    } catch {
+      return signal;
+    }
+  }));
+  const byId = new Map(enriched.map((signal) => [signal.id, signal]));
+  return records.map((signal) => byId.get(signal.id) || signal);
+}
+
 function qualityContext(payload) {
   const selected = payload?.horizons?.[payload?.selectedHorizon || "24h"];
   const statistics = selected?.sufficientObservations ? selected.statistics : null;
@@ -54,11 +83,15 @@ export async function GET() {
       .filter((signal) => !signal.lifecycle || ["OPEN", "ACTIVE", "BUILDING", "CONFIRMED", "DISCOVERED"].includes(signal.lifecycle));
     const candidates = normalizeCandidates(signalsPayload)
       .filter((signal) => signal.direction && signal.earlyCandidate);
+    const enriched = await enrichMarketContext([...signals, ...candidates]);
+    const enrichedById = new Map(enriched.map((signal) => [signal.id, signal]));
+    const enrichedSignals = signals.map((signal) => enrichedById.get(signal.id) || signal);
+    const enrichedCandidates = candidates.map((signal) => enrichedById.get(signal.id) || signal);
 
     return Response.json(
       {
-        signals,
-        candidates,
+        signals: enrichedSignals,
+        candidates: enrichedCandidates,
         quality: qualityContext(qualityResult),
         meta: {
           source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",
