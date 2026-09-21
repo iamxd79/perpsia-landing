@@ -22,7 +22,7 @@ function TokenLogo({ signal }) {
 }
 
 function Sparkline({ points, direction }) {
-  if (!Array.isArray(points) || points.length < 2) return <div className="signal-chart-empty">Chart loading</div>;
+  if (!Array.isArray(points) || points.length < 2) return <div className="signal-chart-empty">Market data unavailable</div>;
   const width = 180;
   const height = 52;
   const min = Math.min(...points);
@@ -58,7 +58,7 @@ export default function SignalCard({ signal, compact = false }) {
       <div className="signal-chart-row">
         <Sparkline points={signal.priceHistory} direction={signal.direction} />
         <div className="signal-market-meta">
-          {signal.price !== null ? <strong>{formatPrice(signal.price)}</strong> : <strong>Price pending</strong>}
+          {signal.price !== null ? <strong>{formatPrice(signal.price)}</strong> : <strong>Price unavailable</strong>}
           {signal.priceChange24h !== null ? <span className={signal.priceChange24h >= 0 ? "positive" : "negative"}>{formatPercent(signal.priceChange24h)}</span> : null}
           <small>{signal.exchange || "Perpetual market"}{signal.volume24h !== null ? ` · Vol ${compactNumber(signal.volume24h)}` : ""}</small>
         </div>

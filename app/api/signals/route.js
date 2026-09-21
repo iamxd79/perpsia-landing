@@ -36,16 +36,36 @@ async function enrichMarketContext(records) {
     const pair = binancePair(signal);
     if (!pair) return signal;
     try {
-      const response = await fetch(`https://fapi.binance.com/fapi/v1/klines?symbol=${pair}&interval=1h&limit=24`, {
-        cache: "no-store",
-        signal: AbortSignal.timeout(2500),
-      });
-      if (!response.ok) return signal;
-      const candles = await response.json();
+      const endpoints = [
+        `https://fapi.binance.com/fapi/v1/klines?symbol=${pair}&interval=1h&limit=24`,
+        `https://api.binance.com/api/v3/klines?symbol=${pair}&interval=1h&limit=24`,
+      ];
+      let candles = null;
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(endpoint, {
+            cache: "no-store",
+            signal: AbortSignal.timeout(2500),
+          });
+          if (response.ok) {
+            const payload = await response.json();
+            if (Array.isArray(payload) && payload.length >= 2) {
+              candles = payload;
+              break;
+            }
+          }
+        } catch {
+          // Try the next public market source.
+        }
+      }
+      if (!candles) return signal;
       const priceHistory = Array.isArray(candles) ? candles.map((candle) => Number(candle?.[4])).filter(Number.isFinite) : [];
       if (priceHistory.length < 2) return signal;
       const volume24h = candles.slice(-24).reduce((total, candle) => total + (Number(candle?.[7]) || 0), 0);
-      return { ...signal, priceHistory, price: signal.price ?? priceHistory.at(-1), volume24h: signal.volume24h ?? volume24h };
+      const firstPrice = priceHistory[0];
+      const lastPrice = priceHistory.at(-1);
+      const priceChange24h = firstPrice ? ((lastPrice - firstPrice) / firstPrice) * 100 : null;
+      return { ...signal, priceHistory, price: signal.price ?? lastPrice, priceChange24h: signal.priceChange24h ?? priceChange24h, volume24h: signal.volume24h ?? volume24h, exchange: signal.exchange || "Binance" };
     } catch {
       return signal;
     }
