@@ -36,36 +36,46 @@ async function enrichMarketContext(records) {
     const pair = binancePair(signal);
     if (!pair) return signal;
     try {
+      const baseSymbol = pair.replace(/USDT$/, "");
       const endpoints = [
-        `https://fapi.binance.com/fapi/v1/klines?symbol=${pair}&interval=1h&limit=24`,
-        `https://api.binance.com/api/v3/klines?symbol=${pair}&interval=1h&limit=24`,
+        { name: "Binance", url: `https://fapi.binance.com/fapi/v1/klines?symbol=${pair}&interval=1h&limit=24`, rows: (payload) => payload, volumeIndex: 7, reverse: false },
+        { name: "Binance", url: `https://api.binance.com/api/v3/klines?symbol=${pair}&interval=1h&limit=24`, rows: (payload) => payload, volumeIndex: 7, reverse: false },
+        { name: "Bybit", url: `https://api.bybit.com/v5/market/kline?category=linear&symbol=${pair}&interval=60&limit=24`, rows: (payload) => payload?.result?.list, volumeIndex: 6, reverse: true },
+        { name: "OKX", url: `https://www.okx.com/api/v5/market/candles?instId=${baseSymbol}-USDT-SWAP&bar=1H&limit=24`, rows: (payload) => payload?.data, volumeIndex: 7, reverse: true },
       ];
       let candles = null;
+      let sourceName = null;
+      let volumeIndex = 7;
+      let reverse = false;
       for (const endpoint of endpoints) {
         try {
-          const response = await fetch(endpoint, {
+          const response = await fetch(endpoint.url, {
             cache: "no-store",
             signal: AbortSignal.timeout(2500),
           });
-          if (response.ok) {
-            const payload = await response.json();
-            if (Array.isArray(payload) && payload.length >= 2) {
-              candles = payload;
-              break;
-            }
+          if (!response.ok) continue;
+          const payload = await response.json();
+          const rows = endpoint.rows(payload);
+          if (Array.isArray(rows) && rows.length >= 2) {
+            candles = rows;
+            sourceName = endpoint.name;
+            volumeIndex = endpoint.volumeIndex;
+            reverse = endpoint.reverse;
+            break;
           }
         } catch {
-          // Try the next public market source.
+          // Continue through the public exchange fallbacks.
         }
       }
       if (!candles) return signal;
-      const priceHistory = Array.isArray(candles) ? candles.map((candle) => Number(candle?.[4])).filter(Number.isFinite) : [];
+      const orderedCandles = reverse ? [...candles].reverse() : candles;
+      const priceHistory = orderedCandles.map((candle) => Number(candle?.[4])).filter(Number.isFinite);
       if (priceHistory.length < 2) return signal;
-      const volume24h = candles.slice(-24).reduce((total, candle) => total + (Number(candle?.[7]) || 0), 0);
+      const volume24h = orderedCandles.slice(-24).reduce((total, candle) => total + (Number(candle?.[volumeIndex]) || 0), 0);
       const firstPrice = priceHistory[0];
       const lastPrice = priceHistory.at(-1);
       const priceChange24h = firstPrice ? ((lastPrice - firstPrice) / firstPrice) * 100 : null;
-      return { ...signal, priceHistory, price: signal.price ?? lastPrice, priceChange24h: signal.priceChange24h ?? priceChange24h, volume24h: signal.volume24h ?? volume24h, exchange: signal.exchange || "Binance" };
+      return { ...signal, priceHistory, price: signal.price ?? lastPrice, priceChange24h: signal.priceChange24h ?? priceChange24h, volume24h: signal.volume24h ?? volume24h, exchange: signal.exchange || sourceName };
     } catch {
       return signal;
     }
