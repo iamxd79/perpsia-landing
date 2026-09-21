@@ -2910,3 +2910,75 @@ html .theme-toggle,
 html .header .theme-toggle {
   display: inline-flex !important;
 }
+
+/* =========================================================
+   FINAL GLASSMORPHISM DIRECTION
+   Neutral depth, translucent surfaces, and restrained highlights.
+   ========================================================= */
+
+:root {
+  --content-glass-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  --content-glass-blur: blur(22px) saturate(140%);
+}
+
+.hero-copy,
+.statistics,
+.signal-feed,
+.step-card,
+.feature-grid article,
+.provider-grid,
+.provider-grid article,
+.lifecycle-example,
+.lifecycle-example-states article,
+.alpha-example,
+.risk-layout,
+.risk-profile > div,
+.risk-position-card,
+.telegram-copy-card,
+.telegram-image-frame,
+.closing-cta,
+.closing-chart-card,
+.signal-filters,
+.signal-card,
+.signal-metric,
+.empty-state,
+.error-state,
+.site-footer,
+.site-controls {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 14px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+.hero-copy,
+.statistics,
+.telegram-copy-card,
+.closing-cta,
+.closing-chart-card {
+  background: rgba(255, 255, 255, 0.065) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: var(--content-glass-blur) !important;
+  -webkit-backdrop-filter: var(--content-glass-blur) !important;
+}
+
+.primaryButton,
+.primaryButton:hover,
+.closing-cta-button,
+.closing-cta-button:hover,
+.telegram-button,
+.telegram-button:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .hero-copy,
+  .statistics,
+  .telegram-copy-card,
+  .closing-cta,
+  .closing-chart-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
