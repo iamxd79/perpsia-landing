@@ -210,8 +210,8 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 .alpha-example > strong { display: block; font-size: 27px; }.alpha-example > span { display: block; margin-top: 6px; color: var(--blue); font-size: 13px; font-weight: 700; }
 .alpha-example dl { display: grid; grid-template-columns: 1fr 1fr; margin: 24px 0; border-top: 1px solid var(--line); }.alpha-example dl div { padding: 12px 0; border-bottom: 1px solid var(--line); }.alpha-example dt { margin-bottom: 5px; }.alpha-example dd { font-weight: 700; }
 
-.risk-layout { display: grid; grid-template-columns: 1.1fr 0.8fr 1fr; gap: 36px; align-items: center; padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-subtle); }
-.risk-layout > p:last-child { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }.risk-profile { margin: 0; }.risk-profile > div { padding: 11px 0; border-top: 1px solid var(--line); }.risk-profile dd { margin-top: 4px; font-weight: 700; }
+.risk-content { display: grid; grid-template-columns: 1.1fr 0.8fr 1fr; gap: 36px; align-items: center; padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-subtle); }
+.risk-content > p:last-child { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }.risk-profile { margin: 0; }.risk-profile > div { padding: 11px 0; border-top: 1px solid var(--line); }.risk-profile dd { margin-top: 4px; font-weight: 700; }
 
 .performance-list { display: flex; flex-wrap: wrap; gap: 10px; }.performance-list span { padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; color: #c1d4e4; font-size: 13px; }.collecting-state { margin: 28px 0 0; color: var(--muted); font-size: 15px; }
 .command-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.command-list code { padding: 13px; border: 1px solid var(--line); border-radius: 6px; color: #cce7fa; background: #091828; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; font-weight: 600; }
@@ -248,7 +248,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .site-header-inner, .hero, .section, .signal-feed, .closing-cta, .signals-hero, .signals-content, .legal-page, .site-footer { width: min(calc(100% - 40px), var(--max-width)); }
   .site-header-inner { grid-template-columns: auto 1fr; gap: 18px; padding: 12px 0; }.header-actions { grid-column: 2; grid-row: 1; }.header-actions .button { display: none; }.site-nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; overflow-x: auto; padding-bottom: 2px; }
   .hero { min-height: auto; grid-template-columns: 1fr; gap: 42px; padding: 94px 0 70px; }.hero-panel { max-width: 620px; }
-  .three-column-grid, .feature-grid, .signals-grid { grid-template-columns: repeat(2, 1fr); }.provider-grid { grid-template-columns: repeat(2, 1fr); }.split-section { grid-template-columns: 1fr 0.8fr; gap: 30px; }.risk-layout { grid-template-columns: 1fr 1fr; }.risk-layout > p:last-child { grid-column: 1 / -1; }.filter-selects { grid-template-columns: repeat(3, 1fr); }
+  .three-column-grid, .feature-grid, .signals-grid { grid-template-columns: repeat(2, 1fr); }.provider-grid { grid-template-columns: repeat(2, 1fr); }.split-section { grid-template-columns: 1fr 0.8fr; gap: 30px; }.risk-content { grid-template-columns: 1fr 1fr; }.risk-content > p:last-child { grid-column: 1 / -1; }.filter-selects { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 640px) {
@@ -256,8 +256,8 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .site-header-inner { min-height: 64px; }.site-nav { gap: 17px; }.site-nav a { font-size: 13px; white-space: nowrap; }.brand span { font-size: 16px; }.theme-toggle { padding: 0 9px; }.theme-toggle span { display: none; }
   h1 { max-width: 100%; overflow-wrap: break-word; font-size: clamp(42px, 12vw, 61px); }.hero { padding-top: 70px; }.hero-lede, .section-lede, .signals-hero > p:not(.eyebrow) { max-width: 100%; font-size: 16px; }.hero-actions { display: grid; grid-template-columns: 1fr; }.hero-actions .button { width: 100%; }.hero-status { display: grid; grid-template-columns: 1fr; gap: 8px; }.hero-panel { padding: 22px; }.hero-panel dl > div { grid-template-columns: 1fr; gap: 5px; }
   .signal-feed { padding: 22px 16px; }.signal-feed-heading { align-items: start; flex-direction: column; gap: 14px; }.signal-feed-footer { display: grid; gap: 8px; }.signal-card-compact { width: min(80vw, 290px); }.ticker-track-moving { animation-duration: 26s; }
-  .section { padding: 72px 0; }.three-column-grid, .feature-grid, .signals-grid, .provider-grid, .split-section, .risk-layout, .performance-context { grid-template-columns: 1fr; }.step-card, .feature-grid article { min-height: auto; }.provider-grid article { min-height: auto; }.lifecycle-example { padding: 18px; }.lifecycle-example-states { grid-template-columns: 1fr; }.lifecycle-example-states::before { top: 12%; bottom: 12%; left: 21px; right: auto; width: 1px; height: auto; }.lifecycle-example-states article { padding-left: 32px; }.lifecycle-states-list { gap: 10px 14px; }
-  .alpha-example dl { grid-template-columns: 1fr; }.command-list { grid-template-columns: 1fr; }.telegram-image-frame { height: 190px; }.risk-layout { padding: 22px; }.risk-layout > p:last-child { grid-column: auto; }.closing-cta { margin-bottom: 48px; padding: 46px 22px; text-align: left; }.closing-cta > p:not(.eyebrow) { margin-right: 0; margin-left: 0; }.site-footer { display: grid; gap: 28px; padding-right: 0; padding-left: 0; border-right: 0; border-left: 0; }.site-footer nav { justify-content: flex-start; min-width: 0; }
+  .section { padding: 72px 0; }.three-column-grid, .feature-grid, .signals-grid, .provider-grid, .split-section, .risk-content, .performance-context { grid-template-columns: 1fr; }.step-card, .feature-grid article { min-height: auto; }.provider-grid article { min-height: auto; }.lifecycle-example { padding: 18px; }.lifecycle-example-states { grid-template-columns: 1fr; }.lifecycle-example-states::before { top: 12%; bottom: 12%; left: 21px; right: auto; width: 1px; height: auto; }.lifecycle-example-states article { padding-left: 32px; }.lifecycle-states-list { gap: 10px 14px; }
+  .alpha-example dl { grid-template-columns: 1fr; }.command-list { grid-template-columns: 1fr; }.telegram-image-frame { height: 190px; }.risk-content { padding: 22px; }.risk-content > p:last-child { grid-column: auto; }.closing-cta { margin-bottom: 48px; padding: 46px 22px; text-align: left; }.closing-cta > p:not(.eyebrow) { margin-right: 0; margin-left: 0; }.site-footer { display: grid; gap: 28px; padding-right: 0; padding-left: 0; border-right: 0; border-left: 0; }.site-footer nav { justify-content: flex-start; min-width: 0; }
   .signals-page { padding-bottom: 64px; }.signals-hero { padding: 68px 0 36px; }.signals-status-row { display: grid; gap: 7px; }.signal-filters { padding: 14px; }.filter-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }.filter-tabs button { flex: 0 0 auto; }.filter-selects { grid-template-columns: 1fr 1fr; }.signal-primary-metrics { grid-template-columns: 1fr 1fr; }.signal-primary-metrics .signal-metric:last-child { grid-column: 1 / -1; }.signals-grid .signal-card { padding: 18px; }.performance-context { margin-top: 18px; }
 }
 
@@ -271,7 +271,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .feature-grid article,
 .lifecycle-example,
 .alpha-example,
-.risk-layout,
+.risk-content,
 .telegram-image-frame,
 .closing-cta,
 .signal-filters,
@@ -298,7 +298,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .step-card,
 .feature-grid article,
 .lifecycle-example,
-.risk-layout,
+.risk-content,
 .signal-filters,
 .signal-card,
 .empty-state,
@@ -706,7 +706,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
    RISK
    --------------------------------------------------------- */
 
-.risk-layout {
+.risk-content {
   padding: 30px;
 
   border: 1px solid var(--content-glass-line);
@@ -722,7 +722,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     var(--content-glass-shadow);
 }
 
-.risk-layout > p:last-child {
+.risk-content > p:last-child {
   color: var(--content-muted);
 }
 
@@ -997,7 +997,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .provider-grid,
   .lifecycle-example,
   .alpha-example,
-  .risk-layout,
+  .risk-content,
   .telegram-image-frame,
   .signal-card,
   .signal-filters {
@@ -1026,7 +1026,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .provider-grid,
   .lifecycle-example,
   .alpha-example,
-  .risk-layout,
+  .risk-content,
   .telegram-image-frame,
   .closing-cta,
   .signal-filters,
@@ -1948,7 +1948,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   margin: 24px 0 0;
 }
 
-.risk-section .risk-layout {
+.risk-section .risk-content {
   grid-column: 2 / 4;
   display: grid;
   grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.08fr);
@@ -2068,7 +2068,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     grid-column: 1 / -1;
   }
 
-  .risk-section .risk-layout {
+  .risk-section .risk-content {
     grid-column: 1 / -1;
   }
 }
@@ -2082,7 +2082,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     margin-bottom: 30px;
   }
 
-  .risk-section .risk-layout {
+  .risk-section .risk-content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -2327,7 +2327,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .provider-grid,
 .lifecycle-example,
 .alpha-example,
-.risk-layout,
+.risk-content,
 .signal-filters,
 .signal-card,
 .empty-state,
@@ -2510,7 +2510,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .provider-grid ul,
 .lifecycle-example-title span,
 .lifecycle-states-list,
-.risk-layout > p:last-child,
+.risk-content > p:last-child,
 .collecting-state,
 .signal-name,
 .signal-updated,
@@ -2552,7 +2552,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .provider-grid,
   .lifecycle-example,
   .alpha-example,
-  .risk-layout,
+  .risk-content,
   .closing-cta,
   .signal-filters,
   .signal-card,
@@ -2596,7 +2596,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .provider-grid,
 .lifecycle-example,
 .alpha-example,
-.risk-layout,
+.risk-content,
 .signal-filters,
 .signal-card,
 .empty-state,
@@ -2781,7 +2781,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .provider-grid ul,
 .lifecycle-example-title span,
 .lifecycle-states-list,
-.risk-layout > p:last-child,
+.risk-content > p:last-child,
 .collecting-state,
 .signal-name,
 .signal-updated,
@@ -2823,7 +2823,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   .provider-grid,
   .lifecycle-example,
   .alpha-example,
-  .risk-layout,
+  .risk-content,
   .closing-cta,
   .signal-filters,
   .signal-card,
@@ -2838,7 +2838,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 }
 
 /* Final responsive contract: transparent media layers and fluid section surfaces. */
-.risk-section .risk-layout,
+.risk-section .risk-content,
 .telegram-section .telegram-image-frame {
   background: transparent !important;
   background-image: none !important;
@@ -2868,7 +2868,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .closing-cta,
 .site-footer,
 .split-section,
-.risk-layout,
+.risk-content,
 .telegram-layout,
 .early-alpha-layout {
   min-width: 0;
@@ -2881,7 +2881,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 }
 
 @media (max-width: 960px) {
-  .risk-section .risk-layout,
+  .risk-section .risk-content,
   .telegram-layout,
   .early-alpha-layout,
   .closing-cta,
@@ -2891,7 +2891,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 }
 
 @media (max-width: 640px) {
-  .risk-section .risk-layout,
+  .risk-section .risk-content,
   .telegram-layout,
   .early-alpha-layout,
   .closing-cta {
@@ -2931,7 +2931,6 @@ html .header .theme-toggle {
 .lifecycle-example,
 .lifecycle-example-states article,
 .alpha-example,
-.risk-layout,
 .risk-profile > div,
 .risk-position-card,
 .telegram-copy-card,
@@ -3003,7 +3002,7 @@ html .header .theme-toggle {
   font-size: 13px;
 }
 /* RISK OUTER FRAME: keep only the individual glass cards visible. */
-.risk-section .risk-layout {
+.risk-section .risk-content {
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;

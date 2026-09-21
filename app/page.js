@@ -109,7 +109,7 @@ export default function Home() {
             <h2>A setup is incomplete without risk.</h2>
             <p className="section-lede risk-copy">PerpsIA uses the user&apos;s capital, risk percentage, and leverage limit to size actionable setups.</p>
           </div>
-          <div className="risk-layout">
+          <div className="risk-content">
             <dl className="risk-profile">
               <div><span className="risk-metric-icon" aria-hidden="true"><Database size={28} strokeWidth={1.9} /></span><div><dt>Capital</dt><dd>$500</dd></div></div>
               <div><span className="risk-metric-icon" aria-hidden="true"><Percent size={28} strokeWidth={2} /></span><div><dt>Risk per trade</dt><dd>1 percent</dd></div></div>
