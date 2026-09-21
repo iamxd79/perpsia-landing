@@ -1,4 +1,4 @@
-import { normalizeSignals } from "../../../lib/signals";
+import { normalizeCandidates, normalizeSignals } from "../../../lib/signals";
 
 export const dynamic = "force-dynamic";
 
@@ -52,10 +52,13 @@ export async function GET() {
     ]);
     const signals = normalizeSignals(signalsPayload)
       .filter((signal) => !signal.lifecycle || ["OPEN", "ACTIVE", "BUILDING", "CONFIRMED", "DISCOVERED"].includes(signal.lifecycle));
+    const candidates = normalizeCandidates(signalsPayload)
+      .filter((signal) => signal.direction && signal.earlyCandidate);
 
     return Response.json(
       {
         signals,
+        candidates,
         quality: qualityContext(qualityResult),
         meta: {
           source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",

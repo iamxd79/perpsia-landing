@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { FEED_STALE_MS, getHeroStats } from "../lib/hero-stats.mjs";
-import { normalizeSignal } from "../lib/signals.js";
+import { normalizeCandidates, normalizeSignal } from "../lib/signals.js";
 
 const now = Date.parse("2026-09-05T12:00:00Z");
 const payload = (signals = []) => ({ signals, meta: { updatedAt: new Date(now).toISOString(), stale: false } });
@@ -44,4 +44,13 @@ test("signal normalization preserves missing confidence and legitimate zero", ()
   assert.equal(normalizeSignal({ symbol: "BTC", confidence: "" }).confidence, null);
   assert.equal(normalizeSignal({ symbol: "BTC", confidence: 0, confidence_score: 90 }).confidence, 0);
   assert.equal(normalizeSignal({ symbol: "BTC", confidence_score: "78.4" }).confidence, 78.4);
+});
+
+test("normalizes early bullish and bearish candidates without treating them as active signals", () => {
+  const candidates = normalizeCandidates({ candidates: [
+    { symbol: "PUMP", direction: "Bullish", lifecycleState: "DEVELOPING", earlyCandidate: true },
+    { symbol: "NEIRO", direction: "Bearish", lifecycleState: "DEVELOPING", earlyCandidate: true },
+  ] });
+  assert.deepEqual(candidates.map((candidate) => candidate.direction), ["LONG", "SHORT"]);
+  assert.ok(candidates.every((candidate) => candidate.earlyCandidate));
 });

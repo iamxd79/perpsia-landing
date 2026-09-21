@@ -14,6 +14,7 @@ export default function SignalFeed() {
 
 export function SignalFeedContent({ data, error, loading, refresh }) {
   const signals = data?.signals || [];
+  const candidates = data?.candidates || [];
   const updatedAt = formatTime(data?.meta?.updatedAt);
 
   return (
@@ -27,7 +28,24 @@ export function SignalFeedContent({ data, error, loading, refresh }) {
       </div>
       {loading ? <p className="loading-state">Loading live signals</p> : null}
       {!loading && error ? <ErrorState onRetry={refresh} compact /> : null}
-      {!loading && !error && !signals.length ? <EmptyState title="PerpsIA is scanning the market." /> : null}
+      {!loading && !error && !signals.length && !candidates.length ? <EmptyState title="PerpsIA is scanning the market." /> : null}
+      {!loading && !error && candidates.length ? (
+        <div className="early-candidate-feed">
+          <div className="signal-feed-heading early-candidate-heading">
+            <div>
+              <p className="eyebrow">Early candidates</p>
+              <h3>Directional setups developing</h3>
+            </div>
+            <p>Evidence is forming; confirmation is still pending.</p>
+          </div>
+          <div className="ticker-viewport">
+            <div className={`ticker-track${candidates.length > 1 ? " ticker-track-moving" : ""}`}>
+              {candidates.map((candidate) => <SignalCard key={candidate.id} signal={candidate} compact />)}
+              {candidates.length > 1 ? candidates.map((candidate) => <SignalCard key={`${candidate.id}-repeat`} signal={candidate} compact />) : null}
+            </div>
+          </div>
+        </div>
+      ) : null}
       {!loading && !error && signals.length ? (
         <div className="ticker-viewport">
           <div className={`ticker-track${signals.length > 1 ? " ticker-track-moving" : ""}`}>
