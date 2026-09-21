@@ -14,6 +14,7 @@ const providerGroups = [
   ["Macro", "Alternative.me Fear and Greed", "FRED when configured"],
   ["Onchain", "Public RPC monitoring"],
   ["Project activity", "GitHub when a verified repository exists"],
+  ["AI validation", "Grok and OpenAI when configured"],
 ];
 
 const features = [
@@ -36,6 +37,15 @@ export default function Home() {
             <article className="step-card"><p>Step 1</p><h3>Watch the market</h3><span>PerpsIA pulls live price, volume, funding, open interest, order book, DEX, security, macro, and onchain data.</span></article>
             <article className="step-card"><p>Step 2</p><h3>Score the setup</h3><span>The PerpsIA engine compares the evidence, checks conflicts, scores the setup, and assigns a lifecycle state.</span></article>
             <article className="step-card"><p>Step 3</p><h3>Track what changes</h3><span>PerpsIA remembers previous scans and shows when a setup strengthens, weakens, confirms, or breaks.</span></article>
+          </div>
+        </Section>
+
+        <Section eyebrow="Directional intelligence" title="Signals first. The decision stays yours.">
+          <p className="section-lede">PerpsIA does not place trades. It scans up to 54 candidate markets per run, combines structured market evidence, and returns explainable LONG, SHORT, or WATCHLIST candidates for you to review.</p>
+          <div className="three-column-grid">
+            <article className="step-card"><p>LONG</p><h3>Find bullish pressure</h3><span>Price, funding, open interest, order books, volume, and market structure are checked for aligned upside evidence.</span></article>
+            <article className="step-card"><p>SHORT</p><h3>Find bearish pressure</h3><span>The same evidence is tested for downside alignment, conflicting flows, and invalidation risk.</span></article>
+            <article className="step-card"><p>REVIEW</p><h3>Act only when it fits</h3><span>Every candidate includes score, confidence, evidence, risks, and trade context so you can decide whether to trade.</span></article>
           </div>
         </Section>
 

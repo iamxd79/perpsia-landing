@@ -28,7 +28,7 @@ export default function HomeHero() {
         </p>
 
         <h1 id="hero-title">
-          Find perp setups before
+          Find LONG and SHORT setups before
           <br
             className={
               styles.titleBreak
@@ -42,11 +42,11 @@ export default function HomeHero() {
             styles.description
           }
         >
-          PerpsIA watches live perp
-          markets, scores setups,
-          tracks signal changes, and
-          flags risk across multiple
-          data sources.
+          PerpsIA scans perpetual futures
+          markets, compares live evidence
+          from multiple providers, and
+          surfaces directional LONG, SHORT,
+          and watchlist candidates.
         </p>
 
         <div
