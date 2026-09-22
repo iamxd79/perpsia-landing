@@ -8,6 +8,16 @@ const qualityUrl = `${apiBaseUrl}/api/signal-quality?settle=0`;
 const performanceUrl = `${apiBaseUrl}/api/performance?days=365&settle=0`;
 const internalApiToken = process.env.PERPSIA_API_TOKEN || process.env.PERPSIA_INTERNAL_API_TOKEN;
 
+const capabilities = {
+  liveSignals: true,
+  paperTrading: true,
+  paperTradingMode: "simulation_only",
+  livePnlTracking: true,
+  automaticStopLossTakeProfitAlerts: true,
+  privateUserAnalytics: true,
+  marketDataFallbacks: ["Binance", "Bybit", "OKX"],
+};
+
 async function fetchJson(url, retries = 1) {
   let lastError;
   for (let attempt = 0; attempt <= retries; attempt += 1) {
@@ -128,6 +138,7 @@ export async function GET() {
       {
         signals: enrichedSignals,
         candidates: enrichedCandidates,
+        capabilities,
         quality: qualityContext(qualityResult, performanceResult),
         meta: {
           source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",
@@ -145,6 +156,7 @@ export async function GET() {
     return Response.json(
       {
         signals: [],
+        capabilities,
         quality: { ready: false, minimumObservations: null, evaluatedSignals: 0, statistics: null },
         meta: { source: null, updatedAt: null, stale: true },
         error: "Live signals are temporarily unavailable.",

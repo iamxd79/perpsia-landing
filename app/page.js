@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Activity, ArrowUpRight, ChartNoAxesColumnIncreasing, Crosshair, Database, Droplets, FileText, Percent, Send, ShieldCheck, Zap } from "lucide-react";
 import HomeHero from "../components/home-hero";
 import SiteFooter from "../components/site-footer";
+import PaperTradingPanel from "../components/paper-trading-panel";
 import { Section } from "../components/section-layout";
 
 const botUrl = "https://t.me/perpsia_bot";
@@ -123,6 +124,8 @@ export default function Home() {
           </div>
         </section>
 
+        <PaperTradingPanel />
+
         <Section id="performance" eyebrow="Signal Quality" title="PerpsIA tracks what happens after every signal.">
           <p className="section-lede">Signals are evaluated after 1 hour, 4 hours, 12 hours, 24 hours, and 72 hours.</p>
           <div className="performance-list"><span>TP1</span><span>TP2</span><span>Stop</span><span>Maximum favorable excursion</span><span>Maximum adverse excursion</span><span>Return after signal</span></div>
@@ -144,7 +147,7 @@ export default function Home() {
             </div>
             <div className="telegram-visual">
               <div className="telegram-image-frame"><Image src="/images/telegram-mockup.png" alt="PerpsIA Telegram market intelligence" width={1000} height={1000} className="telegram-image" /></div>
-              <div className="command-list"><code><Send size={15} />/scan<ArrowUpRight size={15} /></code><code><Send size={15} />/analyze $BTC<ArrowUpRight size={15} /></code><code><Send size={15} />/alpha<ArrowUpRight size={15} /></code><code><Send size={15} />/risk<ArrowUpRight size={15} /></code><code><Send size={15} />/compare $SOL $ETH<ArrowUpRight size={15} /></code><code><Send size={15} />/backtest $BTC<ArrowUpRight size={15} /></code></div>
+              <div className="command-list"><code><Send size={15} />/scan<ArrowUpRight size={15} /></code><code><Send size={15} />/analyze $BTC<ArrowUpRight size={15} /></code><code><Send size={15} />/alpha<ArrowUpRight size={15} /></code><code><Send size={15} />/risk<ArrowUpRight size={15} /></code><code><Send size={15} />/compare $SOL $ETH<ArrowUpRight size={15} /></code><code><Send size={15} />/backtest $BTC<ArrowUpRight size={15} /></code><code><Send size={15} />/paper long BTCUSDT 1000 5 sl=... tp=...<ArrowUpRight size={15} /></code><code><Send size={15} />/paper positions<ArrowUpRight size={15} /></code><code><Send size={15} />/paper stats<ArrowUpRight size={15} /></code></div>
             </div>
           </div>
         </section>

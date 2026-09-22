@@ -1,6 +1,7 @@
 import SignalsBoard from "../../components/signals-board";
 import SiteFooter from "../../components/site-footer";
 import SiteHeader from "../../components/site-header";
+import PaperTradingPanel from "../../components/paper-trading-panel";
 
 export const metadata = {
   title: "Live Perp Signals",
@@ -31,6 +32,7 @@ export default function SignalsPage() {
           <p>Real PerpsIA setups, scored and tracked as market conditions change.</p>
         </section>
         <section className="signals-content"><SignalsBoard /></section>
+        <PaperTradingPanel compact />
       </main>
       <SiteFooter />
     </div>
