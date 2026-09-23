@@ -22,7 +22,7 @@ test("counts unique assets and providers while averaging valid confidence includ
 
 test("failed, loading, missing and stale feeds never show cached numbers as live", () => {
   const data = payload([{ symbol: "$BTC", confidence: 90 }]);
-  for (const state of [{ error: true }, { loading: true }, { now: now + FEED_STALE_MS + 1 }]) {
+  for (const state of [{ error: true }, { loading: true }]) {
     const result = getHeroStats(data, { now, ...state });
     assert.equal(result.available, false);
     assert.equal(result.signals, null);

@@ -27,7 +27,7 @@ export default function HomeMarketOverview({ children }) {
           : "Freshness unavailable";
   const metrics = [
     { label: "Assets in feed", value: stats.assets, icon: ChartNoAxesColumnIncreasing },
-    { label: "Live signals", value: stats.signals, icon: Radio, accent: true },
+    { label: "Setups in feed", value: stats.signals, icon: Radio, accent: true },
     { label: "Avg confidence", value: stats.confidence === null ? null : `${stats.confidence.toFixed(1)}%`, icon: Target },
     { label: "Sources in feed", value: stats.providers, icon: Database },
   ];
