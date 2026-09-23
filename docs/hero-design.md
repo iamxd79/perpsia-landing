@@ -2,7 +2,7 @@
 
 The homepage uses a centered wordmark and headline, floating navigation, a supported-provider strip, and five feed statistics. The homepage statistics and signal cards share one request every 90 seconds. Counts describe the published feed, not the full scanner universe. Missing confidence or attribution is unavailable, and failed or stale feed responses do not display live statistics. Provider names describe existing integrations, not endorsements.
 
-The responsive layout retains theme switching and reflows the metrics into two columns on mobile. All hero styles are scoped in `components/home-hero.module.css`.
+The responsive layout reflows the metrics into two columns on mobile. The site uses one transparent glass theme, and hero styles are scoped in `components/home-hero.module.css`.
 
 ## Scenic asset
 

@@ -23,7 +23,6 @@
   --max-width: 1180px;
 }
 
-
 * { box-sizing: border-box; }
 
 html { background: var(--background); scroll-behavior: smooth; scroll-padding-top: 96px; }
@@ -111,7 +110,6 @@ button { cursor: pointer; }
 .brand span, .footer-brand span { font-size: 17px; }
 .brand img, .footer-brand img { width: 34px; height: 34px; }
 
-.theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 0 11px; border: 1px solid var(--line-strong); border-radius: 7px; color: var(--text); background: rgba(14, 39, 63, 0.5); font-size: 12px; font-weight: 700; }
 .theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--blue); background: rgba(36, 99, 152, 0.34); }
 
 .site-nav { min-width: 0; display: flex; justify-content: center; gap: 24px; }
@@ -224,13 +222,6 @@ dt { color: var(--subtle); font-size: 13px; } dd { margin: 0; color: var(--value
 
 .site-footer { width: min(calc(100% - 48px), var(--max-width)); margin: 0 auto; padding: 38px 24px 48px; display: flex; justify-content: space-between; gap: 46px; border: 1px solid var(--line); border-bottom: 0; background: linear-gradient(rgba(4, 16, 29, 0.84), rgba(4, 16, 29, 0.94)), url("/images/footer-background.jpg") center / cover; }.site-footer-main { max-width: 600px; }.footer-brand { margin-bottom: 20px; }.site-footer p { margin-bottom: 10px; color: var(--muted); font-size: 13px; line-height: 1.6; }.site-footer nav { display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: flex-end; gap: 16px 20px; min-width: 250px; }
 
-html.light-mode .site-shell { background: transparent; }
-html.light-mode .theme-toggle, html.light-mode .button-secondary { background: rgba(255, 255, 255, 0.64); }
-html.light-mode .button-secondary { color: var(--text); }
-html.light-mode .step-card, html.light-mode .feature-grid article { background: rgba(255, 255, 255, 0.66); }
-html.light-mode .command-list code, html.light-mode .filter-selects select, html.light-mode .signal-metric { color: var(--text); background: rgba(255, 255, 255, 0.8); }
-html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 249, 0.86), rgba(233, 244, 249, 0.94)), url("/images/footer-background.jpg"); }
-
 .signals-page { padding-bottom: 100px; }.signals-hero { padding: 102px 0 48px; }.signals-hero h1 { margin-bottom: 18px; }.signals-content { min-height: 400px; }
 .signals-status-row { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-bottom: 22px; color: #bdd9ed; font-size: 13px; }.signals-status-row p { margin: 0; }
 .signal-filters { margin-bottom: 32px; padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-subtle); }.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }.filter-tabs button { min-height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); background: transparent; font-size: 13px; }.filter-tabs button:hover, .filter-tabs button.is-selected { border-color: var(--blue); color: var(--text); background: rgba(55, 141, 205, 0.18); }.filter-selects { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }.filter-selects label { color: var(--subtle); font-size: 11px; }.filter-selects select { width: 100%; min-height: 38px; margin-top: 5px; padding: 0 8px; border: 1px solid var(--line); border-radius: 5px; color: var(--text); background: #091828; }
@@ -253,7 +244,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
 @media (max-width: 640px) {
   .site-header-inner, .hero, .section, .signal-feed, .closing-cta, .signals-hero, .signals-content, .legal-page, .site-footer { width: min(calc(100% - 28px), var(--max-width)); }
-  .site-header-inner { min-height: 64px; }.site-nav { gap: 17px; }.site-nav a { font-size: 13px; white-space: nowrap; }.brand span { font-size: 16px; }.theme-toggle { padding: 0 9px; }.theme-toggle span { display: none; }
+  .site-header-inner { min-height: 64px; }.site-nav { gap: 17px; }.site-nav a { font-size: 13px; white-space: nowrap; }.brand span { font-size: 16px; }
   h1 { max-width: 100%; overflow-wrap: break-word; font-size: clamp(42px, 12vw, 61px); }.hero { padding-top: 70px; }.hero-lede, .section-lede, .signals-hero > p:not(.eyebrow) { max-width: 100%; font-size: 16px; }.hero-actions { display: grid; grid-template-columns: 1fr; }.hero-actions .button { width: 100%; }.hero-status { display: grid; grid-template-columns: 1fr; gap: 8px; }.hero-panel { padding: 22px; }.hero-panel dl > div { grid-template-columns: 1fr; gap: 5px; }
   .signal-feed { padding: 22px 16px; }.signal-feed-heading { align-items: start; flex-direction: column; gap: 14px; }.signal-feed-footer { display: grid; gap: 8px; }.signal-card-compact { width: min(80vw, 290px); }.ticker-track-moving { animation-duration: 26s; }
   .section { padding: 72px 0; }.three-column-grid, .feature-grid, .signals-grid, .provider-grid, .split-section, .risk-content, .performance-context { grid-template-columns: 1fr; }.step-card, .feature-grid article { min-height: auto; }.provider-grid article { min-height: auto; }.lifecycle-example { padding: 18px; }.lifecycle-example-states { grid-template-columns: 1fr; }.lifecycle-example-states::before { top: 12%; bottom: 12%; left: 21px; right: auto; width: 1px; height: auto; }.lifecycle-example-states article { padding-left: 32px; }.lifecycle-states-list { gap: 10px 14px; }
@@ -263,8 +254,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.site-background-video { display: none; }.ticker-track-moving { animation: none; } .button, .trade-button { transition: none; } }
 
-
-/* Glass surfaces keep the scenic image crisp while separating content from it. */
 .hero-copy,
 .signal-feed,
 .step-card,
@@ -318,8 +307,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .site-footer {
   background: linear-gradient(rgba(6, 20, 34, 0.66), rgba(6, 20, 34, 0.78)), url("/images/footer-background.jpg") center / cover;
 }
-
-.theme-toggle,
 .button-secondary,
 .filter-tabs button,
 .filter-selects select,
@@ -329,8 +316,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   border-color: var(--glass-line);
   box-shadow: inset 0 1px 0 var(--glass-highlight);
 }
-
-.theme-toggle,
 .button-secondary,
 .filter-selects select {
   background: rgba(9, 31, 51, 0.54);
@@ -345,20 +330,9 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   background: rgba(8, 28, 46, 0.46);
 }
 
-
-
-
-
-
 @media (max-width: 640px) {
   .hero-copy { padding: 26px 22px 28px; border-radius: 20px; }
 }
-
-/* =========================================================
-   IOS-STYLE GLASSMORPHISM — CONTENT SECTIONS
-   Keeps the hero open on the video. Applies glass only to
-   feed, sections, cards, CTA and footer.
-   ========================================================= */
 
 :root {
   --content-glass: rgba(255, 255, 255, 0.075);
@@ -380,11 +354,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   --content-muted: rgba(226, 238, 248, 0.84);
   --content-subtle: rgba(194, 213, 229, 0.70);
 }
-
-
-/* ---------------------------------------------------------
-   SIGNAL FEED
-   --------------------------------------------------------- */
 
 .signal-feed {
   margin-bottom: 32px;
@@ -440,9 +409,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-subtle);
 }
 
-
-/* Empty/error/loading states */
-
 .empty-state,
 .error-state {
   padding: 46px 28px;
@@ -468,12 +434,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .loading-state {
   color: var(--content-muted);
 }
-
-
-/* ---------------------------------------------------------
-   MAIN SECTIONS
-   Keep section backgrounds open. Glass is on the content.
-   --------------------------------------------------------- */
 
 .section {
   position: relative;
@@ -505,11 +465,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   text-shadow:
     0 1px 8px rgba(0, 18, 42, 0.16);
 }
-
-
-/* ---------------------------------------------------------
-   STEP / FEATURE CARDS
-   --------------------------------------------------------- */
 
 .step-card,
 .feature-grid article {
@@ -558,11 +513,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-muted);
 }
 
-
-/* ---------------------------------------------------------
-   PROVIDER / EVIDENCE GRID
-   --------------------------------------------------------- */
-
 .sources-section {
   border-top: 1px solid rgba(216, 238, 255, 0.12);
 }
@@ -605,11 +555,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .provider-grid ul {
   color: var(--content-muted);
 }
-
-
-/* ---------------------------------------------------------
-   LIFECYCLE
-   --------------------------------------------------------- */
 
 .lifecycle-example {
   overflow: hidden;
@@ -656,11 +601,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-text);
 }
 
-
-/* ---------------------------------------------------------
-   EARLY ALPHA
-   --------------------------------------------------------- */
-
 .alpha-example {
   padding: 26px;
 
@@ -701,11 +641,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-text);
 }
 
-
-/* ---------------------------------------------------------
-   RISK
-   --------------------------------------------------------- */
-
 .risk-content {
   padding: 30px;
 
@@ -738,11 +673,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-text);
 }
 
-
-/* ---------------------------------------------------------
-   PERFORMANCE
-   --------------------------------------------------------- */
-
 .performance-list span {
   border: 1px solid rgba(216, 238, 255, 0.16);
   border-radius: 12px;
@@ -761,11 +691,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .collecting-state {
   color: var(--content-muted);
 }
-
-
-/* ---------------------------------------------------------
-   TELEGRAM
-   --------------------------------------------------------- */
 
 .telegram-image-frame {
   overflow: hidden;
@@ -798,11 +723,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-
-/* ---------------------------------------------------------
-   CLOSING CTA
-   --------------------------------------------------------- */
-
 .closing-cta {
   margin-top: 28px;
   margin-bottom: 80px;
@@ -832,11 +752,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: var(--content-muted);
 }
 
-
-/* ---------------------------------------------------------
-   FOOTER
-   --------------------------------------------------------- */
-
 .site-footer {
   border: 1px solid var(--content-glass-line);
   border-bottom: 0;
@@ -860,11 +775,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .site-footer nav a:hover {
   color: #ffffff;
 }
-
-
-/* ---------------------------------------------------------
-   SIGNAL CARDS / SIGNALS PAGE
-   --------------------------------------------------------- */
 
 .signal-filters,
 .signal-card {
@@ -940,11 +850,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   background: rgba(70, 170, 235, 0.12);
 }
 
-
-/* ---------------------------------------------------------
-   GLOBAL TEXT LEGIBILITY ON VIDEO
-   --------------------------------------------------------- */
-
 .section h2,
 .section h3,
 .signal-feed h2,
@@ -959,21 +864,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .signal-feed p {
   text-rendering: optimizeLegibility;
 }
-
-
-/* ---------------------------------------------------------
-   LIGHT MODE
-   Keep video-site glass dark for consistency/readability.
-   --------------------------------------------------------- */
-
-
-
-
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
 
 @media (max-width: 960px) {
   .signal-feed {
@@ -1041,7 +931,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* Closing CTA: a split glass panel with a market-scan visual. */
 .closing-cta {
   display: grid;
   grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
@@ -1355,7 +1244,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* Telegram section: a focused glass panel paired with the floating bot artwork. */
 .telegram-section {
   padding-top: 88px;
   padding-bottom: 92px;
@@ -1628,7 +1516,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* Early Alpha section: signal chips and a transparent momentum snapshot. */
 .early-alpha-section {
   padding-top: 88px;
   padding-bottom: 92px;
@@ -1906,12 +1793,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* ---------------------------------------------------------
-   RISK SECTION REFERENCE LAYOUT
-   Keep the section open and let the scenic background show
-   through each separate glass surface.
-   --------------------------------------------------------- */
-
 .risk-section {
   display: grid;
   grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.80fr) minmax(0, 1.08fr);
@@ -1939,7 +1820,7 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .risk-section .eyebrow::after {
   width: 128px;
   height: 1px;
-  background: rgba(214, 239, 255, 0.38);
+  background: rgba(214, 239, 255, 0);
   content: "";
 }
 
@@ -2108,30 +1989,15 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 @media (prefers-reduced-transparency: reduce) {
   .risk-section .risk-profile > div,
   .risk-position-card {
-    background: rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0) !important;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 }
 
-/* =========================================================
-   FINAL UI POLISH
-   Vertical controls + clean lifecycle + smart separators
-   ========================================================= */
-
-
-/* ---------------------------------------------------------
-   REMOVE LIFECYCLE CONNECTOR LINE
-   --------------------------------------------------------- */
-
 .lifecycle-example-states::before {
   display: none;
 }
-
-
-/* =========================================================
-   SMART SECTION SEPARATORS
-   ========================================================= */
 
 .section {
   position: relative;
@@ -2164,12 +2030,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
   pointer-events: none;
 }
-
-
-/* ---------------------------------------------------------
-   VERTICAL SITE CONTROLS
-   Theme / Top / Bottom
-   --------------------------------------------------------- */
 
 .site-controls {
   position: fixed;
@@ -2244,11 +2104,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   outline-offset: 2px;
 }
 
-
-/* ---------------------------------------------------------
-   MOBILE
-   --------------------------------------------------------- */
-
 @media (max-width: 640px) {
   .section + .section::before {
     width: min(76%, 360px);
@@ -2274,11 +2129,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-
-/* ---------------------------------------------------------
-   ACCESSIBILITY
-   --------------------------------------------------------- */
-
 @media (prefers-reduced-motion: reduce) {
   .site-controls button {
     transition: none;
@@ -2289,11 +2139,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     transform: none;
   }
 }
-
-/* =========================================================
-   FINAL SINGLE-THEME IOS GLASS CORRECTION
-   Removes dark card fills while preserving text contrast.
-   ========================================================= */
 
 :root {
   --content-glass: rgba(255, 255, 255, 0);
@@ -2310,16 +2155,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
   --content-glass-blur: blur(24px) saturate(165%);
 }
-
-
-/* No theme switch anywhere */
-
-.theme-toggle {
-  display: none !important;
-}
-
-
-/* Main glass cards */
 
 .signal-feed,
 .step-card,
@@ -2345,18 +2180,12 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     var(--content-glass-shadow) !important;
 }
 
-
-/* Slightly stronger surfaces where more text needs contrast */
-
 .signal-feed,
 .lifecycle-example,
 .alpha-example,
 .closing-cta {
   background: var(--content-glass-strong) !important;
 }
-
-
-/* Inner cards stay even lighter */
 
 .provider-grid article,
 .lifecycle-example-states article,
@@ -2373,18 +2202,12 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
-
-/* Hover stays glass, never turns into a dark navy slab */
-
 .step-card:hover,
 .feature-grid article:hover {
   border-color: rgba(255, 255, 255, 0.30) !important;
 
   background: rgba(255, 255, 255, 0.048) !important;
 }
-
-
-/* Signal cards */
 
 .signal-card {
   background: rgba(255, 255, 255, 0.085) !important;
@@ -2393,9 +2216,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .signal-status {
   background: rgba(85, 190, 255, 0.10) !important;
 }
-
-
-/* Footer uses a subtle translucent sheet, not a dark card */
 
 .site-footer {
   border-color: rgba(255, 255, 255, 0.16) !important;
@@ -2409,9 +2229,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     inset 0 1px 0 rgba(255, 255, 255, 0.053),
     0 -10px 36px rgba(0, 22, 48, 0.041) !important;
 }
-
-
-/* Telegram artwork floats directly on the scenery */
 
 .telegram-image-frame {
   height: 290px !important;
@@ -2451,15 +2268,9 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   transform: scale(1.09);
 }
 
-
-/* Lifecycle connector line stays removed */
-
 .lifecycle-example-states::before {
   display: none !important;
 }
-
-
-/* Bottom controls remain compact glass, not a dark card */
 
 .site-controls {
   background: rgba(255, 255, 255, 0.085) !important;
@@ -2483,9 +2294,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
   background: rgba(255, 255, 255, 0.12);
 }
-
-
-/* Text contrast */
 
 .section-heading h2,
 .signal-feed-heading h2,
@@ -2522,9 +2330,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   color: rgba(242, 249, 255, 0.84);
 }
 
-
-/* Mobile */
-
 @media (max-width: 640px) {
   .telegram-image-frame {
     height: 235px !important;
@@ -2541,9 +2346,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     transform: scale(1.06);
   }
 }
-
-
-/* Reduced transparency keeps a lighter neutral surface */
 
 @media (prefers-reduced-transparency: reduce) {
   .signal-feed,
@@ -2566,11 +2368,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* =========================================================
-   PURE GLASS SYSTEM
-   No dark/navy card fills. Neutral transparent glass only.
-   ========================================================= */
-
 :root {
   --content-glass: rgba(255, 255, 255, 0.055);
   --content-glass-strong: rgba(255, 255, 255, 0.034);
@@ -2586,9 +2383,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 
   --content-glass-blur: blur(26px) saturate(175%);
 }
-
-
-/* Main glass surfaces */
 
 .signal-feed,
 .step-card,
@@ -2616,18 +2410,12 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     var(--content-glass-shadow) !important;
 }
 
-
-/* Slightly denser glass only where text density is higher */
-
 .signal-feed,
 .lifecycle-example,
 .alpha-example,
 .closing-cta {
   background: rgba(255, 255, 255, 0.075) !important;
 }
-
-
-/* Inner glass elements */
 
 .provider-grid article,
 .lifecycle-example-states article,
@@ -2647,9 +2435,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
 }
 
-
-/* Hover remains pure glass */
-
 .step-card:hover,
 .feature-grid article:hover,
 .filter-tabs button:hover,
@@ -2659,9 +2444,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
-
-/* Signal card status */
-
 .signal-card {
   background: rgba(255, 255, 255, 0.06) !important;
 }
@@ -2669,9 +2451,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .signal-status {
   background: rgba(255, 255, 255, 0.05) !important;
 }
-
-
-/* Footer */
 
 .site-footer {
   background: rgba(255, 255, 255, 0.05) !important;
@@ -2682,9 +2461,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     inset 0 1px 0 rgba(255, 255, 255, 0.075),
     0 -8px 28px rgba(80, 140, 200, 0.05) !important;
 }
-
-
-/* Floating controls */
 
 .site-controls {
   background: rgba(255, 255, 255, 0) !important;
@@ -2702,9 +2478,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
 .site-controls button:hover {
   background: rgba(255, 255, 255, 0.12) !important;
 }
-
-
-/* Telegram illustration floats freely */
 
 .telegram-image-frame {
   height: 290px !important;
@@ -2738,22 +2511,9 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   transform: scale(1.06);
 }
 
-
-/* Keep lifecycle connector removed */
-
 .lifecycle-example-states::before {
   display: none !important;
 }
-
-
-/* No theme switch */
-
-.theme-toggle {
-  display: none !important;
-}
-
-
-/* Text stays crisp over transparent glass */
 
 .section-heading h2,
 .signal-feed-heading h2,
@@ -2796,9 +2556,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     0 1px 6px rgba(50, 90, 140, 0.10);
 }
 
-
-/* Mobile */
-
 @media (max-width: 640px) {
   .telegram-image-frame {
     height: 235px !important;
@@ -2812,9 +2569,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     transform: scale(1.04);
   }
 }
-
-
-/* Accessibility fallback without introducing dark cards */
 
 @media (prefers-reduced-transparency: reduce) {
   .signal-feed,
@@ -2837,7 +2591,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
   }
 }
 
-/* Final responsive contract: transparent media layers and fluid section surfaces. */
 .risk-section .risk-content,
 .telegram-section .telegram-image-frame {
   background: 0 !important;
@@ -2904,17 +2657,6 @@ html.light-mode .site-footer { background-image: linear-gradient(rgba(233, 244, 
     width: 100%;
   }
 }
-
-/* Keep the existing theme control available across the responsive header. */
-html .theme-toggle,
-html .header .theme-toggle {
-  display: inline-flex !important;
-}
-
-/* =========================================================
-   FINAL GLASSMORPHISM DIRECTION
-   Neutral depth, translucent surfaces, and restrained highlights.
-   ========================================================= */
 
 :root {
   --content-glass-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
@@ -3001,7 +2743,7 @@ html .header .theme-toggle {
   color: var(--content-muted);
   font-size: 13px;
 }
-/* RISK OUTER FRAME: keep only the individual glass cards visible. */
+
 .risk-section .risk-content {
   padding: 0 !important;
   border: 0 !important;
@@ -3013,7 +2755,6 @@ html .header .theme-toggle {
   -webkit-backdrop-filter: none !important;
 }
 
-/* Signal cards: token identity, live market context, and compact price charts. */
 .signal-token-identity { display: flex; align-items: center; min-width: 0; gap: 10px; }
 .token-logo { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: rgba(255, 255, 255, 0.1); }
 .token-logo-fallback { display: grid; place-items: center; color: #dff4ff; background: rgba(91, 190, 255, 0.18); font-size: 10px; font-weight: 800; letter-spacing: 0.04em; }

@@ -83,13 +83,6 @@
   to { transform: translateX(-50%); }
 }
 
-:global(html.light-mode) .monochrome,
-:global(html.light-mode) .onDark,
-:global(html.light-mode) .mint { filter: brightness(0); }
-:global(html.light-mode) .detailed { filter: none; }
-:global(html.light-mode) .caption,
-:global(html.light-mode) .control { border-color: #1746632e; }
-
 @media (max-width: 900px) {
   .root { flex-wrap: wrap; gap: 6px 12px; padding: 12px 16px; }
   .caption { flex: 1; padding: 0; border: 0; font-size: 9px; }

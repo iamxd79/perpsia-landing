@@ -1,7 +1,4 @@
-/* =========================================================
-   PERPSIA HERO
-   Full-width persistent navbar + open video hero
-   ========================================================= */
+
 
 .scene {
   --hero-ink: #f7fbff;
@@ -23,15 +20,6 @@
 
   background: transparent;
 }
-
-
-/* =========================================================
-   NAVBAR
-   Full width
-   Fixed
-   No floating card
-   No gap above
-   ========================================================= */
 
 .header.header {
   position: fixed;
@@ -68,9 +56,6 @@
     -webkit-backdrop-filter 260ms ease;
 }
 
-
-/* Add data-scrolled="true" on SiteHeader later for this effect */
-
 .header.header[data-scrolled="true"] {
   background: rgba(3, 15, 29, 0.74);
 
@@ -83,9 +68,6 @@
     0 10px 36px rgba(0, 8, 20, 0.14),
     inset 0 -1px 0 rgba(255, 255, 255, 0.035);
 }
-
-
-/* NAVBAR INNER */
 
 .header :global(.site-header-inner) {
   width: min(calc(100% - 40px), 1680px);
@@ -104,11 +86,6 @@
 
   gap: 28px;
 }
-
-
-/* =========================================================
-   BRAND
-   ========================================================= */
 
 .header :global(.brand) {
   display: inline-flex;
@@ -140,11 +117,6 @@
 
   letter-spacing: -0.045em;
 }
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
 
 .header :global(.site-nav) {
   min-width: 0;
@@ -219,11 +191,6 @@
   opacity: 1;
 }
 
-
-/* =========================================================
-   HEADER ACTIONS
-   ========================================================= */
-
 .header :global(.header-actions) {
   display: flex;
 
@@ -232,18 +199,6 @@
 
   gap: 10px;
 }
-
-
-/* Theme switch leaves navbar completely */
-
-.header :global(.theme-toggle) {
-  display: none;
-}
-
-
-/* =========================================================
-   NAVBAR LAUNCH BUTTON
-   ========================================================= */
 
 .header :global(.button) {
   display: inline-flex;
@@ -291,12 +246,6 @@
     0 8px 24px rgba(0, 90, 165, 0.18);
 }
 
-
-/* =========================================================
-   HERO
-   Open directly over video
-   ========================================================= */
-
 .hero {
   position: relative;
 
@@ -307,21 +256,13 @@
 
   margin: 0 auto;
 
-  /*
-    66px navbar +
-    breathing room
-  */
+
   padding: 118px 16px 46px;
 
   text-align: center;
 
   background: transparent;
 }
-
-
-/* =========================================================
-   WORDMARK
-   ========================================================= */
 
 .wordmark {
   margin: 0 0 14px;
@@ -339,11 +280,6 @@
     0 5px 24px rgba(0, 24, 58, 0.22),
     0 1px 2px rgba(0, 0, 0, 0.2);
 }
-
-
-/* =========================================================
-   TITLE
-   ========================================================= */
 
 .hero h1 {
   max-width: 890px;
@@ -364,11 +300,6 @@
     0 1px 2px rgba(0, 0, 0, 0.16);
 }
 
-
-/* =========================================================
-   DESCRIPTION
-   ========================================================= */
-
 .description {
   max-width: 710px;
 
@@ -385,11 +316,6 @@
   text-shadow:
     0 2px 10px rgba(0, 25, 60, 0.34);
 }
-
-
-/* =========================================================
-   HERO ACTIONS
-   ========================================================= */
 
 .actions {
   display: flex;
@@ -481,11 +407,6 @@
   outline-offset: 4px;
 }
 
-
-/* =========================================================
-   PROVIDER STRIP
-   ========================================================= */
-
 .providerStrip {
   position: relative;
 
@@ -508,11 +429,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.09),
     0 12px 38px rgba(0, 8, 20, 0.14);
 }
-
-
-/* =========================================================
-   STATISTICS
-   ========================================================= */
 
 .statistics {
   position: relative;
@@ -618,11 +534,6 @@
   letter-spacing: -0.025em;
 }
 
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
 .status {
   display: inline-flex;
 
@@ -660,11 +571,6 @@
   box-shadow:
     0 0 12px rgba(101, 245, 162, 0.48);
 }
-
-
-/* =========================================================
-   METRICS
-   ========================================================= */
 
 .metrics {
   display: grid;
@@ -768,11 +674,6 @@
   letter-spacing: -0.04em;
 }
 
-
-/* =========================================================
-   SIGNAL FEED POSITION
-   ========================================================= */
-
 .feed {
   position: relative;
   z-index: 2;
@@ -785,63 +686,6 @@
   width: 100%;
   max-width: none;
 }
-/* =========================================================
-   LIGHT MODE
-   Hero/nav remain dark because video stays behind them
-   ========================================================= */
-
-:global(html.light-mode) .scene {
-  --hero-ink: #f7fbff;
-  --hero-muted: #dceaf5;
-
-  --hero-glass: rgba(5, 20, 38, 0.56);
-  --hero-glass-strong: rgba(5, 18, 34, 0.7);
-
-  --hero-edge: rgba(216, 238, 255, 0.2);
-  --hero-edge-strong: rgba(216, 238, 255, 0.3);
-
-  color: var(--hero-ink);
-}
-
-:global(html.light-mode) .header.header {
-  color: #ffffff;
-
-  background: rgba(3, 14, 27, 0.34);
-
-  border-bottom-color: rgba(216, 238, 255, 0.1);
-}
-
-:global(html.light-mode) .header.header[data-scrolled="true"] {
-  background: rgba(3, 15, 29, 0.76);
-}
-
-:global(html.light-mode) .header :global(.brand),
-:global(html.light-mode) .header :global(.site-nav a) {
-  color: #ffffff;
-}
-
-:global(html.light-mode) .providerStrip,
-:global(html.light-mode) .statistics {
-  color: #ffffff;
-
-  background: rgba(5, 20, 38, 0.62);
-
-  border-color: var(--hero-edge);
-}
-
-:global(html.light-mode) .metric dt,
-:global(html.light-mode) .status {
-  color: rgba(220, 234, 245, 0.82);
-}
-
-:global(html.light-mode) .metric dd {
-  color: #ffffff;
-}
-
-
-/* =========================================================
-   LARGE DESKTOP
-   ========================================================= */
 
 @media (min-width: 1500px) {
   .header :global(.site-header-inner) {
@@ -857,11 +701,6 @@
     margin-top: 32px;
   }
 }
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
 
 @media (max-width: 1199px) {
   .header :global(.site-header-inner) {
@@ -938,11 +777,6 @@
     font-size: 12px;
   }
 }
-
-
-/* =========================================================
-   MOBILE / SMALL TABLET
-   ========================================================= */
 
 @media (max-width: 760px) {
   .scene {
@@ -1093,11 +927,6 @@
   }
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
 @media (max-width: 480px) {
   .scene {
     padding-right: 10px;
@@ -1200,11 +1029,6 @@
     height: 42px;
   }
 }
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .header.header,

@@ -133,8 +133,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.variable}>
-
-        {/* GLOBAL VIDEO BACKGROUND */}
         <div
           className="site-background"
           aria-hidden="true"
@@ -143,13 +141,9 @@ export default function RootLayout({ children }) {
 
           <div className="site-background-overlay" />
         </div>
-
-        {/* WEBSITE */}
         <div className="site-content">
           {children}
         </div>
-
-        {/* FIXED BOTTOM CONTROLS */}
         <SiteControls />
 
         <script

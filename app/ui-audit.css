@@ -1,4 +1,4 @@
-/* Focused accessibility and interaction fixes for the live feed. */
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -84,7 +84,7 @@
     transition: none;
   }
 }
-/* Responsive auto-layout layer: let content choose the available columns. */
+
 *,
 *::before,
 *::after {
@@ -317,7 +317,7 @@ video {
     grid-column: auto;
   }
 }
-/* Spacing contract: every layout keeps a deliberate rhythm at every breakpoint. */
+
 :root {
   --layout-gap-xs: 8px;
   --layout-gap-sm: 16px;
@@ -412,13 +412,12 @@ video {
     gap: var(--layout-gap-sm);
   }
 }
-/* Shared page alignment and contrast correction for the live home feed. */
+
 .feed {
   width: min(calc(100% - 28px), 1800px);
   margin-right: auto;
   margin-left: auto;
 }
-
 
 .signal-feed-heading,
 .early-candidate-heading {
@@ -428,5 +427,127 @@ video {
 @media (max-width: 760px) {
   .feed {
     width: min(calc(100% - 24px), 1800px);
+  }
+}
+
+:root {
+  --content-max-width: 1360px;
+  --page-gutter: clamp(24px, 4.45vw, 64px);
+  --section-space: clamp(72px, 8vw, 128px);
+  --card-space: clamp(24px, 2.2vw, 32px);
+  --card-gap: clamp(24px, 2.2vw, 32px);
+  --control-y: clamp(12px, 1.1vw, 16px);
+  --control-x: clamp(20px, 1.8vw, 28px);
+}
+
+.site-header-inner,
+.hero,
+.section,
+.signal-feed,
+.closing-cta,
+.signals-hero,
+.signals-content,
+.legal-page,
+.site-footer,
+main .feed {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--content-max-width));
+  max-width: var(--content-max-width);
+}
+
+.site-header-inner {
+  padding-inline: 0;
+}
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.sources-section,
+.lifecycle-section {
+  padding-top: clamp(64px, 7vw, 96px);
+}
+
+.signal-feed,
+.signals-hero,
+.signals-content,
+.closing-cta {
+  padding-inline: var(--card-space);
+}
+
+.step-card,
+.feature-grid article,
+.provider-grid article,
+.lifecycle-example,
+.alpha-example,
+.risk-content,
+.signal-filters,
+.signal-card,
+.empty-state,
+.error-state,
+.hero-panel {
+  padding: var(--card-space);
+}
+
+.three-column-grid,
+.feature-grid,
+.signals-grid,
+.provider-grid,
+.performance-context,
+.signal-feed-heading,
+.signal-feed-footer,
+.filter-selects {
+  gap: var(--card-gap);
+}
+
+.split-section,
+.telegram-layout,
+.early-alpha-layout,
+.closing-cta,
+.risk-section {
+  gap: var(--card-gap);
+}
+
+.button,
+.text-link,
+.trade-button,
+.text-button {
+  padding: var(--control-y) var(--control-x);
+}
+
+@media (max-width: 820px) {
+  :root {
+    --page-gutter: clamp(20px, 5vw, 32px);
+    --section-space: clamp(64px, 10vw, 88px);
+    --card-space: clamp(20px, 4vw, 24px);
+    --card-gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-gutter: clamp(16px, 6vw, 24px);
+    --section-space: clamp(56px, 14vw, 80px);
+    --card-space: clamp(16px, 5vw, 20px);
+    --card-gap: 16px;
+  }
+
+  .site-header-inner,
+  .hero,
+  .section,
+  .signal-feed,
+  .closing-cta,
+  .signals-hero,
+  .signals-content,
+  .legal-page,
+  .site-footer,
+  main .feed {
+    width: min(calc(100% - (2 * var(--page-gutter))), var(--content-max-width));
+  }
+
+  .signal-feed,
+  .signals-hero,
+  .signals-content,
+  .closing-cta {
+    padding-inline: var(--card-space);
   }
 }
