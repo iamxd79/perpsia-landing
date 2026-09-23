@@ -775,13 +775,16 @@
 
 .feed {
   position: relative;
-
   z-index: 2;
-
-  padding-top: 56px;
+  width: min(calc(100% - 28px), 1800px);
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
-
+.feed :global(.signal-feed) {
+  width: 100%;
+  max-width: none;
+}
 /* =========================================================
    LIGHT MODE
    Hero/nav remain dark because video stays behind them

@@ -412,3 +412,28 @@ video {
     gap: var(--layout-gap-sm);
   }
 }
+/* Shared page alignment and contrast correction for the live home feed. */
+.feed {
+  width: min(calc(100% - 28px), 1800px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.signal-feed {
+  background: linear-gradient(135deg, rgba(7, 27, 48, .48), rgba(8, 25, 42, .32)) !important;
+}
+
+.signal-card {
+  background: linear-gradient(145deg, rgba(8, 27, 47, .55), rgba(10, 29, 46, .34)) !important;
+}
+
+.signal-feed-heading,
+.early-candidate-heading {
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .feed {
+    width: min(calc(100% - 24px), 1800px);
+  }
+}
