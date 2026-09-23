@@ -317,3 +317,98 @@ video {
     grid-column: auto;
   }
 }
+/* Spacing contract: every layout keeps a deliberate rhythm at every breakpoint. */
+:root {
+  --layout-gap-xs: 8px;
+  --layout-gap-sm: 16px;
+  --layout-gap-md: 24px;
+  --layout-gap-lg: clamp(24px, 3.4vw, 40px);
+}
+
+.three-column-grid,
+.feature-grid,
+.signals-grid {
+  gap: var(--layout-gap-md);
+}
+
+.performance-context {
+  gap: var(--layout-gap-sm);
+}
+
+.filter-tabs {
+  gap: var(--layout-gap-xs);
+}
+
+.filter-selects {
+  gap: var(--layout-gap-sm);
+}
+
+.split-section,
+.telegram-layout,
+.early-alpha-layout,
+.closing-cta {
+  gap: var(--layout-gap-lg);
+}
+
+.risk-section {
+  gap: var(--layout-gap-lg);
+}
+
+.risk-section .risk-content {
+  gap: var(--layout-gap-md);
+}
+
+.risk-section .risk-profile {
+  gap: var(--layout-gap-sm);
+}
+
+.early-alpha-showcase,
+.telegram-visual {
+  gap: var(--layout-gap-md);
+}
+
+.command-list,
+.alpha-signal-tags {
+  gap: var(--layout-gap-sm);
+}
+
+.signal-card {
+  gap: var(--layout-gap-sm);
+}
+
+.signal-card-topline {
+  gap: var(--layout-gap-sm);
+}
+
+.signal-primary-metrics,
+.signal-details {
+  gap: var(--layout-gap-xs);
+}
+
+@media (max-width: 640px) {
+  .risk-section .risk-content,
+  .telegram-layout,
+  .early-alpha-layout,
+  .closing-cta {
+    display: grid !important;
+    gap: var(--layout-gap-md) !important;
+  }
+
+  .risk-section .risk-content {
+    grid-template-columns: 1fr;
+  }
+
+  .telegram-layout,
+  .early-alpha-layout,
+  .closing-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-section {
+    gap: var(--layout-gap-md);
+  }
+
+  .signal-card {
+    gap: var(--layout-gap-sm);
+  }
+}
