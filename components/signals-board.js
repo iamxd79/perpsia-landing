@@ -7,6 +7,7 @@ import PerformanceContext from "./performance-context";
 import SignalCard from "./signal-card";
 import { formatTime } from "./format";
 import { useSignalData } from "./use-signal-data";
+import { getFeedFreshness } from "../lib/hero-stats.mjs";
 
 const signalKinds = ["All", "Long", "Short", "Developing", "Watchlist"];
 
@@ -35,6 +36,10 @@ export default function SignalsBoard() {
   const lifecycleOptions = [...new Set(feedSignals.map((signal) => signal.lifecycle).filter(Boolean))];
   const exchangeOptions = [...new Set(feedSignals.map((signal) => signal.exchange).filter(Boolean))];
 
+  const freshness = getFeedFreshness(data, { error, loading });
+  const resetFilters = () => { setKind("All"); setLifecycle("All"); setExchange("All"); setMinimumScore("0"); setMinimumConfidence("0"); setSort("default"); };
+  const hasActiveFilters = kind !== "All" || lifecycle !== "All" || exchange !== "All" || minimumScore !== "0" || minimumConfidence !== "0" || sort !== "default";
+
   const visibleSignals = useMemo(() => {
     const score = Number(minimumScore) || 0;
     const confidence = Number(minimumConfidence) || 0;
@@ -58,12 +63,13 @@ export default function SignalsBoard() {
 
   return (
     <>
-      <div className="signals-status-row">
-        <p>{data?.meta?.stale ? "Stale" : "Live"}</p><p>{signals.length} active · {candidates.length} developing</p>
-        <p>{data?.meta?.stale ? "Freshness check needed" : "Auto refreshing"}</p>
+      <div className="signals-status-row" role="status" aria-live="polite">
+        <p>{freshness === "live" ? "Live" : freshness === "stale" ? "Stale" : freshness === "loading" ? "Loading" : freshness === "error" ? "Unavailable" : "Freshness unavailable"}</p><p>{signals.length} active · {candidates.length} developing</p>
+        <p>{freshness === "live" ? "Auto refreshing" : "Check the feed before acting"}</p>
         {data?.meta?.updatedAt ? <p>Last updated {formatTime(data.meta.updatedAt)}</p> : null}
       </div>
-      <div className="signal-filters" aria-label="Live signal filters">
+      <section className="signal-filters" aria-labelledby="signal-filters-title">
+        <h2 id="signal-filters-title" className="sr-only">Filter live signals</h2>
         <div className="filter-tabs" role="group" aria-label="Signal type">
           {signalKinds.map((item) => <button key={item} type="button" className={kind === item ? "is-selected" : ""} aria-pressed={kind === item} onClick={() => setKind(item)}>{item}</button>)}
         </div>
@@ -74,10 +80,10 @@ export default function SignalsBoard() {
           <label>Minimum confidence<select value={minimumConfidence} onChange={(event) => setMinimumConfidence(event.target.value)}><option value="0">Any</option><option value="60">60 percent</option><option value="70">70 percent</option><option value="80">80 percent</option></select></label>
           <label>Sort<select value={sort} onChange={(event) => setSort(event.target.value)}><option value="default">Default</option><option value="score">Score</option><option value="confidence">Confidence</option><option value="newest">Newest</option><option value="move">24h Move</option></select></label>
         </div>
-      </div>
-      {loading ? <p className="loading-state">Loading live signals</p> : null}
+      </section>
+      {loading ? <p className="loading-state" role="status" aria-live="polite">Loading live signals</p> : null}
       {!loading && error ? <ErrorState onRetry={refresh} /> : null}
-      {!loading && !error && !visibleSignals.length ? <EmptyState /> : null}
+      {!loading && !error && !visibleSignals.length ? <EmptyState title={feedSignals.length && hasActiveFilters ? "No setups match these filters" : undefined} action={feedSignals.length && hasActiveFilters ? <button type="button" className="text-button" onClick={resetFilters}>Reset filters</button> : null} /> : null}
       {!loading && !error && visibleSignals.length ? <div className="signals-grid">{visibleSignals.map((signal) => <SignalCard key={signal.id} signal={signal} />)}</div> : null}
       <p className="affiliate-disclosure">Trading links may be affiliate links.</p>
       <section className="signals-performance" aria-labelledby="signals-performance-title">

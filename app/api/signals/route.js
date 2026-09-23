@@ -134,6 +134,13 @@ export async function GET() {
     const enrichedSignals = signals.map((signal) => enrichedById.get(signal.id) || signal);
     const enrichedCandidates = candidates.map((signal) => enrichedById.get(signal.id) || signal);
 
+    const upstreamUpdatedAt = signalsPayload?.meta?.updatedAt;
+    const derivedUpdatedAt = [...enrichedSignals, ...enrichedCandidates]
+      .map((signal) => signal.updatedAt)
+      .filter((value) => value && Number.isFinite(Date.parse(value)))
+      .sort((a, b) => Date.parse(b) - Date.parse(a))[0] || null;
+    const upstreamStale = signalsPayload?.meta?.stale;
+
     return Response.json(
       {
         signals: enrichedSignals,
@@ -142,8 +149,8 @@ export async function GET() {
         quality: qualityContext(qualityResult, performanceResult),
         meta: {
           source: process.env.PERPSIA_SIGNAL_API_URL ? "configured-signal-api" : signalsPayload?.meta?.source || "active-signals",
-          updatedAt: signalsPayload?.meta?.updatedAt || null,
-          stale: Boolean(signalsPayload?.meta?.stale),
+          updatedAt: upstreamUpdatedAt || derivedUpdatedAt,
+          stale: typeof upstreamStale === "boolean" ? upstreamStale : null,
         },
       },
       {
@@ -153,6 +160,13 @@ export async function GET() {
       },
     );
   } catch {
+    const upstreamUpdatedAt = signalsPayload?.meta?.updatedAt;
+    const derivedUpdatedAt = [...enrichedSignals, ...enrichedCandidates]
+      .map((signal) => signal.updatedAt)
+      .filter((value) => value && Number.isFinite(Date.parse(value)))
+      .sort((a, b) => Date.parse(b) - Date.parse(a))[0] || null;
+    const upstreamStale = signalsPayload?.meta?.stale;
+
     return Response.json(
       {
         signals: [],

@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./ui-audit.css";
 
 import SiteControls from "../components/site-controls";
 import BackgroundVideo from "../components/background-video";

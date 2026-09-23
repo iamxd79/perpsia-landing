@@ -1,0 +1,86 @@
+/* Focused accessibility and interaction fixes for the live feed. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.refreshControl {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  text-align: left;
+}
+
+.refreshControl:disabled {
+  cursor: wait;
+  opacity: .6;
+}
+
+.refreshControl:focus-visible,
+.text-button:focus-visible,
+.signal-filters button:focus-visible,
+.signal-filters select:focus-visible {
+  outline: 2px solid rgba(160, 220, 255, .95);
+  outline-offset: 3px;
+}
+
+.signal-filters {
+  position: relative;
+}
+
+.loading-state {
+  min-height: 2.5rem;
+  display: grid;
+  place-items: center;
+}
+
+.empty-state .text-button {
+  margin-top: .75rem;
+}
+
+.site-controls {
+  opacity: .74;
+  transition: opacity 180ms ease;
+}
+
+.site-controls:hover,
+.site-controls:focus-within {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .site-nav {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(176, 220, 255, .52) transparent;
+    padding-right: 1.5rem;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: block;
+    height: 4px;
+  }
+
+  .site-nav::-webkit-scrollbar-thumb {
+    background: rgba(176, 220, 255, .52);
+    border-radius: 999px;
+  }
+
+  .site-controls {
+    opacity: .62;
+    transform: scale(.94);
+    transform-origin: bottom right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-controls {
+    transition: none;
+  }
+}

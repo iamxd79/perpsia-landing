@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChartNoAxesColumnIncreasing, ChevronDown, Radio, Target, Database, RefreshCw } from "lucide-react";
+import { ChartNoAxesColumnIncreasing, Radio, Target, Database, RefreshCw } from "lucide-react";
 import { SignalFeedContent } from "./signal-feed";
 import { useSignalData } from "./use-signal-data";
-import { FEED_REFRESH_MS, getHeroStats } from "../lib/hero-stats.mjs";
+import { FEED_REFRESH_MS, getFeedFreshness, getHeroStats } from "../lib/hero-stats.mjs";
 import styles from "./home-hero.module.css";
 
 export default function HomeMarketOverview({ children }) {
@@ -19,7 +19,12 @@ export default function HomeMarketOverview({ children }) {
   const updatedTime = updatedAt && Number.isFinite(Date.parse(updatedAt))
     ? new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "UTC" }).format(new Date(updatedAt))
     : null;
-  const status = state.loading ? "Connecting to live feed" : stats.available ? `Feed updated ${updatedTime} UTC` : "Feed temporarily unavailable";
+  const freshness = getFeedFreshness(state.data, { ...state, ...(now === null ? {} : { now }) });
+  const status = freshness === "loading" ? "Connecting to live feed"
+    : freshness === "error" ? "Live feed unavailable"
+      : freshness === "live" ? `Feed updated ${updatedTime || "—"} UTC`
+        : freshness === "stale" ? "Feed needs a refresh"
+          : "Freshness unavailable";
   const metrics = [
     { label: "Assets in feed", value: stats.assets, icon: ChartNoAxesColumnIncreasing },
     { label: "Live signals", value: stats.signals, icon: Radio, accent: true },
@@ -39,11 +44,10 @@ export default function HomeMarketOverview({ children }) {
             </div>
             <div className={styles.statisticsActions}>
               <p className={`${styles.status} ${stats.available ? styles.connected : ""}`} role="status"><span aria-hidden="true" />{status}</p>
-              <div className={styles.refreshControl} aria-label={`Auto refresh every ${FEED_REFRESH_MS / 1000} seconds`}>
+              <button type="button" className={styles.refreshControl} onClick={state.refresh} disabled={state.loading} aria-label="Refresh live market feed">
                 <RefreshCw size={25} aria-hidden="true" />
                 <span><small>Auto refresh</small><strong>{FEED_REFRESH_MS / 1000}s</strong></span>
-                <ChevronDown size={18} aria-hidden="true" />
-              </div>
+              </button>
             </div>
           </div>
           <dl className={styles.metrics}>

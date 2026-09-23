@@ -18,7 +18,7 @@ function TokenLogo({ signal }) {
   const [failed, setFailed] = useState(false);
   const initials = String(signal.symbol || "?").replace(/^\$/, "").slice(0, 3);
   if (failed || !signal.logoUrl) return <span className="token-logo token-logo-fallback" aria-hidden="true">{initials}</span>;
-  return <img className="token-logo" src={signal.logoUrl} alt="" loading="lazy" onError={() => setFailed(true)} />;
+  return <img className="token-logo" src={signal.logoUrl} alt={`${String(signal.symbol || "Token").replace(/^\\$/, "")} logo`} loading="lazy" onError={() => setFailed(true)} />;
 }
 
 function Sparkline({ points, direction }) {
@@ -33,7 +33,7 @@ function Sparkline({ points, direction }) {
     const y = height - ((point - min) / range) * (height - 8) - 4;
     return `${index ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
   }).join(" ");
-  return <svg className={`signal-sparkline signal-sparkline-${String(direction || "neutral").toLowerCase()}`} viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Recent price movement"><path d={path} fill="none" vectorEffect="non-scaling-stroke" /></svg>;
+  return <svg className={`signal-sparkline signal-sparkline-${String(direction || "neutral").toLowerCase()}`} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Recent ${direction === "LONG" ? "bullish" : direction === "SHORT" ? "bearish" : "neutral"} price movement`}><path d={path} fill="none" vectorEffect="non-scaling-stroke" /></svg>;
 }
 
 function Metric({ label, value, change = false }) {
