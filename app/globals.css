@@ -37,6 +37,44 @@ body {
 
 body::selection { color: #001320; background: #9cdbff; }
 
+.account-link-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.account-link-card {
+  width: min(100%, 560px);
+  padding: clamp(28px, 6vw, 64px);
+  border: 1px solid var(--glass-line);
+  border-radius: 28px;
+  background: var(--glass-surface-strong);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(24px);
+  text-align: center;
+}
+
+.account-link-card h1 { margin: 12px 0; font-size: clamp(2rem, 6vw, 4rem); line-height: .98; }
+.account-link-card p { color: var(--muted-strong); line-height: 1.6; }
+.account-link-status { margin: 24px 0; color: var(--muted); }
+.account-link-error { color: var(--negative) !important; }
+.account-link-button, .account-link-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 20px;
+  padding: 0 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.account-link-button { color: #03101c; background: #9cdbff; }
+.account-link-secondary { color: var(--text); background: transparent; }
+
 a { color: inherit; text-decoration: none; }
 button, select { font: inherit; }
 button { cursor: pointer; }

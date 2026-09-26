@@ -4,6 +4,7 @@ import "./ui-audit.css";
 
 import SiteControls from "../components/site-controls";
 import BackgroundVideo from "../components/background-video";
+import Providers from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -142,7 +143,7 @@ export default function RootLayout({ children }) {
           <div className="site-background-overlay" />
         </div>
         <div className="site-content">
-          {children}
+          <Providers>{children}</Providers>
         </div>
         <SiteControls />
 
