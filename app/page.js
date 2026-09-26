@@ -108,7 +108,7 @@ export default function Home() {
           <div className="section-heading">
             <p className="eyebrow">Risk</p>
             <h2>A setup is incomplete without risk.</h2>
-            <p className="section-lede risk-copy">PerpsIA uses the user&apos;s capital, risk percentage, and leverage limit to size actionable setups.</p>
+            <p className="section-lede risk-copy">PerpsIA uses your capital, risk percentage, and leverage limit to estimate position size.</p>
           </div>
           <div className="risk-content">
             <dl className="risk-profile">
@@ -129,7 +129,7 @@ export default function Home() {
         <Section id="performance" eyebrow="Signal Quality" title="PerpsIA tracks what happens after every signal.">
           <p className="section-lede">Signals are evaluated after 1 hour, 4 hours, 12 hours, 24 hours, and 72 hours.</p>
           <div className="performance-list"><span>TP1</span><span>TP2</span><span>Stop</span><span>Maximum favorable excursion</span><span>Maximum adverse excursion</span><span>Return after signal</span></div>
-          <p className="collecting-state">Performance data is still being collected.</p>
+          <p className="collecting-state">Outcome data is still being collected.</p>
         </Section>
 
         <section id="telegram" className="section telegram-section">

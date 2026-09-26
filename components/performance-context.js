@@ -13,7 +13,7 @@ export default function PerformanceContext({ quality, activity = {} }) {
           <div><span>Settled outcomes</span><strong>{settled}{quality?.minimumObservations ? ` / ${quality.minimumObservations} needed` : ""}</strong></div>
           <div><span>Signals tracked</span><strong>{tracked}</strong></div>
         </div>
-        <p className="collecting-state">Live calls are shown above. Accuracy metrics appear after their outcomes are settled.</p>
+        <p className="collecting-state">Live calls are shown above. Outcome metrics appear after enough signals are settled.</p>
       </>
     );
   }

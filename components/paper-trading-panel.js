@@ -8,7 +8,7 @@ export default function PaperTradingPanel({ compact = false }) {
       <div className="section-heading">
         <p className="eyebrow">Paper trading</p>
         <h2>{compact ? "Test the setup before you trade it." : "Turn every signal into a measurable paper trade."}</h2>
-        <p className="section-lede">Simulate LONG and SHORT positions in Telegram with entry, margin, leverage, stop-loss, take-profit, live PnL, and automatic exit notifications. Simulation only — no real orders are sent.</p>
+        <p className="section-lede">Simulate LONG and SHORT positions in Telegram with entry, margin, leverage, stop-loss, take-profit, simulated PnL from public market prices, and automatic exit notifications. Simulation only — no real orders are sent.</p>
       </div>
       <div className="three-column-grid">
         <article className="step-card">

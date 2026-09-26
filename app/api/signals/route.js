@@ -160,13 +160,6 @@ export async function GET() {
       },
     );
   } catch {
-    const upstreamUpdatedAt = signalsPayload?.meta?.updatedAt;
-    const derivedUpdatedAt = [...enrichedSignals, ...enrichedCandidates]
-      .map((signal) => signal.updatedAt)
-      .filter((value) => value && Number.isFinite(Date.parse(value)))
-      .sort((a, b) => Date.parse(b) - Date.parse(a))[0] || null;
-    const upstreamStale = signalsPayload?.meta?.stale;
-
     return Response.json(
       {
         signals: [],

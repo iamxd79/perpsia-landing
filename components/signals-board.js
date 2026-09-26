@@ -64,7 +64,7 @@ export default function SignalsBoard() {
   return (
     <>
       <div className="signals-status-row" role="status" aria-live="polite">
-        <p>{freshness === "live" ? "Live" : freshness === "stale" ? "Stale" : freshness === "loading" ? "Loading" : freshness === "error" ? "Unavailable" : "Freshness unavailable"}</p><p>{signals.length} active · {candidates.length} developing</p>
+        <p>{freshness === "live" ? "Live" : freshness === "stale" ? "Delayed" : freshness === "loading" ? "Loading" : freshness === "error" ? "Feed unavailable" : "Status unavailable"}</p><p>{signals.length} active setups · {candidates.length} developing candidates</p>
         <p>{freshness === "live" ? "Auto refreshing" : "Check the feed before acting"}</p>
         {data?.meta?.updatedAt ? <p>Last updated {formatTime(data.meta.updatedAt)}</p> : null}
       </div>

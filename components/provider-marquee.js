@@ -25,7 +25,7 @@ const providers = [
 
 function ProviderList({ duplicate = false }) {
   return (
-    <ul className={styles.group} aria-label={duplicate ? undefined : "Supported data providers and Telegram delivery"} aria-hidden={duplicate || undefined}>
+    <ul className={styles.group} aria-label={duplicate ? undefined : "Supported market data, analytics, and delivery integrations"} aria-hidden={duplicate || undefined}>
       {providers.map(({ name, file, tone, width = 30, height = 30, wordmark }) => (
         <li className={styles.provider} key={name}>
           <Image
@@ -50,7 +50,7 @@ export default function ProviderMarquee({ className = "" }) {
 
   return (
     <section className={`${className} ${styles.root}`} aria-label="Market intelligence across providers" data-paused={paused}>
-      <p className={styles.caption}>Powered by leading data sources</p>
+      <p className={styles.caption}>Market data, analytics, and delivery integrations</p>
       <div className={styles.viewport}>
         <div className={styles.track}>
           <ProviderList />
