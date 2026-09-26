@@ -21,6 +21,7 @@ export default function AccountPage() {
 function AuthenticatedAccountPage() {
   const { ready, authenticated, user, getAccessToken, login, logout, connectWallet } = usePrivy();
   const [account, setAccount] = useState(null);
+  const [tokenState, setTokenState] = useState(null);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
   const linkedWallets = useMemo(() => (user?.linkedAccounts || []).filter((item) => item?.type === "wallet" || item?.type === "smart_wallet"), [user]);
@@ -36,6 +37,10 @@ function AuthenticatedAccountPage() {
       .then(async (response) => ({ ok: response.ok, body: await response.json() }))
       .then(({ ok, body }) => ok ? setAccount(body) : setError(body?.error || "Could not load account."))
       .catch(() => setError("Could not load account."));
+    getAccessToken().then((privyAccessToken) => fetch("/api/account/token", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ privyAccessToken }) }))
+      .then(async (response) => ({ ok: response.ok, body: await response.json() }))
+      .then(({ ok, body }) => { if (ok) setTokenState(body); })
+      .catch(() => {});
   }, [authenticated, getAccessToken, ready]);
 
   useEffect(() => {
@@ -106,6 +111,7 @@ function AuthenticatedAccountPage() {
       {ready && !authenticated && <section className="account-dashboard-card"><h2>Connect to PerpsIA</h2><p>Sign in with Privy to open your unified account.</p><button className="account-link-button" type="button" onClick={login}>Continue with Privy</button></section>}
       {authenticated && account && <div className="account-dashboard-grid">
         <section className="account-dashboard-card"><span className="eyebrow">ACCOUNT</span><h2>Connected</h2><p>Created {account.account?.created_at ? new Date(account.account.created_at).toLocaleDateString() : "Recently"}</p><div className="account-dashboard-pills">{(account.identities || []).map((identity) => <span key={identity.provider}>{identity.provider}</span>)}</div></section>
+        <section className="account-dashboard-card"><span className="eyebrow">PERPSIA ACCESS</span><h2>{tokenState?.entitlements?.tier || "FREE"} tier</h2><p>Token and staking access are account-aware and read-only.</p><div className="account-dashboard-pills"><span>{tokenState?.staking?.totalStaked || 0} staked</span><span>{tokenState?.asset?.status || "mock"} asset</span></div><small>This is a mock/test state until a verified contract and audited staking deployment exist.</small></section>
         <section className="account-dashboard-card"><span className="eyebrow">CONNECTIONS</span><h2>Identity network</h2><p>Telegram and Privy resolve to this same PerpsIA account.</p><div className="account-dashboard-pills">{(account.identities || []).map((identity) => <span key={identity.provider}>{identity.provider} connected</span>)}</div></section>
         <section className="account-dashboard-card account-dashboard-wide"><span className="eyebrow">WALLETS</span><h2>Wallet identity</h2><p>Only wallets verified by Privy can be linked.</p><div className="account-dashboard-list">{(account.wallets || []).length ? account.wallets.map((wallet) => <div className="account-dashboard-row" key={wallet.walletId}><span>{wallet.address.slice(0, 8)}…{wallet.address.slice(-6)}<small>{wallet.chain.namespace}:{wallet.chain.id} · {wallet.custody}</small></span><span className="account-dashboard-wallet-actions"><b>{wallet.isPrimary ? "Primary" : "Connected"}</b>{!wallet.isPrimary && <button type="button" onClick={() => mutateWallet("set_primary", wallet.walletId)}>Make primary</button>}<button type="button" onClick={() => mutateWallet("unlink", wallet.walletId)}>Disconnect</button></span></div>) : <p>No wallet connected yet.</p>}</div><button className="account-link-button" type="button" onClick={connectAndSyncWallet}>Connect wallet</button></section>
         <section className="account-dashboard-card"><span className="eyebrow">TRADING PREFERENCES</span><h2>Shared settings</h2><label>Preferred venue<select value={account.preferences?.preferred_exchange || "Binance"} onChange={(event) => updatePreferences({ preferred_exchange: event.target.value })}><option>Binance</option><option>Bybit</option><option>OKX</option><option>Hyperliquid</option></select></label><label>Alert frequency<select value={account.preferences?.alert_frequency || "4h"} onChange={(event) => updatePreferences({ alert_frequency: event.target.value })}><option>1h</option><option>4h</option><option>12h</option></select></label><label>Signal sensitivity<select value={account.preferences?.signal_sensitivity || "balanced"} onChange={(event) => updatePreferences({ signal_sensitivity: event.target.value })}><option>conservative</option><option>balanced</option><option>aggressive</option></select></label></section>
