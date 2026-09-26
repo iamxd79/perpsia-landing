@@ -75,6 +75,25 @@ body::selection { color: #001320; background: #9cdbff; }
 .account-link-button { color: #03101c; background: #9cdbff; }
 .account-link-secondary { color: var(--text); background: transparent; }
 
+.account-dashboard-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: clamp(48px, 8vw, 112px) 0; }
+.account-dashboard-hero, .account-dashboard-card { border: 1px solid rgba(180, 225, 255, .24); background: rgba(7, 25, 43, .58); box-shadow: 0 18px 60px rgba(0, 20, 50, .18); backdrop-filter: blur(20px); border-radius: 24px; padding: clamp(22px, 4vw, 40px); }
+.account-dashboard-hero { margin-bottom: 24px; }
+.account-dashboard-hero h1 { max-width: 720px; margin: 12px 0; font-size: clamp(2.6rem, 7vw, 5.8rem); line-height: .95; letter-spacing: -.06em; }
+.account-dashboard-hero p, .account-dashboard-card p { color: var(--muted-strong); line-height: 1.6; }
+.account-dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.account-dashboard-wide { grid-column: 1 / -1; }
+.account-dashboard-card h2 { margin: 10px 0 12px; }
+.account-dashboard-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.account-dashboard-pills span { border: 1px solid rgba(180, 225, 255, .22); border-radius: 999px; padding: 8px 12px; color: var(--text); background: rgba(255, 255, 255, .06); font-size: .84rem; }
+.account-dashboard-list { display: grid; gap: 10px; margin: 20px 0; }
+.account-dashboard-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 16px; border: 1px solid rgba(180, 225, 255, .16); border-radius: 14px; background: rgba(255, 255, 255, .04); }
+.account-dashboard-row small { display: block; margin-top: 4px; color: var(--muted); font-size: .78rem; }
+.account-dashboard-wallet-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.account-dashboard-wallet-actions button { border: 0; background: transparent; color: var(--muted-strong); cursor: pointer; font: inherit; font-size: .78rem; }
+.account-dashboard-card label { display: grid; gap: 7px; margin-top: 16px; color: var(--muted-strong); font-size: .9rem; }
+.account-dashboard-card input, .account-dashboard-card select { width: 100%; box-sizing: border-box; border: 1px solid rgba(180, 225, 255, .22); background: rgba(0, 10, 22, .3); color: var(--text); border-radius: 10px; padding: 11px 12px; }
+@media (max-width: 720px) { .account-dashboard-shell { width: min(100% - 20px, 560px); padding: 28px 0 64px; } .account-dashboard-grid { grid-template-columns: 1fr; gap: 16px; } .account-dashboard-wide { grid-column: auto; } .account-dashboard-hero, .account-dashboard-card { padding: 22px; border-radius: 18px; } }
+
 a { color: inherit; text-decoration: none; }
 button, select { font: inherit; }
 button { cursor: pointer; }
